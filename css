@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #8fb3ff, #eef4ff);
+  display: flex;
+  justify-content: center;
+}
+
+/* Khung web căn giữa màn hình máy tính */
+.wrapper {
+  width: 1200px;
+  min-height: 100vh;
+  padding: 20px 40px;
+}
