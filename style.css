@@ -1,3 +1,13 @@
+web/
+├── index.html              (Trang chào mừng)
+├── menu.html               (Trang menu)
+├── gioithieu.html          (Giới thiệu chung)
+├── sodolop.html            (Chọn sơ đồ lớp)
+├── sodolop1.html           (Sơ đồ lớp 1)
+├── style.css
+└── img/
+    ├── bg.png
+    └── intro.png
 * {
   margin: 0;
   padding: 0;
