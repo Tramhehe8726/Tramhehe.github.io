@@ -7,7 +7,7 @@
     <style>
         /* Style riêng cho trang giới thiệu */
         .intro-class {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 30px auto;
             padding: 40px;
             background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
@@ -15,22 +15,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             position: relative;
             border: 1px solid rgba(103, 126, 234, 0.2);
-        }
-
-        /* Hiển thị thời gian */
-        .intro-time {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 28px;
-            font-weight: 800;
-            color: #667eea;
-            text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.2);
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #667eea20, #764ba220);
-            padding: 8px 20px;
-            border-radius: 50px;
-            border: 1px solid #667eea40;
         }
 
         /* Chữ T và I lớn */
@@ -62,26 +46,43 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Tên giáo viên */
-        .intro-teacher {
+        /* Khung ảnh lớp */
+        .class-photo-container {
             text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-            margin: 15px 0;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 60px;
+            margin: 20px 0 30px 0;
+        }
+
+        .class-photo {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 5px solid white;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .class-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .photo-caption {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 8px 30px;
+            border-radius: 50px;
             display: inline-block;
-            width: auto;
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-            border: 3px solid rgba(255,255,255,0.3);
         }
 
         /* Chữ M và N */
         .intro-mn {
             text-align: center;
-            margin: 20px 0;
+            margin: 20px 0 30px 0;
         }
 
         .mn-letter {
@@ -111,111 +112,173 @@
             background: linear-gradient(135deg, #667eea10, #764ba210);
             border-radius: 30px;
             padding: 30px;
-            margin: 30px 0 20px 0;
+            margin: 20px 0;
             border: 2px dashed #667eea40;
         }
 
-        /* Danh sách tên học sinh (giống hình 23:10) */
-        .student-names {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(102, 126, 234, 0.05);
-            border-radius: 25px;
-        }
-
-        .name-tag {
-            background: linear-gradient(145deg, #667eea, #764ba2);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .name-tag:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
-            background: linear-gradient(145deg, #764ba2, #667eea);
-        }
-
-        /* Các tên Xue đặc biệt */
-        .name-tag.xue {
-            background: linear-gradient(145deg, #ff6b6b, #ff4757);
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .name-tag.xue::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            100% { left: 100%; }
-        }
-
-        /* Thông tin cũ của lớp */
+        /* Thông tin lớp học */
         .class-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin: 20px 0;
         }
 
         .info-card {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
             border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
         }
 
-        .info-card p {
-            margin: 10px 0;
-            font-size: 18px;
-            color: #333;
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
         }
 
         .info-card strong {
             color: #667eea;
-            font-size: 20px;
+            font-size: 24px;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+        }
+
+        .info-card p {
+            margin: 12px 0;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p::before {
+            content: "•";
+            color: #667eea;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* KHU VỰC ẢNH BAN CÁN SỰ (MỚI) */
+        .bcs-section {
+            margin: 40px 0 20px;
+        }
+
+        .bcs-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .bcs-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .bcs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .bcs-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .bcs-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(102, 126, 234, 0.3);
+        }
+
+        .bcs-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Nếu có ảnh thật thì bỏ comment dòng này và xóa dòng trên */
+        /*
+        .bcs-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        */
+
+        .bcs-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 10px 0 5px;
+        }
+
+        .bcs-role {
+            font-size: 16px;
+            color: #667eea;
+            font-weight: 600;
+            background: #f0f3ff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .bcs-class {
+            font-size: 14px;
+            color: #999;
+            margin-top: 8px;
         }
 
         /* Thống kê */
         .student-stats {
             text-align: center;
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 30px;
+            padding: 15px 25px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50px;
             color: white;
             font-size: 20px;
+            font-weight: 500;
         }
 
         .student-stats span {
             background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
+            padding: 5px 20px;
             border-radius: 30px;
             margin: 0 10px;
             font-weight: bold;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -229,18 +292,16 @@
 
         <!-- Nội dung giới thiệu mới -->
         <div class="intro-class">
-            <!-- Thời gian 23:10 -->
-            <div class="intro-time">23:10</div>
-
             <!-- Chữ T và I lớn -->
             <div class="intro-letters">
                 <span class="big-letter letter-t">T</span>
                 <span class="big-letter letter-i">I</span>
             </div>
 
-            <!-- Tên giáo viên -->
-            <div style="text-align: center;">
-                <div class="intro-teacher">Gv. Nguyễn</div>
+            <!-- Ảnh lớp -->
+            <div class="class-photo-container">
+                <img src="thiện nguyện khởi toán.jpg" alt="Ảnh lớp Toán 2 K34" class="class-photo">
+                <div class="photo-caption">📸 Lớp Toán 2 - K34</div>
             </div>
 
             <!-- Chữ M và N -->
@@ -251,13 +312,13 @@
 
             <!-- Container thông tin lớp -->
             <div class="class-info-container">
-                <!-- Giữ lại thông tin cũ của lớp -->
+                <!-- Thông tin lớp học -->
                 <div class="class-details">
                     <div class="info-card">
                         <strong>📚 Thông tin chung</strong>
-                        <p>👥 Gồm 36 thành viên</p>
-                        <p>📖 Khóa 34</p>
-                        <p>📅 Niên khóa: 2024-2026</p>
+                        <p>Gồm 36 thành viên</p>
+                        <p>Khóa 34</p>
+                        <p>Niên khóa: 2024-2026</p>
                     </div>
                     
                     <div class="info-card">
@@ -265,66 +326,60 @@
                         <p>GVCN: Võ Thị Minh Hiếu</p>
                         <p>Chuyên: Đỗ Vũ Minh Thắng</p>
                     </div>
-                    
-                    <div class="info-card">
-                        <strong>🌟 Ban cán sự</strong>
-                        <p>Lớp trưởng: Phan Tuyết Anh Tú</p>
-                        <p>Lớp phó HT: Lê Xuân Đại</p>
-                        <p>Bí thư: Nguyễn Gia Khánh</p>
-                        <p>Phó bí thư: Nguyễn Thành Long</p>
-                    </div>
                 </div>
 
-                <!-- Danh sách tên theo hình 23:10 -->
-                <h3 style="text-align: center; color: #667eea; margin: 20px 0;">✨ Danh sách lớp ✨</h3>
-                <div class="student-names">
-                    <!-- Các tên từ hình ảnh -->
-                    <span class="name-tag">Jian</span>
-                    <span class="name-tag">L</span>
-                    <span class="name-tag">Sheng</span>
-                    <span class="name-tag">Zhi</span>
-                    <span class="name-tag">Xiang</span>
-                    <span class="name-tag">Yong</span>
-                    <span class="name-tag">Bing</span>
-                    <span class="name-tag">Dan</span>
-                    <span class="name-tag">Dong</span>
-                    <span class="name-tag">Shi</span>
-                    <span class="name-tag">Hua</span>
-                    <span class="name-tag">Qing</span>
-                    <span class="name-tag">Feng</span>
-                    <span class="name-tag">Zhong</span>
-                    <span class="name-tag">Xia</span>
-                    <span class="name-tag">Xiao</span>
-                    <span class="name-tag">Xie</span>
+                <!-- KHU VỰC BAN CÁN SỰ (ẢNH) -->
+                <div class="bcs-section">
+                    <h2 class="bcs-title">🌟 Ban cán sự lớp 🌟</h2>
                     
-                    <!-- Các tên Xue (nhiều) -->
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
-                    <span class="name-tag xue">Xue</span>
+                    <div class="bcs-grid">
+                        <!-- Lớp trưởng -->
+                        <div class="bcs-card">
+                            <div class="bcs-avatar">T</div>
+                            <!-- Nếu có ảnh, dùng: <img src="anh-tu.jpg" class="bcs-avatar"> -->
+                            <div class="bcs-name">Phan Tuyết Anh Tú</div>
+                            <div class="bcs-role">Lớp trưởng</div>
+                            <div class="bcs-class">Toán 2 K34</div>
+                        </div>
+
+                        <!-- Lớp phó học tập -->
+                        <div class="bcs-card">
+                            <div class="bcs-avatar">Đ</div>
+                            <!-- <img src="anh-dai.jpg" class="bcs-avatar"> -->
+                            <div class="bcs-name">Lê Xuân Đại</div>
+                            <div class="bcs-role">Lớp phó học tập</div>
+                            <div class="bcs-class">Toán 2 K34</div>
+                        </div>
+
+                        <!-- Bí thư -->
+                        <div class="bcs-card">
+                            <div class="bcs-avatar">K</div>
+                            <!-- <img src="anh-khanh.jpg" class="bcs-avatar"> -->
+                            <div class="bcs-name">Nguyễn Gia Khánh</div>
+                            <div class="bcs-role">Bí thư</div>
+                            <div class="bcs-class">Toán 2 K34</div>
+                        </div>
+
+                        <!-- Phó bí thư -->
+                        <div class="bcs-card">
+                            <div class="bcs-avatar">L</div>
+                            <!-- <img src="anh-long.jpg" class="bcs-avatar"> -->
+                            <div class="bcs-name">Nguyễn Thành Long</div>
+                            <div class="bcs-role">Phó bí thư</div>
+                            <div class="bcs-class">Toán 2 K34</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Thống kê số lượng -->
                 <div class="student-stats">
-                    📊 Tổng số: <span>36</span> thành viên | 
-                    👤 Đã điểm danh: <span>36</span> 
+                    📊 Tổng số: <span>36</span> thành viên
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-
 
 
 
