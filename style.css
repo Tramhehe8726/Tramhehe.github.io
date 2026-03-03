@@ -158,3 +158,9 @@ body {
 .student-table tr:hover {
   background-color: rgba(143,179,255,0.4);
 }
+.top-buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 60px;
+    margin-top: 20px;
+}
