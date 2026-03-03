@@ -1,39 +1,329 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Giới thiệu chung</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Giới thiệu chung - Toán 2 K34</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style riêng cho trang giới thiệu */
+        .intro-class {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid rgba(103, 126, 234, 0.2);
+        }
+
+        /* Hiển thị thời gian */
+        .intro-time {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 28px;
+            font-weight: 800;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.2);
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid #667eea40;
+        }
+
+        /* Chữ T và I lớn */
+        .intro-letters {
+            text-align: center;
+            margin: 20px 0 10px 0;
+        }
+
+        .big-letter {
+            font-size: 90px;
+            font-weight: 900;
+            display: inline-block;
+            margin: 0 20px;
+            text-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+            line-height: 1;
+        }
+
+        .letter-t {
+            color: #ff6b6b;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a5a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .letter-i {
+            color: #4ecdc4;
+            background: linear-gradient(45deg, #4ecdc4, #45b7af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Tên giáo viên */
+        .intro-teacher {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 15px 0;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 60px;
+            display: inline-block;
+            width: auto;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        /* Chữ M và N */
+        .intro-mn {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mn-letter {
+            font-size: 60px;
+            font-weight: 800;
+            display: inline-block;
+            margin: 0 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .letter-m {
+            color: #ffe66d;
+            background: linear-gradient(45deg, #ffe66d, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .letter-n {
+            color: #ff9f1c;
+            background: linear-gradient(45deg, #ff9f1c, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Container thông tin lớp */
+        .class-info-container {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 0 20px 0;
+            border: 2px dashed #667eea40;
+        }
+
+        /* Danh sách tên học sinh (giống hình 23:10) */
+        .student-names {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 25px;
+        }
+
+        .name-tag {
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .name-tag:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(145deg, #764ba2, #667eea);
+        }
+
+        /* Các tên Xue đặc biệt */
+        .name-tag.xue {
+            background: linear-gradient(145deg, #ff6b6b, #ff4757);
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .name-tag.xue::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            100% { left: 100%; }
+        }
+
+        /* Thông tin cũ của lớp */
+        .class-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #667eea;
+        }
+
+        .info-card p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .info-card strong {
+            color: #667eea;
+            font-size: 20px;
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* Thống kê */
+        .student-stats {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .student-stats span {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 30px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<div class="wrapper">
+    <div class="wrapper">
+        <!-- Header giữ nguyên -->
+        <div class="header">
+            <div class="title">Toán 2 - K34 - Giới thiệu</div>
+            <a href="menu.html" class="page-btn">Trang chủ</a>
+        </div>
 
-  <div class="header">
-    <div class="title">Toán 2 - K34 - Slogan</div>
-    <a href="menu.html" class="page-btn">Trang chủ</a>
-  </div>
+        <!-- Nội dung giới thiệu mới -->
+        <div class="intro-class">
+            <!-- Thời gian 23:10 -->
+            <div class="intro-time">23:10</div>
 
-  <div class="intro">
-    <div class="text">
-      Gồm 36 thành viên<br>
-      Khóa 34<br>
-      Niên khóa: 2024–2026<br>
-      Giáo viên chủ nhiệm:Võ Thị Minh Hiếu<br>
-      Giáo viên dạy chuyên:Đỗ Vũ Minh Thắng<br>
-      Lớp trưởng:Phan Tuyết Anh Tú<br>
-      Lớp phó học tập:Lê Xuân Đại<br>
-      Bí thư:Nguyễn Gia Khánh<br>
-      Phó bí thư: Nguyễn Thành Long
+            <!-- Chữ T và I lớn -->
+            <div class="intro-letters">
+                <span class="big-letter letter-t">T</span>
+                <span class="big-letter letter-i">I</span>
+            </div>
+
+            <!-- Tên giáo viên -->
+            <div style="text-align: center;">
+                <div class="intro-teacher">Gv. Nguyễn</div>
+            </div>
+
+            <!-- Chữ M và N -->
+            <div class="intro-mn">
+                <span class="mn-letter letter-m">M</span>
+                <span class="mn-letter letter-n">N</span>
+            </div>
+
+            <!-- Container thông tin lớp -->
+            <div class="class-info-container">
+                <!-- Giữ lại thông tin cũ của lớp -->
+                <div class="class-details">
+                    <div class="info-card">
+                        <strong>📚 Thông tin chung</strong>
+                        <p>👥 Gồm 36 thành viên</p>
+                        <p>📖 Khóa 34</p>
+                        <p>📅 Niên khóa: 2024-2026</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <strong>👨‍🏫 Giáo viên</strong>
+                        <p>GVCN: Võ Thị Minh Hiếu</p>
+                        <p>Chuyên: Đỗ Vũ Minh Thắng</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <strong>🌟 Ban cán sự</strong>
+                        <p>Lớp trưởng: Phan Tuyết Anh Tú</p>
+                        <p>Lớp phó HT: Lê Xuân Đại</p>
+                        <p>Bí thư: Nguyễn Gia Khánh</p>
+                        <p>Phó bí thư: Nguyễn Thành Long</p>
+                    </div>
+                </div>
+
+                <!-- Danh sách tên theo hình 23:10 -->
+                <h3 style="text-align: center; color: #667eea; margin: 20px 0;">✨ Danh sách lớp ✨</h3>
+                <div class="student-names">
+                    <!-- Các tên từ hình ảnh -->
+                    <span class="name-tag">Jian</span>
+                    <span class="name-tag">L</span>
+                    <span class="name-tag">Sheng</span>
+                    <span class="name-tag">Zhi</span>
+                    <span class="name-tag">Xiang</span>
+                    <span class="name-tag">Yong</span>
+                    <span class="name-tag">Bing</span>
+                    <span class="name-tag">Dan</span>
+                    <span class="name-tag">Dong</span>
+                    <span class="name-tag">Shi</span>
+                    <span class="name-tag">Hua</span>
+                    <span class="name-tag">Qing</span>
+                    <span class="name-tag">Feng</span>
+                    <span class="name-tag">Zhong</span>
+                    <span class="name-tag">Xia</span>
+                    <span class="name-tag">Xiao</span>
+                    <span class="name-tag">Xie</span>
+                    
+                    <!-- Các tên Xue (nhiều) -->
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                    <span class="name-tag xue">Xue</span>
+                </div>
+
+                <!-- Thống kê số lượng -->
+                <div class="student-stats">
+                    📊 Tổng số: <span>36</span> thành viên | 
+                    👤 Đã điểm danh: <span>36</span> 
+                </div>
+            </div>
+        </div>
     </div>
-
-    <img src="thiện nguyện khối toán.jpg">
-  </div>
-
-</div>
 </body>
 </html>
-
-
 
 
 
