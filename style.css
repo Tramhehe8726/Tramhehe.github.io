@@ -2,12 +2,12 @@ web/
 ├── index.html
 ├── menu.html
 ├── gioithieu.html
-├── sodolop.html
+├── kiniem.html
+├── thanhtich.html
 ├── sodolop1.html
 ├── style.css
 └── img/
-    ├── bg.png
-    └── intro.png
+    └── thiện nguyện khối toán.jpg
 * {
   margin: 0;
   padding: 0;
@@ -164,3 +164,292 @@ body {
     padding: 0 60px;
     margin-top: 20px;
 }
+.intro-class {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid rgba(103, 126, 234, 0.2);
+        }
+
+        /* Khung ảnh lớp */
+        .class-photo-container {
+            text-align: center;
+            margin: 10px 0 30px 0;
+        }
+
+        .class-photo {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 5px solid white;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .class-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .photo-caption {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 8px 30px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* Container thông tin lớp */
+        .class-info-container {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px dashed #667eea40;
+        }
+
+        /* Thông tin lớp học */
+        .class-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .info-card strong {
+            color: #667eea;
+            font-size: 24px;
+            display: block;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .info-card p {
+            margin: 12px 0;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p::before {
+            content: "•";
+            color: #667eea;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* KHU VỰC GIÁO VIÊN */
+        .teacher-section {
+            margin: 40px 0 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .teacher-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 70px;
+            font-weight: bold;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Khi có ảnh thật */
+        /*
+        .teacher-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        */
+
+        .teacher-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin: 15px 0 5px;
+        }
+
+        .teacher-role {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: 600;
+            background: #f0f3ff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* KHU VỰC BAN CÁN SỰ */
+        .bcs-section {
+            margin: 40px 0 20px;
+        }
+
+        .bcs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .bcs-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .bcs-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(102, 126, 234, 0.3);
+        }
+
+        .bcs-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .bcs-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .bcs-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 10px 0 5px;
+        }
+
+        .bcs-role {
+            font-size: 16px;
+            color: #667eea;
+            font-weight: 600;
+            background: #f0f3ff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .bcs-class {
+            font-size: 14px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        /* Thống kê */
+        .student-stats {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50px;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .student-stats span {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 20px;
+            border-radius: 30px;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 24px;
+        }
