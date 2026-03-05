@@ -1,14 +1,772 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Sơ đồ lớp 1</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thành Tích Lớp - 10A1</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome cho icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS bổ sung riêng cho trang thành tích */
+        .achievement-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(103, 126, 234, 0.2);
+        }
+
+        /* Tabs chuyển đổi khối lớp */
+        .grade-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #f0f3ff, #ffffff);
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Nội dung các khối lớp */
+        .grade-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .grade-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Grid thành tích */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        /* Card thành tích */
+        .achievement-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Khung ảnh minh họa */
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .image-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .image-placeholder span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .card-image.has-image .image-placeholder {
+            display: none;
+        }
+
+        .card-image.has-image img {
+            display: block;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f3ff;
+            padding-bottom: 10px;
+        }
+
+        .achievement-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .achievement-card p i {
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            color: #667eea;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #667eea40;
+        }
+
+        /* Nút upload ảnh */
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Danh sách thành viên xuất sắc */
+        .members-section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .member-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f3ff;
+        }
+
+        .member-item:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+        }
+
+        .member-item:hover .member-name,
+        .member-item:hover .member-role {
+            color: white;
+        }
+
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .member-role {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .tab-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="wrapper">
+    <div class="wrapper">
+        <!-- Header giống các trang khác -->
+        <div class="header">
+            <div class="title">KỶ YẾU 10A1<br>THPT CHUYÊN TOÁN</div>
+            <a href="menu.html" class="page-btn">✕</a>
+        </div>
 
-  <div class="header">
-    <div class="title">Toán 2 - K34 - Slogan</div>
-    <a href="menu" class="page-btn">Trang chủ</a>
-  </div>
+        <!-- Nút điều hướng trên cùng -->
+        <div class="top-buttons">
+            <a href="menu.html" class="pill small">← MENU</a>
+            <a href="sodolop1.html" class="pill small">SƠ ĐỒ LỚP →</a>
+        </div>
+
+        <!-- Nội dung trang thành tích -->
+        <div class="achievement-container">
+            <h1 style="text-align: center; font-size: 36px; color: #667eea; margin-bottom: 20px;">
+                <i class="fas fa-trophy"></i> THÀNH TÍCH LỚP 10A1
+            </h1>
+            <p style="text-align: center; font-size: 18px; color: #555; margin-bottom: 40px;">
+                Hành trình 3 năm học - Những dấu ấn không thể nào quên
+            </p>
+
+            <!-- Tabs chọn khối lớp -->
+            <div class="grade-tabs">
+                <button class="tab-btn active" onclick="showGrade(10)">📚 LỚP 10</button>
+                <button class="tab-btn" onclick="showGrade(11)">📖 LỚP 11</button>
+                <button class="tab-btn" onclick="showGrade(12)">🎓 LỚP 12</button>
+            </div>
+
+            <!-- Nội dung Lớp 10 -->
+            <div id="grade10" class="grade-content active">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Học tập -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Ảnh hoạt động học tập</span>
+                            </div>
+                            <img src="" alt="Học tập lớp 10">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🏆</div>
+                            <h3>Học tập xuất sắc</h3>
+                            <p><i class="fas fa-check-circle"></i> Top 1 lớp về điểm trung bình<br>
+                               <i class="fas fa-check-circle"></i> 5 học sinh đạt giải HSG cấp trường<br>
+                               <i class="fas fa-check-circle"></i> 100% học sinh đạt điểm TB trên 8.0<br>
+                               <i class="fas fa-check-circle"></i> Giải nhất cuộc thi Toán học tuổi trẻ</p>
+                            <span class="badge">Thành tích nổi bật</span><br>
+                            <label for="upload10-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-1" accept="image/*" onchange="previewImage(this, 'img10-1')">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - Thể thao -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-2">
+                            <div class="image-placeholder">
+                                <i class="fas fa-futbol"></i>
+                                <span>Ảnh hoạt động thể thao</span>
+                            </div>
+                            <img src="" alt="Thể thao lớp 10">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">⚽</div>
+                            <h3>Hoạt động thể thao</h3>
+                            <p><i class="fas fa-check-circle"></i> Vô địch bóng đá nam khối 10<br>
+                               <i class="fas fa-check-circle"></i> Giải nhì bóng chuyền nữ<br>
+                               <i class="fas fa-check-circle"></i> Giải ba điền kinh toàn trường<br>
+                               <i class="fas fa-check-circle"></i> Nhất toàn đoàn Hội khỏe Phù Đổng</p>
+                            <span class="badge">Tinh thần thể thao</span><br>
+                            <label for="upload10-2" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-2" accept="image/*" onchange="previewImage(this, 'img10-2')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Văn nghệ -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-music"></i>
+                                <span>Ảnh văn nghệ</span>
+                            </div>
+                            <img src="" alt="Văn nghệ lớp 10">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🎭</div>
+                            <h3>Văn nghệ - Nghệ thuật</h3>
+                            <p><i class="fas fa-check-circle"></i> Giải nhất văn nghệ 20/11<br>
+                               <i class="fas fa-check-circle"></i> Giải nhì thiết kế báo tường<br>
+                               <i class="fas fa-check-circle"></i> 3 tiết mục đặc sắc trong đêm diễn<br>
+                               <i class="fas fa-check-circle"></i> Giải nhất múa dân gian</p>
+                            <span class="badge">Tài năng nghệ thuật</span><br>
+                            <label for="upload10-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-3" accept="image/*" onchange="previewImage(this, 'img10-3')">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Tình nguyện (lấy ảnh từ thư mục img) -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-4">
+                            <div class="image-placeholder">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Ảnh thiện nguyện</span>
+                            </div>
+                            <img src="img/thiện nguyện khối toán.jpg" alt="Thiện nguyện khối toán">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">💝</div>
+                            <h3>Hoạt động thiện nguyện</h3>
+                            <p><i class="fas fa-check-circle"></i> Tham gia "Mùa hè xanh"<br>
+                               <i class="fas fa-check-circle"></i> Quyên góp 5 triệu cho đồng bào lũ lụt<br>
+                               <i class="fas fa-check-circle"></i> Dạy học cho trẻ em nghèo<br>
+                               <i class="fas fa-check-circle"></i> Hiến máu tình nguyện</p>
+                            <span class="badge">Trái tim nhân ái</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên xuất sắc lớp 10 -->
+                <div class="members-section">
+                    <h2 class="section-title"><i class="fas fa-star"></i> CÁ NHÂN XUẤT SẮC LỚP 10</h2>
+                    <div class="members-grid">
+                        <div class="member-item">
+                            <div class="member-avatar">NA</div>
+                            <div class="member-info">
+                                <div class="member-name">Nguyễn Văn An</div>
+                                <div class="member-role">Thủ khoa HK I</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">TL</div>
+                            <div class="member-info">
+                                <div class="member-name">Trần Thị Lan</div>
+                                <div class="member-role">Đội trưởng bóng đá</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">PM</div>
+                            <div class="member-info">
+                                <div class="member-name">Phạm Minh</div>
+                                <div class="member-role">Giải nhất văn nghệ</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">HT</div>
+                            <div class="member-info">
+                                <div class="member-name">Hoàng Thu</div>
+                                <div class="member-role">HSG Toán cấp trường</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">VH</div>
+                            <div class="member-info">
+                                <div class="member-name">Vũ Hùng</div>
+                                <div class="member-role">VĐV điền kinh</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">ML</div>
+                            <div class="member-info">
+                                <div class="member-name">Mai Linh</div>
+                                <div class="member-role">MC chương trình</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Lớp 11 -->
+            <div id="grade11" class="grade-content">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Học tập lớp 11 -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-book-open"></i>
+                                <span>Ảnh học tập lớp 11</span>
+                            </div>
+                            <img src="" alt="Học tập lớp 11">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">📚</div>
+                            <h3>Thành tích học tập</h3>
+                            <p><i class="fas fa-check-circle"></i> 3 giải HSG cấp thành phố<br>
+                               <i class="fas fa-check-circle"></i> Điểm thi cuối năm cao nhất khối<br>
+                               <i class="fas fa-check-circle"></i> 8 học sinh đạt danh hiệu HSG<br>
+                               <i class="fas fa-check-circle"></i> Giải nhì Olympic Toán Hà Nội</p>
+                            <span class="badge">Vươn xa</span><br>
+                            <label for="upload11-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-1" accept="image/*" onchange="previewImage(this, 'img11-1')">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - Nghiên cứu khoa học -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-2">
+                            <div class="image-placeholder">
+                                <i class="fas fa-flask"></i>
+                                <span>Ảnh NCKH</span>
+                            </div>
+                            <img src="" alt="NCKH lớp 11">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🔬</div>
+                            <h3>Nghiên cứu khoa học</h3>
+                            <p><i class="fas fa-check-circle"></i> Giải nhì cuộc thi KHKT cấp trường<br>
+                               <i class="fas fa-check-circle"></i> 2 dự án tham gia cấp quốc gia<br>
+                               <i class="fas fa-check-circle"></i> Sáng chế "Máy lọc nước mini"<br>
+                               <i class="fas fa-check-circle"></i> Giải ba Tin học trẻ toàn quốc</p>
+                            <span class="badge">Sáng tạo trẻ</span><br>
+                            <label for="upload11-2" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-2" accept="image/*" onchange="previewImage(this, 'img11-2')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Ngoại khóa -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-campground"></i>
+                                <span>Ảnh hoạt động ngoại khóa</span>
+                            </div>
+                            <img src="" alt="Ngoại khóa lớp 11">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🏕️</div>
+                            <h3>Hoạt động ngoại khóa</h3>
+                            <p><i class="fas fa-check-circle"></i> Giải nhất cắm trại 26/3<br>
+                               <i class="fas fa-check-circle"></i> Tổ chức thành công hội trại<br>
+                               <i class="fas fa-check-circle"></i> 100% tham gia hoạt động Đoàn<br>
+                               <i class="fas fa-check-circle"></i> Giải nhất thi vẽ tranh cổ động</p>
+                            <span class="badge">Năng động</span><br>
+                            <label for="upload11-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-3" accept="image/*" onchange="previewImage(this, 'img11-3')">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Tiếp sức mùa thi -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-4">
+                            <div class="image-placeholder">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Ảnh tình nguyện</span>
+                            </div>
+                            <img src="img/thiện nguyện khối toán.jpg" alt="Tiếp sức mùa thi">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🤝</div>
+                            <h3>Tiếp sức mùa thi</h3>
+                            <p><i class="fas fa-check-circle"></i> 20 tình nguyện viên<br>
+                               <i class="fas fa-check-circle"></i> Hỗ trợ 200 thí sinh<br>
+                               <i class="fas fa-check-circle"></i> Đội xe ôm miễn phí<br>
+                               <i class="fas fa-check-circle"></i> Phát 500 suất nước uống</p>
+                            <span class="badge">Tình nguyện</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên xuất sắc lớp 11 -->
+                <div class="members-section">
+                    <h2 class="section-title"><i class="fas fa-star"></i> CÁ NHÂN XUẤT SẮC LỚP 11</h2>
+                    <div class="members-grid">
+                        <div class="member-item">
+                            <div class="member-avatar">HL</div>
+                            <div class="member-info">
+                                <div class="member-name">Hoàng Linh</div>
+                                <div class="member-role">Giải nhất HSG Toán</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">ĐT</div>
+                            <div class="member-info">
+                                <div class="member-name">Đặng Tuấn</div>
+                                <div class="member-role">Trưởng ban tình nguyện</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">VH</div>
+                            <div class="member-info">
+                                <div class="member-name">Vũ Hoa</div>
+                                <div class="member-role">Giải nhất NCKH</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">LQ</div>
+                            <div class="member-info">
+                                <div class="member-name">Lê Quân</div>
+                                <div class="member-role">Thủ khoa học kỳ</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">NT</div>
+                            <div class="member-info">
+                                <div class="member-name">Ngọc Trâm</div>
+                                <div class="member-role">Bí thư chi đoàn</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">TH</div>
+                            <div class="member-info">
+                                <div class="member-name">Trung Hiếu</div>
+                                <div class="member-role">Giải nhì Tin học</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Lớp 12 -->
+            <div id="grade12" class="grade-content">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Ôn thi tốt nghiệp -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-pencil-alt"></i>
+                                <span>Ảnh ôn thi</span>
+                            </div>
+                            <img src="" alt="Ôn thi lớp 12">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">✍️</div>
+                            <h3>Ôn thi tốt nghiệp</h3>
+                            <p><i class="fas fa-check-circle"></i> 10 buổi ôn tập miễn phí<br>
+                               <i class="fas fa-check-circle"></i> 100% học sinh đăng ký ôn thi<br>
+                               <i class="fas fa-check-circle"></i> Tài liệu ôn tập được chia sẻ<br>
+                               <i class="fas fa-check-circle"></i> Nhóm học tập online hiệu quả</p>
+                            <span class="badge">Quyết tâm</span><br>
+                            <label for="upload12-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-1" accept="image/*" onchange="previewImage(this, 'img12-1')">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - Kỷ yếu -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-2">
+                            <div class="image-placeholder">
+                                <i class="fas fa-camera-retro"></i>
+                                <span>Ảnh kỷ yếu</span>
+                            </div>
+                            <img src="" alt="Kỷ yếu lớp 12">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">📸</div>
+                            <h3>Kỷ yếu - Kỷ niệm</h3>
+                            <p><i class="fas fa-check-circle"></i> Bộ ảnh kỷ yếu đẹp nhất trường<br>
+                               <i class="fas fa-check-circle"></i> Video kỷ niệm 3 năm học<br>
+                               <i class="fas fa-check-circle"></i> Sổ lưu bút tập thể lớp<br>
+                               <i class="fas fa-check-circle"></i> Họp mặt chia tay cuối cấp</p>
+                            <span class="badge">Kỷ niệm đẹp</span><br>
+                            <label for="upload12-2" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-2" accept="image/*" onchange="previewImage(this, 'img12-2')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Thành tích cuối cấp -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-trophy"></i>
+                                <span>Ảnh tổng kết</span>
+                            </div>
+                            <img src="" alt="Tổng kết lớp 12">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🎉</div>
+                            <h3>Thành tích cuối cấp</h3>
+                            <p><i class="fas fa-check-circle"></i> 12 HS đạt giải trong kỳ thi HSG<br>
+                               <i class="fas fa-check-circle"></i> 5 HS được tuyển thẳng Đại học<br>
+                               <i class="fas fa-check-circle"></i> Tỷ lệ đỗ tốt nghiệp 100%<br>
+                               <i class="fas fa-check-circle"></i> 2 HS đạt giải quốc gia</p>
+                            <span class="badge">Rực rỡ</span><br>
+                            <label for="upload12-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-3" accept="image/*" onchange="previewImage(this, 'img12-3')">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Định hướng tương lai -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-4">
+                            <div class="image-placeholder">
+                                <i class="fas fa-rocket"></i>
+                                <span>Ảnh định hướng</span>
+                            </div>
+                            <img src="" alt="Định hướng tương lai">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🚀</div>
+                            <h3>Định hướng tương lai</h3>
+                            <p><i class="fas fa-check-circle"></i> 15 bạn đỗ ĐH Bách Khoa<br>
+                               <i class="fas fa-check-circle"></i> 8 bạn đỗ ĐH Ngoại thương<br>
+                               <i class="fas fa-check-circle"></i> 5 bạn du học nước ngoài<br>
+                               <i class="fas fa-check-circle"></i> 2 bạn học viện Quân sự</p>
+                            <span class="badge">Tương lai sáng</span><br>
+                            <label for="upload12-4" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-4" accept="image/*" onchange="previewImage(this, 'img12-4')">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên xuất sắc lớp 12 -->
+                <div class="members-section">
+                    <h2 class="section-title"><i class="fas fa-star"></i> CÁ NHÂN XUẤT SẮC LỚP 12</h2>
+                    <div class="members-grid">
+                        <div class="member-item">
+                            <div class="member-avatar">MT</div>
+                            <div class="member-info">
+                                <div class="member-name">Mai Trang</div>
+                                <div class="member-role">Thủ khoa đầu ra</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">QH</div>
+                            <div class="member-info">
+                                <div class="member-name">Quang Huy</div>
+                                <div class="member-role">Giải nhất quốc gia</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">TN</div>
+                            <div class="member-info">
+                                <div class="member-name">Thu Ngân</div>
+                                <div class="member-role">Bí thư chi đoàn</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">ĐA</div>
+                            <div class="member-info">
+                                <div class="member-name">Đức Anh</div>
+                                <div class="member-role">Lớp trưởng</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">HP</div>
+                            <div class="member-info">
+                                <div class="member-name">Hải Phong</div>
+                                <div class="member-role">Giải nhì Olympic</div>
+                            </div>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">KY</div>
+                            <div class="member-info">
+                                <div class="member-name">Khánh Y</div>
+                                <div class="member-role">Thủ khoa khối D</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hàm chuyển đổi giữa các khối lớp
+        function showGrade(grade) {
+            // Ẩn tất cả nội dung
+            document.getElementById('grade10').classList.remove('active');
+            document.getElementById('grade11').classList.remove('active');
+            document.getElementById('grade12').
