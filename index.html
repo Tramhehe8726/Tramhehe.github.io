@@ -6,6 +6,16 @@
 
 <style>
 
+/* ================= ROOT ================= */
+
+:root{
+--main-blue:#2563eb;
+--deep-blue:#1e3a8a;
+--soft-blue:#eaf6ff;
+--light:#ffffff;
+--shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+
 *{
 margin:0;
 padding:0;
@@ -13,77 +23,90 @@ box-sizing:border-box;
 font-family:"Segoe UI",sans-serif;
 }
 
-/* NỀN */
+/* ================= NỀN ================= */
 
 body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#eaf6ff,#cfe9ff);
+
+background:linear-gradient(135deg,#eaf6ff,#cfe9ff,#dff3ff);
+background-size:400% 400%;
+
+animation:bgMove 12s ease infinite;
+
 overflow:hidden;
-cursor: pointer; /* Thay đổi con trỏ thành bàn tay để biết có thể click */
+cursor:pointer;
 }
 
-/* MÂY */
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ================= MÂY ================= */
 
 .cloud{
 position:absolute;
 background:white;
 border-radius:50px;
-opacity:0.7;
-animation:cloudMove 40s linear infinite;
+opacity:.75;
+animation:cloudMove linear infinite;
+filter:blur(.3px);
 }
 
-.cloud:before,
-.cloud:after{
+.cloud::before,
+.cloud::after{
 content:"";
 position:absolute;
 background:white;
 border-radius:50%;
 }
 
-.cloud:before{
+.cloud::before{
 width:60px;
 height:60px;
 top:-20px;
 left:10px;
 }
 
-.cloud:after{
+.cloud::after{
 width:80px;
 height:80px;
 top:-35px;
 right:10px;
 }
 
-.c1{width:160px;height:50px;top:15%;left:-200px;}
+.c1{width:160px;height:50px;top:15%;left:-200px;animation-duration:40s;}
 .c2{width:200px;height:60px;top:35%;left:-250px;animation-duration:60s;}
 .c3{width:140px;height:45px;top:65%;left:-180px;animation-duration:50s;}
 
 @keyframes cloudMove{
-from{transform:translateX(0);}
-to{transform:translateX(120vw);}
+from{transform:translateX(0)}
+to{transform:translateX(120vw)}
 }
 
-/* BONG BÓNG CỐ ĐỊNH */
+/* ================= BUBBLE FLOAT ================= */
 
 .bubble{
 position:absolute;
 bottom:-100px;
-background:rgba(255,255,255,0.3);
 border-radius:50%;
-animation:bubbleUp 12s infinite;
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(2px);
+animation:bubbleUp infinite;
 }
 
-.b1{width:30px;height:30px;left:20%;}
+.b1{width:30px;height:30px;left:20%;animation-duration:12s;}
 .b2{width:40px;height:40px;left:50%;animation-duration:10s;}
 .b3{width:25px;height:25px;left:70%;animation-duration:14s;}
 
 @keyframes bubbleUp{
 from{
 transform:translateY(0);
-opacity:0.5;
+opacity:.6;
 }
 to{
 transform:translateY(-120vh);
@@ -91,134 +114,86 @@ opacity:0;
 }
 }
 
-/* KHUNG */
+/* ================= CONTAINER ================= */
 
 .container{
 position:relative;
 text-align:center;
+
 padding:70px 100px;
 
-background:white;
+background:rgba(255,255,255,.9);
+backdrop-filter:blur(10px);
 
 border-radius:25px;
 
-box-shadow:0 20px 50px rgba(0,0,0,0.15);
+box-shadow:var(--shadow);
 
 animation:fadeIn 1.2s ease;
-z-index: 10; /* Đảm bảo container nổi lên trên */
-pointer-events: none; /* Cho phép click xuyên qua container để tạo bong bóng */
-}
 
-/* ANIMATION */
+z-index:10;
+
+pointer-events:none;
+}
 
 @keyframes fadeIn{
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(40px) scale(.95);
 }
 to{
 opacity:1;
-transform:translateY(0);
+transform:translateY(0) scale(1);
 }
 }
 
-/* BONG BÓNG CLICK - HIỆU ỨNG CHÍNH */
-.click-bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.7);
-    pointer-events: none; /* Không cản trở các click khác */
-    transform: translate(-50%, -50%);
-    animation: bubble-pop 3s ease-out forwards;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-    z-index: 1000;
-}
-
-/* Hiệu ứng bong bóng khi click */
-@keyframes bubble-pop {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(0);
-    }
-    30% {
-        width: 80px;
-        height: 80px;
-        opacity: 0.7;
-        transform: translate(-50%, -50%) scale(1.2);
-    }
-    70% {
-        width: 60px;
-        height: 60px;
-        opacity: 0.4;
-        transform: translate(calc(-50% + 30px), calc(-50% - 120px)) scale(0.9);
-    }
-    100% {
-        width: 40px;
-        height: 40px;
-        opacity: 0;
-        transform: translate(calc(-50% + 60px), calc(-50% - 250px)) scale(0.5);
-    }
-}
-
-/* Hiệu ứng gợn sóng khi click */
-.ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    animation: ripple 1s ease-out forwards;
-    z-index: 999;
-}
-
-@keyframes ripple {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.5;
-    }
-    100% {
-        width: 150px;
-        height: 150px;
-        opacity: 0;
-    }
-}
-
-/* TITLE */
+/* ================= TITLE ================= */
 
 h1{
 font-size:42px;
-color:#1e3a8a;
+color:var(--deep-blue);
 line-height:1.6;
+text-shadow:0 2px 10px rgba(0,0,0,.05);
 }
-
-/* TÊN LỚP */
 
 h1 span{
 display:block;
 font-size:55px;
 font-weight:bold;
-color:#2563eb;
-letter-spacing:3px;
+color:var(--main-blue);
+letter-spacing:4px;
 margin-top:10px;
+
+animation:glow 3s ease-in-out infinite;
 }
 
-/* ICON */
+@keyframes glow{
+0%,100%{text-shadow:0 0 5px rgba(37,99,235,.3)}
+50%{text-shadow:0 0 20px rgba(37,99,235,.6)}
+}
+
+/* ================= ICON ================= */
 
 .icons{
-font-size:28px;
+font-size:30px;
 margin-top:20px;
+letter-spacing:6px;
+animation:floatIcon 4s ease-in-out infinite;
 }
 
-/* BUTTON */
+@keyframes floatIcon{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+}
+
+/* ================= BUTTON ================= */
 
 .enter-btn{
+
 display:inline-block;
 margin-top:30px;
 
-padding:12px 35px;
+padding:13px 38px;
 
 border-radius:40px;
 
@@ -230,16 +205,93 @@ font-weight:bold;
 
 text-decoration:none;
 
-transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
 
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
+transition:.35s;
 
-pointer-events: auto; /* Nút vẫn có thể click được */
+pointer-events:auto;
 }
 
 .enter-btn:hover{
-transform:scale(1.1);
-box-shadow:0 12px 30px rgba(0,0,0,0.3);
+transform:translateY(-3px) scale(1.08);
+box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+
+/* ================= CLICK EFFECT ================= */
+
+.click-bubble{
+position:absolute;
+border-radius:50%;
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+animation:bubble-pop 2.5s ease-out forwards;
+
+box-shadow:0 0 12px rgba(255,255,255,.8);
+
+z-index:1000;
+}
+
+@keyframes bubble-pop{
+
+0%{
+width:0;
+height:0;
+opacity:.8;
+transform:translate(-50%,-50%) scale(0);
+}
+
+30%{
+width:40px;
+height:40px;
+opacity:.7;
+transform:translate(-50%,-50%) scale(1.1);
+}
+
+70%{
+width:30px;
+height:30px;
+opacity:.4;
+transform:translate(calc(-50% + 15px),calc(-50% - 60px)) scale(.8);
+}
+
+100%{
+width:20px;
+height:20px;
+opacity:0;
+transform:translate(calc(-50% + 30px),calc(-50% - 120px)) scale(.4);
+}
+
+}
+
+.ripple-effect{
+position:absolute;
+
+border-radius:50%;
+
+background:radial-gradient(circle,rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 70%);
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+animation:ripple .8s ease-out forwards;
+
+z-index:999;
+}
+
+@keyframes ripple{
+0%{
+width:0;
+height:0;
+opacity:.5;
+}
+100%{
+width:80px;
+height:80px;
+opacity:0;
+}
 }
 
 </style>
@@ -247,12 +299,10 @@ box-shadow:0 12px 30px rgba(0,0,0,0.3);
 
 <body>
 
-<!-- mây -->
 <div class="cloud c1"></div>
 <div class="cloud c2"></div>
 <div class="cloud c3"></div>
 
-<!-- bong bóng cố định -->
 <div class="bubble b1"></div>
 <div class="bubble b2"></div>
 <div class="bubble b3"></div>
@@ -275,100 +325,88 @@ Vào lớp học 🚀
 </div>
 
 <script>
-// Hiệu ứng bong bóng khi click chuột
-document.addEventListener('click', function(e) {
-    // Tạo hiệu ứng gợn sóng
-    createRipple(e.clientX, e.clientY);
-    
-    // Tạo nhiều bong bóng tại vị trí click
-    const bubbleCount = 5 + Math.floor(Math.random() * 8); // Random 5-13 bong bóng
-    
-    for (let i = 0; i < bubbleCount; i++) {
-        setTimeout(() => {
-            createClickBubble(e.clientX, e.clientY);
-        }, i * 50); // Mỗi bong bóng xuất hiện cách nhau 50ms
-    }
-});
 
-function createRipple(x, y) {
-    const ripple = document.createElement('div');
-    ripple.classList.add('ripple-effect');
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-    document.body.appendChild(ripple);
-    
-    // Xóa ripple sau 1 giây
-    setTimeout(() => {
-        ripple.remove();
-    }, 1000);
+const colors=[
+'rgba(135,206,250,0.7)',
+'rgba(255,182,193,0.7)',
+'rgba(152,251,152,0.7)',
+'rgba(255,255,0,0.5)',
+'rgba(255,255,255,0.8)',
+'rgba(218,112,214,0.6)',
+'rgba(255,218,185,0.7)'
+];
+
+document.addEventListener("click",e=>{
+
+createRipple(e.clientX,e.clientY)
+
+let bubbleCount=8+Math.floor(Math.random()*10)
+
+for(let i=0;i<bubbleCount;i++){
+
+setTimeout(()=>{
+createBubble(e.clientX,e.clientY)
+},i*40)
+
 }
 
-function createClickBubble(x, y) {
-    const bubble = document.createElement('div');
-    bubble.classList.add('click-bubble');
-    
-    // Random kích thước bong bóng (20-60px)
-    const size = 20 + Math.floor(Math.random() * 40);
-    
-    // Random màu sắc tươi sáng
-    const colors = [
-        'rgba(135, 206, 250, 0.7)', // xanh nhạt
-        'rgba(255, 182, 193, 0.7)', // hồng nhạt
-        'rgba(152, 251, 152, 0.7)', // xanh lá nhạt
-        'rgba(255, 255, 0, 0.5)',   // vàng nhạt
-        'rgba(255, 255, 255, 0.8)', // trắng
-        'rgba(218, 112, 214, 0.6)', // tím nhạt
-        'rgba(255, 218, 185, 0.7)'  // cam nhạt
-    ];
-    
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    // Random độ lệch vị trí ban đầu
-    const offsetX = (Math.random() - 0.5) * 40;
-    const offsetY = (Math.random() - 0.5) * 40;
-    
-    // Thiết lập style cho bong bóng
-    bubble.style.width = size + 'px';
-    bubble.style.height = size + 'px';
-    bubble.style.left = (x + offsetX) + 'px';
-    bubble.style.top = (y + offsetY) + 'px';
-    bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), ${randomColor})`;
-    
-    // Random hướng bay
-    const randomX = (Math.random() - 0.5) * 100;
-    const randomY = -150 - Math.random() * 150;
-    
-    // Tạo animation riêng cho mỗi bong bóng
-    bubble.style.animation = `bubble-pop 2.5s ease-out forwards`;
-    
-    // Thêm vào body
-    document.body.appendChild(bubble);
-    
-    // Xóa bong bóng sau 2.5 giây
-    setTimeout(() => {
-        bubble.remove();
-    }, 2500);
+})
+
+function createRipple(x,y){
+
+let ripple=document.createElement("div")
+ripple.className="ripple-effect"
+
+ripple.style.left=x+"px"
+ripple.style.top=y+"px"
+
+document.body.appendChild(ripple)
+
+setTimeout(()=>ripple.remove(),800)
+
 }
 
-// Ngăn chặn hiệu ứng khi click vào nút "Vào lớp học" (vẫn giữ liên kết hoạt động)
-document.querySelector('.enter-btn').addEventListener('click', function(e) {
-    e.stopPropagation(); // Ngăn không cho sự kiện lan lên body
-    // Vẫn tạo bong bóng nhưng không ảnh hưởng đến việc chuyển trang
-    createRipple(e.clientX, e.clientY);
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            createClickBubble(e.clientX, e.clientY);
-        }, i * 50);
-    }
-});
+function createBubble(x,y){
 
-// Hiệu ứng khi di chuột (tùy chọn - có thể bỏ comment nếu muốn)
-// let mouseTimer;
-// document.addEventListener('mousemove', function(e) {
-//     if (Math.random() < 0.05) { // 5% cơ hội
-//         createClickBubble(e.clientX, e.clientY);
-//     }
-// });
+let bubble=document.createElement("div")
+bubble.className="click-bubble"
+
+let size=10+Math.random()*25
+let color=colors[Math.floor(Math.random()*colors.length)]
+
+let offsetX=(Math.random()-0.5)*25
+let offsetY=(Math.random()-0.5)*25
+
+bubble.style.width=size+"px"
+bubble.style.height=size+"px"
+
+bubble.style.left=(x+offsetX)+"px"
+bubble.style.top=(y+offsetY)+"px"
+
+bubble.style.background=`radial-gradient(circle at 30% 30%, white, ${color})`
+
+document.body.appendChild(bubble)
+
+setTimeout(()=>bubble.remove(),2500)
+
+}
+
+document.querySelector(".enter-btn").addEventListener("click",e=>{
+
+e.stopPropagation()
+
+createRipple(e.clientX,e.clientY)
+
+for(let i=0;i<8;i++){
+
+setTimeout(()=>{
+createBubble(e.clientX,e.clientY)
+},i*40)
+
+}
+
+})
+
 </script>
 
 </body>
