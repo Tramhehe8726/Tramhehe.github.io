@@ -6,13 +6,38 @@
 
 <style>
 
-body{
-font-family: "Segoe UI", sans-serif;
-background: linear-gradient(135deg,#eef2ff,#dbeafe);
-margin:0;
+:root{
+--bg1:#eef2ff;
+--bg2:#dbeafe;
+
+--g1:#fee2e2;
+--g2:#dcfce7;
+--g3:#e0f2fe;
+--g4:#fef9c3;
+
+--vip1:#ef4444;
+--vip2:#16a34a;
+--vip3:#0284c7;
+--vip4:#ca8a04;
 }
 
-/* Container */
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:"Segoe UI",sans-serif;
+background:linear-gradient(135deg,var(--bg1),var(--bg2));
+margin:0;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1}
+}
+
+/* container */
 
 .wrapper{
 max-width:1100px;
@@ -20,45 +45,54 @@ margin:auto;
 padding:25px;
 }
 
-/* Header */
+/* header */
 
 .header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .title{
-font-size: 22px;
-color: #1f3c88;
+font-size:22px;
+font-weight:600;
+color:#1f3c88;
 }
 
 .page-btn{
-       padding: 10px 30px;
-       border-radius: 999px;
-       border: 1.5px solid #4d73ff;
-       background: transparent;
-       color: #1f3c88;
-       text-decoration: none;
-       font-size: 16px;;
+padding:10px 30px;
+border-radius:999px;
+border:1.5px solid #4d73ff;
+background:white;
+color:#1f3c88;
+text-decoration:none;
+font-size:15px;
+transition:0.3s;
 }
 
-/* Teacher desk */
+.page-btn:hover{
+background:#4d73ff;
+color:white;
+transform:scale(1.05);
+}
+
+/* teacher desk */
 
 .teacher{
 width:220px;
 margin:auto;
 text-align:center;
 background:#fbbf24;
-padding:12px;
+padding:14px;
 border-radius:30px;
 font-weight:bold;
-margin-bottom:25px;
-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+margin-bottom:30px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+letter-spacing:1px;
 }
 
-/* Classroom grid */
+/* classroom */
 
 .class-map{
 display:grid;
@@ -66,21 +100,26 @@ grid-template-columns:repeat(4,1fr);
 gap:25px;
 }
 
-/* Group */
+/* group */
 
 .group{
 background:white;
 padding:15px;
-border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+border-radius:16px;
+box-shadow:0 6px 15px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.group:hover{
+transform:translateY(-5px);
 }
 
 .group h3{
 text-align:center;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
-/* Seat grid */
+/* members */
 
 .members{
 display:grid;
@@ -88,48 +127,43 @@ grid-template-columns:repeat(2,1fr);
 gap:10px;
 }
 
-/* Seat style */
+/* seat */
 
 .seat{
-background:#e5e7eb;
 padding:10px;
 border-radius:25px;
 text-align:center;
 font-size:13px;
-transition:0.2s;
+transition:0.25s;
+cursor:pointer;
 }
 
 .seat:hover{
-transform:translateY(-4px);
-box-shadow:0 4px 8px rgba(0,0,0,0.2);
+transform:translateY(-4px) scale(1.05);
+box-shadow:0 6px 12px rgba(0,0,0,0.2);
 }
 
-/* Highlight student */
+/* vip */
 
 .vip{
-background:#6366f1;
 color:white;
+font-weight:600;
+box-shadow:0 0 10px rgba(0,0,0,0.15);
 }
 
-/* Group colors */
+/* group colors */
 
-.group1 .seat{background:#fee2e2}
-.group1 .seat{background:#e0f2fe}
-.group2 .seat{background:#dcfce7}
-.group3 .seat{background:#e0f2fe}
-.group4 .seat{background:#fef9c3}
-.group3 .seat{background:#fef9c3}
-.group4 .seat{background:#fee2e2}
+.group1 .seat{background:var(--g1)}
+.group2 .seat{background:var(--g2)}
+.group3 .seat{background:var(--g3)}
+.group4 .seat{background:var(--g4)}
 
-.group1 .vip{background:#ef4444}
-.group1 .vip{background:#0284c7}
-.group2 .vip{background:#16a34a}
-.group3 .vip{background:#0284c7}
-.group4 .vip{background:#ca8a04}
-.group3 .vip{background:#ca8a04}
-.group4 .vip{background:#ef4444}
+.group1 .vip{background:var(--vip1)}
+.group2 .vip{background:var(--vip2)}
+.group3 .vip{background:var(--vip3)}
+.group4 .vip{background:var(--vip4)}
 
-/* Door */
+/* door */
 
 .door{
 position:fixed;
@@ -137,9 +171,17 @@ right:20px;
 bottom:20px;
 background:#22c55e;
 color:white;
-padding:10px 16px;
-border-radius:25px;
+padding:12px 18px;
+border-radius:30px;
 font-weight:bold;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
 }
 
 </style>
@@ -155,7 +197,7 @@ font-weight:bold;
 </div>
 
 <div class="teacher">
-Bảng 
+📚 Bảng
 </div>
 
 <div class="class-map">
@@ -229,7 +271,6 @@ Bảng
 </div>
 
 </div>
-
 </div>
 
 <div class="door">
