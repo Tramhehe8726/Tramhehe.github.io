@@ -13,84 +13,164 @@ box-sizing:border-box;
 font-family:"Segoe UI",sans-serif;
 }
 
-/* nền xanh dương nhạt */
+/* NỀN */
 
 body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:linear-gradient(135deg,#e8f3ff,#cfe8ff);
+background:linear-gradient(135deg,#eaf6ff,#cfe9ff);
+overflow:hidden;
 }
 
-/* container */
+/* MÂY */
+
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.7;
+animation:cloudMove 40s linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+}
+
+.cloud:before{
+width:60px;
+height:60px;
+top:-20px;
+left:10px;
+}
+
+.cloud:after{
+width:80px;
+height:80px;
+top:-35px;
+right:10px;
+}
+
+.c1{width:160px;height:50px;top:15%;left:-200px;}
+.c2{width:200px;height:60px;top:35%;left:-250px;animation-duration:60s;}
+.c3{width:140px;height:45px;top:65%;left:-180px;animation-duration:50s;}
+
+@keyframes cloudMove{
+from{transform:translateX(0);}
+to{transform:translateX(120vw);}
+}
+
+/* BONG BÓNG */
+
+.bubble{
+position:absolute;
+bottom:-100px;
+background:rgba(255,255,255,0.3);
+border-radius:50%;
+animation:bubbleUp 12s infinite;
+}
+
+.b1{width:30px;height:30px;left:20%;}
+.b2{width:40px;height:40px;left:50%;animation-duration:10s;}
+.b3{width:25px;height:25px;left:70%;animation-duration:14s;}
+
+@keyframes bubbleUp{
+from{
+transform:translateY(0);
+opacity:0.5;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* KHUNG */
 
 .container{
-
+position:relative;
 text-align:center;
-padding:60px 90px;
-
-border-radius:25px;
+padding:70px 100px;
 
 background:white;
 
-box-shadow:0 15px 40px rgba(0,0,0,0.15);
+border-radius:25px;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
 
 animation:fadeIn 1.2s ease;
 }
 
-/* animation */
+/* ANIMATION */
 
 @keyframes fadeIn{
-
 from{
 opacity:0;
 transform:translateY(40px);
 }
-
 to{
 opacity:1;
 transform:translateY(0);
 }
-
 }
 
-/* title */
+/* TITLE */
 
 h1{
-
+font-size:42px;
 color:#1e3a8a;
-font-size:40px;
 line-height:1.6;
-
 }
 
-/* highlight */
+/* TÊN LỚP */
 
 h1 span{
-
 display:block;
-
+font-size:55px;
+font-weight:bold;
+color:#2563eb;
+letter-spacing:3px;
 margin-top:10px;
+}
 
-font-size:50px;
+/* ICON */
+
+.icons{
+font-size:28px;
+margin-top:20px;
+}
+
+/* BUTTON */
+
+.enter-btn{
+display:inline-block;
+margin-top:30px;
+
+padding:12px 35px;
+
+border-radius:40px;
+
+background:linear-gradient(45deg,#3b82f6,#2563eb);
+
+color:white;
 
 font-weight:bold;
 
-color:#2563eb;
+text-decoration:none;
 
-letter-spacing:3px;
-
-}
-
-/* hover effect */
-
-.container:hover{
-
-transform:scale(1.03);
 transition:0.3s;
 
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.enter-btn:hover{
+transform:scale(1.1);
+box-shadow:0 12px 30px rgba(0,0,0,0.3);
 }
 
 </style>
@@ -98,15 +178,29 @@ transition:0.3s;
 
 <body>
 
+<!-- mây -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<!-- bong bóng -->
+<div class="bubble b1"></div>
+<div class="bubble b2"></div>
+<div class="bubble b3"></div>
+
 <div class="container">
 
-<a href="menu1.html" style="text-decoration:none;">
-
 <h1>
-Chào mừng đến với<br>
+Chào mừng đến với
 <span>LỚP 12 TOÁN 2</span>
 </h1>
 
+<div class="icons">
+📘 ✏️ 📐 🎓
+</div>
+
+<a href="menu1.html" class="enter-btn">
+Vào lớp học 🚀
 </a>
 
 </div>
