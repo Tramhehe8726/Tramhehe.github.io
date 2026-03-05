@@ -7,82 +7,56 @@
 <style>
 
 :root{
---blue1:#e8f3ff;
+--blue1:#e6f2ff;
 --blue2:#cfe8ff;
---blue3:#a8d8ff;
+--blue3:#b9dcff;
 
---g1:#dbeafe;
---g2:#cffafe;
+--g1:#ffe4e6;
+--g2:#dcfce7;
 --g3:#e0f2fe;
---g4:#dbeafe;
+--g4:#fef9c3;
 
---vip1:#2563eb;
---vip2:#0ea5e9;
+--vip1:#ef4444;
+--vip2:#16a34a;
 --vip3:#0284c7;
---vip4:#1d4ed8;
+--vip4:#ca8a04;
 }
 
 *{
 box-sizing:border-box;
-margin:0;
-padding:0;
 }
-
-/* body */
 
 body{
 font-family:"Segoe UI",sans-serif;
-background:linear-gradient(135deg,var(--blue1),var(--blue2));
-min-height:100vh;
+background:linear-gradient(140deg,var(--blue1),var(--blue2));
+margin:0;
 overflow-x:hidden;
 }
 
-/* background bubbles */
+/* background floating bubbles */
 
-.bg-bubble{
+.bgBubble{
 position:fixed;
-bottom:-50px;
-width:20px;
-height:20px;
+bottom:-100px;
 border-radius:50%;
-background:rgba(255,255,255,0.6);
-animation:float 15s linear infinite;
+background:rgba(255,255,255,0.4);
+animation:floatUp linear infinite;
+backdrop-filter:blur(2px);
 }
 
-@keyframes float{
-0%{transform:translateY(0) scale(1)}
-100%{transform:translateY(-120vh) scale(1.4)}
+@keyframes floatUp{
+0%{transform:translateY(0) scale(1);opacity:0.8}
+100%{transform:translateY(-120vh) scale(1.4);opacity:0}
 }
 
-/* click bubbles */
-
-.pop{
-position:fixed;
-width:12px;
-height:12px;
-border-radius:50%;
-background:#60a5fa;
-pointer-events:none;
-animation:pop 0.9s ease forwards;
-}
-
-@keyframes pop{
-0%{
-opacity:1;
-transform:scale(1);
-}
-100%{
-opacity:0;
-transform:translateY(-40px) scale(2);
-}
-}
-
-/* container */
+/* wrapper */
 
 .wrapper{
 max-width:1100px;
 margin:auto;
 padding:25px;
+position:relative;
+z-index:2;
 }
 
 /* header */
@@ -103,37 +77,34 @@ color:#1e3a8a;
 .page-btn{
 padding:10px 28px;
 border-radius:999px;
-border:none;
-background:#3b82f6;
-color:white;
+border:2px solid #60a5fa;
+background:white;
 text-decoration:none;
-font-size:15px;
+color:#1e40af;
 transition:0.3s;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
 
 .page-btn:hover{
-transform:scale(1.08);
-background:#2563eb;
+background:#60a5fa;
+color:white;
+transform:scale(1.07);
 }
 
 /* teacher */
 
 .teacher{
-width:230px;
+width:220px;
 margin:auto;
 text-align:center;
-background:linear-gradient(135deg,#60a5fa,#3b82f6);
+background:#facc15;
 padding:15px;
-border-radius:40px;
+border-radius:30px;
 font-weight:bold;
 margin-bottom:30px;
-color:white;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-letter-spacing:1px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
 }
 
-/* classroom */
+/* classroom grid */
 
 .class-map{
 display:grid;
@@ -144,11 +115,10 @@ gap:25px;
 /* group */
 
 .group{
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(6px);
+background:white;
 padding:15px;
 border-radius:18px;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
 transition:0.3s;
 }
 
@@ -159,7 +129,6 @@ transform:translateY(-6px);
 .group h3{
 text-align:center;
 margin-bottom:12px;
-color:#1e3a8a;
 }
 
 /* members */
@@ -177,24 +146,26 @@ padding:10px;
 border-radius:25px;
 text-align:center;
 font-size:13px;
-background:#e0f2fe;
+cursor:grab;
 transition:0.25s;
-cursor:pointer;
+user-select:none;
+}
+
+.seat:active{
+cursor:grabbing;
 }
 
 .seat:hover{
-transform:translateY(-4px) scale(1.07);
-box-shadow:0 6px 14px rgba(0,0,0,0.2);
+transform:translateY(-4px) scale(1.05);
+box-shadow:0 6px 12px rgba(0,0,0,0.2);
 }
-
-/* vip */
 
 .vip{
 color:white;
 font-weight:600;
 }
 
-/* group colors */
+/* colors */
 
 .group1 .seat{background:var(--g1)}
 .group2 .seat{background:var(--g2)}
@@ -227,6 +198,21 @@ animation:pulse 2s infinite;
 100%{transform:scale(1)}
 }
 
+/* click bubble */
+
+.clickBubble{
+position:fixed;
+border-radius:50%;
+background:rgba(173,216,255,0.7);
+pointer-events:none;
+animation:pop 1s forwards;
+}
+
+@keyframes pop{
+0%{transform:scale(0);opacity:1}
+100%{transform:scale(2);opacity:0}
+}
+
 </style>
 </head>
 
@@ -245,71 +231,67 @@ animation:pulse 2s infinite;
 
 <div class="class-map">
 
-<!-- TỔ 4 -->
 <div class="group group4">
 <h3>Tổ 4</h3>
 <div class="members">
-<div class="seat">Khải Nguyên</div>
-<div class="seat">Thế Bình</div>
-<div class="seat">Bảo Ngân</div>
-<div class="seat">Thành Long</div>
-<div class="seat">Nhật Na</div>
-<div class="seat">Minh Thư</div>
-<div class="seat vip">Châu Ngân</div>
-<div class="seat">Toàn Phát</div>
-<div class="seat vip">Anh Tú</div>
+<div class="seat" draggable="true">Khải Nguyên</div>
+<div class="seat" draggable="true">Thế Bình</div>
+<div class="seat" draggable="true">Bảo Ngân</div>
+<div class="seat" draggable="true">Thành Long</div>
+<div class="seat" draggable="true">Nhật Na</div>
+<div class="seat" draggable="true">Minh Thư</div>
+<div class="seat vip" draggable="true">Châu Ngân</div>
+<div class="seat" draggable="true">Toàn Phát</div>
+<div class="seat vip" draggable="true">Anh Tú</div>
 <div class="seat"></div>
 </div>
 </div>
 
-<!-- TỔ 3 -->
 <div class="group group3">
 <h3>Tổ 3</h3>
 <div class="members">
-<div class="seat vip">Gia Khánh</div>
+<div class="seat vip" draggable="true">Gia Khánh</div>
 <div class="seat"></div>
-<div class="seat">Bá Tùng</div>
-<div class="seat">Hoàng Thịnh</div>
-<div class="seat vip">Hoàn Thuyên</div>
-<div class="seat">Minh Quân</div>
-<div class="seat">Công Khoa</div>
-<div class="seat vip">Xuân Đại</div>
-<div class="seat">Anh Thư</div>
-<div class="seat vip">Thanh Quyên</div>
+<div class="seat" draggable="true">Bá Tùng</div>
+<div class="seat" draggable="true">Hoàng Thịnh</div>
+<div class="seat vip" draggable="true">Hoàn Thuyên</div>
+<div class="seat" draggable="true">Minh Quân</div>
+<div class="seat" draggable="true">Công Khoa</div>
+<div class="seat vip" draggable="true">Xuân Đại</div>
+<div class="seat" draggable="true">Anh Thư</div>
+<div class="seat vip" draggable="true">Thanh Quyên</div>
 </div>
 </div>
 
-<!-- TỔ 2 -->
 <div class="group group2">
 <h3>Tổ 2</h3>
 <div class="members">
-<div class="seat vip">Quỳnh Liên</div>
-<div class="seat">Thanh Thảo</div>
-<div class="seat vip">Văn Khải</div>
-<div class="seat">Minh Huy</div>
-<div class="seat">Yến Nhi</div>
+<div class="seat vip" draggable="true">Quỳnh Liên</div>
+<div class="seat" draggable="true">Thanh Thảo</div>
+<div class="seat vip" draggable="true">Văn Khải</div>
+<div class="seat" draggable="true">Minh Huy</div>
+<div class="seat" draggable="true">Yến Nhi</div>
 <div class="seat"></div>
-<div class="seat">Thị Hiền</div>
-<div class="seat">Ngân Chi</div>
-<div class="seat">Trúc Quyên</div>
-<div class="seat vip">Quang Duy</div>
+<div class="seat" draggable="true">Thị Hiền</div>
+<div class="seat" draggable="true">Ngân Chi</div>
+<div class="seat" draggable="true">Trúc Quyên</div>
+<div class="seat vip" draggable="true">Quang Duy</div>
 </div>
 </div>
 
-<!-- TỔ 1 -->
 <div class="group group1">
 <h3>Tổ 1</h3>
 <div class="members">
-<div class="seat">Thiên Tuấn</div>
-<div class="seat">Vũ Huy</div>
-<div class="seat vip">Quang Kiên</div>
-<div class="seat">Khánh Hoàng</div>
-<div class="seat vip">Thuỳ Trâm</div>
-<div class="seat">Bảo Châu</div>
-<div class="seat">Nguyên Minh</div>
+<div class="seat" draggable="true">Thiên Tuấn</div>
+<div class="seat" draggable="true">Vũ Huy</div>
+<div class="seat vip" draggable="true">Quang Kiên</div>
+<div class="seat" draggable="true">Khánh Hoàng</div>
+<div class="seat vip" draggable="true">Thuỳ Trâm</div>
+<div class="seat" draggable="true">Bảo Châu</div>
+<div class="seat" draggable="true">Nguyên Minh</div>
 <div class="seat"></div>
-<div class="seat">Minh Khánh</div>
-<div class="seat">Minh Cường</div>
+<div class="seat" draggable="true">Minh Khánh</div>
+<div class="seat" draggable="true">Minh Cường</div>
 </div>
 </div>
 
@@ -322,41 +304,77 @@ animation:pulse 2s infinite;
 
 <script>
 
-/* click bubble */
+/* drag swap */
 
-document.addEventListener("click",e=>{
-for(let i=0;i<8;i++){
-let b=document.createElement("div")
-b.className="pop"
+let dragItem=null
 
-b.style.left=e.clientX+"px"
-b.style.top=e.clientY+"px"
+document.querySelectorAll(".seat").forEach(seat=>{
 
-document.body.appendChild(b)
+seat.addEventListener("dragstart",()=>{
+dragItem=seat
+})
 
-setTimeout(()=>b.remove(),900)
+seat.addEventListener("dragover",e=>{
+e.preventDefault()
+})
+
+seat.addEventListener("drop",()=>{
+if(dragItem && seat.innerText!==""){
+let temp=seat.innerHTML
+seat.innerHTML=dragItem.innerHTML
+dragItem.innerHTML=temp
 }
 })
 
-/* background bubbles */
+})
 
-function createBubble(){
+/* click bubble */
+
+document.addEventListener("click",e=>{
+
+let bubble=document.createElement("div")
+bubble.className="clickBubble"
+
+let size=Math.random()*30+20
+
+bubble.style.width=size+"px"
+bubble.style.height=size+"px"
+
+bubble.style.left=e.clientX-size/2+"px"
+bubble.style.top=e.clientY-size/2+"px"
+
+document.body.appendChild(bubble)
+
+setTimeout(()=>{
+bubble.remove()
+},1000)
+
+})
+
+/* floating background bubbles */
+
+function createBgBubble(){
+
 let b=document.createElement("div")
-b.className="bg-bubble"
+b.className="bgBubble"
 
-let size=Math.random()*20+10
+let size=Math.random()*60+20
+
 b.style.width=size+"px"
 b.style.height=size+"px"
 
 b.style.left=Math.random()*100+"vw"
-b.style.animationDuration=(10+Math.random()*10)+"s"
+b.style.animationDuration=(Math.random()*10+10)+"s"
 
 document.body.appendChild(b)
 
-setTimeout(()=>b.remove(),20000)
+setTimeout(()=>{
+b.remove()
+},20000)
+
 }
 
-setInterval(createBubble,600)
+setInterval(createBgBubble,800)
 
 </script>
 
