@@ -2,19 +2,24 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Sơ đồ lớp - Version 2</title>
+<title>Sơ đồ lớp</title>
 
 <style>
 
-:root{
---bg1:#eaf4ff;
---bg2:#cfe6ff;
---deep:#1e40af;
+/* =========================
+   THEME
+========================= */
 
---g1:#ffdcdc;
---g2:#d9ffd8;
---g3:#daf3ff;
---g4:#fff6c7;
+:root{
+--blue1:#e8f3ff;
+--blue2:#cfe7ff;
+--blue3:#9fd0ff;
+--deep:#1e3a8a;
+
+--g1:#ffd6d6;
+--g2:#d7ffd9;
+--g3:#d9f3ff;
+--g4:#fff7c7;
 
 --vip1:#ef4444;
 --vip2:#16a34a;
@@ -28,21 +33,65 @@ box-sizing:border-box;
 
 body{
 margin:0;
-font-family:Segoe UI;
-background:linear-gradient(140deg,var(--bg1),var(--bg2));
+font-family:"Segoe UI",sans-serif;
+background:linear-gradient(140deg,var(--blue1),var(--blue2));
 overflow-x:hidden;
 }
 
-/* container */
+/* =========================
+   FLOATING BUBBLES
+========================= */
 
-.wrapper{
-max-width:1200px;
-margin:auto;
-padding:30px;
-position:relative;
+.bubble{
+position:fixed;
+bottom:-60px;
+width:20px;
+height:20px;
+background:rgba(255,255,255,0.4);
+border-radius:50%;
+animation:floatUp linear infinite;
 }
 
-/* header */
+@keyframes floatUp{
+0%{
+transform:translateY(0) scale(1);
+opacity:0.8;
+}
+100%{
+transform:translateY(-120vh) scale(1.6);
+opacity:0;
+}
+}
+
+/* =========================
+   CLICK BUBBLE
+========================= */
+
+.pop{
+position:fixed;
+width:12px;
+height:12px;
+border-radius:50%;
+background:#7dd3fc;
+pointer-events:none;
+animation:popAnim 1s forwards;
+}
+
+@keyframes popAnim{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(3);opacity:0;}
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.wrapper{
+max-width:1150px;
+margin:auto;
+padding:25px;
+position:relative;
+}
 
 .header{
 display:flex;
@@ -58,10 +107,10 @@ color:var(--deep);
 }
 
 .home{
-padding:10px 25px;
+padding:10px 26px;
 border-radius:30px;
-border:2px solid #60a5fa;
 background:white;
+border:2px solid #60a5fa;
 text-decoration:none;
 color:#1e40af;
 transition:0.3s;
@@ -73,53 +122,62 @@ color:white;
 transform:scale(1.05);
 }
 
-/* board */
+/* =========================
+   BOARD
+========================= */
 
 .board{
-position:absolute;
-top:90px;
-left:50%;
-transform:translateX(-50%);
 width:260px;
-background:#14532d;
-color:white;
+margin:auto;
 text-align:center;
 padding:16px;
+background:#166534;
+color:white;
 border-radius:10px;
 font-weight:600;
 letter-spacing:1px;
-box-shadow:0 6px 15px rgba(0,0,0,0.25);
+margin-bottom:15px;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* teacher */
+/* =========================
+   TEACHER DESK
+========================= */
 
 .teacherDesk{
 position:absolute;
-top:90px;
-left:0;
+top:120px;
+left:40px;
+
+width:180px;
+text-align:center;
 background:#fbbf24;
-padding:14px 20px;
+padding:14px;
 border-radius:30px;
 font-weight:bold;
-box-shadow:0 6px 15px rgba(0,0,0,0.25);
+
+box-shadow:0 8px 18px rgba(0,0,0,0.25);
 }
 
-/* classroom */
+/* =========================
+   CLASS GRID
+========================= */
 
 .class-grid{
-margin-top:160px;
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:25px;
 }
 
-/* group */
+/* =========================
+   GROUP
+========================= */
 
 .group{
 background:white;
-padding:18px;
 border-radius:18px;
-box-shadow:0 8px 18px rgba(0,0,0,0.1);
+padding:16px;
+box-shadow:0 8px 18px rgba(0,0,0,0.08);
 transition:0.25s;
 }
 
@@ -129,11 +187,13 @@ transform:translateY(-6px);
 
 .group h3{
 text-align:center;
-margin-bottom:14px;
-color:#1e3a8a;
+margin-bottom:12px;
+color:#1e40af;
 }
 
-/* seats */
+/* =========================
+   SEATS
+========================= */
 
 .members{
 display:grid;
@@ -155,12 +215,14 @@ transform:scale(1.08);
 box-shadow:0 6px 14px rgba(0,0,0,0.2);
 }
 
+/* VIP */
+
 .vip{
 color:white;
 font-weight:600;
 }
 
-/* colors */
+/* group color */
 
 .group1 .seat{background:var(--g1)}
 .group2 .seat{background:var(--g2)}
@@ -172,50 +234,25 @@ font-weight:600;
 .group3 .vip{background:var(--vip3)}
 .group4 .vip{background:var(--vip4)}
 
-/* door */
+/* DOOR */
 
 .door{
 position:fixed;
-bottom:20px;
-right:20px;
+bottom:25px;
+right:25px;
 background:#22c55e;
 color:white;
 padding:12px 18px;
 border-radius:30px;
 font-weight:bold;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
+box-shadow:0 8px 18px rgba(0,0,0,0.2);
+animation:pulse 2s infinite;
 }
 
-/* bubble background */
-
-.bubble{
-position:fixed;
-bottom:-40px;
-background:rgba(255,255,255,0.5);
-border-radius:50%;
-animation:floatUp linear infinite;
-}
-
-@keyframes floatUp{
-0%{transform:translateY(0);opacity:0.8}
-100%{transform:translateY(-120vh);opacity:0}
-}
-
-/* click bubble */
-
-.pop{
-position:fixed;
-width:12px;
-height:12px;
-border-radius:50%;
-background:#7dd3fc;
-pointer-events:none;
-animation:pop 1s forwards;
-}
-
-@keyframes pop{
-0%{transform:scale(0);opacity:1}
-100%{transform:scale(3);opacity:0}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.07)}
+100%{transform:scale(1)}
 }
 
 </style>
@@ -230,10 +267,11 @@ animation:pop 1s forwards;
 <a href="menu1.html" class="home">Trang chủ</a>
 </div>
 
-<div class="teacherDesk">🧑‍🏫 Bàn giáo viên</div>
 <div class="board">📗 BẢNG ĐEN</div>
 
-<div class="class-grid" id="class">
+<div class="teacherDesk">🧑‍🏫 Bàn giáo viên</div>
+
+<div class="class-grid">
 
 <!-- TỔ 4 -->
 <div class="group group4">
@@ -310,92 +348,83 @@ animation:pop 1s forwards;
 
 <script>
 
-/* background bubbles */
+/* =========================
+   FLOATING BACKGROUND BUBBLES
+========================= */
 
-function bubble(){
-let b=document.createElement("div")
-b.className="bubble"
+function createBubble(){
+let bubble=document.createElement("div");
+bubble.className="bubble";
 
-let size=Math.random()*20+10
-b.style.width=size+"px"
-b.style.height=size+"px"
+let size=Math.random()*25+10;
+bubble.style.width=size+"px";
+bubble.style.height=size+"px";
 
-b.style.left=Math.random()*100+"vw"
+bubble.style.left=Math.random()*100+"vw";
 
-b.style.animationDuration=(Math.random()*10+8)+"s"
+bubble.style.animationDuration=(Math.random()*10+8)+"s";
 
-document.body.appendChild(b)
+document.body.appendChild(bubble);
 
-setTimeout(()=>b.remove(),15000)
+setTimeout(()=>bubble.remove(),15000);
 }
 
-setInterval(bubble,600)
+setInterval(createBubble,700);
 
-/* click bubble */
+
+/* =========================
+   CLICK POP BUBBLE
+========================= */
 
 document.addEventListener("click",(e)=>{
 
-let p=document.createElement("div")
-p.className="pop"
+let p=document.createElement("div");
+p.className="pop";
 
-p.style.left=e.clientX+"px"
-p.style.top=e.clientY+"px"
+p.style.left=e.clientX+"px";
+p.style.top=e.clientY+"px";
 
-document.body.appendChild(p)
+document.body.appendChild(p);
 
-setTimeout(()=>p.remove(),1000)
+setTimeout(()=>p.remove(),1000);
 
-})
+});
 
-/* drag seats */
 
-let seats=document.querySelectorAll(".seat")
+/* =========================
+   DRAG SEATS
+========================= */
+
+let seats=document.querySelectorAll(".seat");
 
 seats.forEach(seat=>{
 
-seat.draggable=true
+seat.draggable=true;
 
 seat.addEventListener("dragstart",()=>{
-seat.classList.add("dragging")
-})
+seat.classList.add("dragging");
+});
 
 seat.addEventListener("dragend",()=>{
-seat.classList.remove("dragging")
-saveSeats()
-})
+seat.classList.remove("dragging");
+});
 
-})
+});
 
 document.querySelectorAll(".members").forEach(container=>{
 
 container.addEventListener("dragover",(e)=>{
-e.preventDefault()
+e.preventDefault();
+let drag=document.querySelector(".dragging");
+let after=e.target;
 
-let drag=document.querySelector(".dragging")
-let target=e.target
-
-if(target.classList.contains("seat")){
-container.insertBefore(drag,target)
+if(after.classList.contains("seat")){
+container.insertBefore(drag,after);
 }
 
-})
+});
 
-})
-
-/* save layout */
-
-function saveSeats(){
-localStorage.setItem("classLayout",document.getElementById("class").innerHTML)
-}
-
-function loadSeats(){
-let data=localStorage.getItem("classLayout")
-if(data){
-document.getElementById("class").innerHTML=data
-}
-}
-
-loadSeats()
+});
 
 </script>
 
