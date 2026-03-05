@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Sơ đồ lớp</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+min-height:100vh;
+padding:30px;
+}
+
+/* khung */
+
+.wrapper{
+max-width:1200px;
+margin:auto;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* header */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+color:white;
+}
+
+.title{
+font-size:30px;
+font-weight:bold;
+}
+
+.page-btn{
+text-decoration:none;
+background:white;
+color:#333;
+padding:10px 20px;
+border-radius:30px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.page-btn:hover{
+transform:scale(1.05);
+}
+
+/* bàn giáo viên + cửa */
+
+.top-buttons{
+display:flex;
+justify-content:space-between;
+margin-bottom:30px;
+}
+
+.teacher{
+background:#ffd166;
+padding:12px 25px;
+border-radius:25px;
+font-weight:bold;
+}
+
+.door{
+background:#06d6a0;
+padding:12px 25px;
+border-radius:25px;
+font-weight:bold;
+}
+
+/* lớp học */
+
+.class-map{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+/* tổ */
+
+.group{
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.group h3{
+text-align:center;
+margin-bottom:10px;
+color:#444;
+}
+
+/* bàn học */
+
+.members{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.pill{
+background:linear-gradient(45deg,#6a11cb,#2575fc);
+color:white;
+padding:8px;
+text-align:center;
+border-radius:20px;
+font-size:14px;
+transition:0.3s;
+}
+
+.pill:hover{
+transform:scale(1.08);
+box-shadow:0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* học sinh khác màu */
+
+.dark{
+background:linear-gradient(45deg,#434343,#000000);
+}
+
+/* chỗ trống */
+
+.empty{
+background:transparent;
+box-shadow:none;
+}
+
+/* mobile */
+
+@media(max-width:900px){
+
+.class-map{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+<div class="title">Toán 2 - K34 - Slogan</div>
+<a href="menu.html" class="page-btn">Trang chủ</a>
+</div>
+
+<div class="top-buttons">
+<div class="teacher">👩‍🏫 Bàn giáo viên</div>
+<div class="door">🚪 Cửa vào</div>
+</div>
+
+<div class="class-map">
+
+<!-- Tổ 4 -->
+<div class="group">
+<h3>Tổ 4</h3>
+<div class="members">
+<div class="pill">Khải Nguyên</div>
+<div class="pill">Thế Bình</div>
+<div class="pill">Bảo Ngân</div>
+<div class="pill">Thành Long</div>
+<div class="pill">Nhật Na</div>
+<div class="pill">Minh Thư</div>
+<div class="pill dark">Châu Ngân</div>
+<div class="pill">Toàn Phát</div>
+<div class="pill dark">Anh Tú</div>
+<div class="pill empty"></div>
+</div>
+</div>
+
+<!-- Tổ 3 -->
+<div class="group">
+<h3>Tổ 3</h3>
+<div class="members">
+<div class="pill dark">Gia Khánh</div>
+<div class="pill empty"></div>
+<div class="pill">Bá Tùng</div>
+<div class="pill">Hoàng Thịnh</div>
+<div class="pill dark">Hoàn Thuyên</div>
+<div class="pill">Minh Quân</div>
+<div class="pill">Công Khoa</div>
+<div class="pill dark">Xuân Đại</div>
+<div class="pill">Anh Thư</div>
+<div class="pill dark">Thanh Quyên</div>
+</div>
+</div>
+
+<!-- Tổ 2 -->
+<div class="group">
+<h3>Tổ 2</h3>
+<div class="members">
+<div class="pill dark">Quỳnh Liên</div>
+<div class="pill">Thanh Thảo</div>
+<div class="pill dark">Văn Khải</div>
+<div class="pill">Minh Huy</div>
+<div class="pill">Yến Nhi</div>
+<div class="pill empty"></div>
+<div class="pill">Thị Hiền</div>
+<div class="pill">Ngân Chi</div>
+<div class="pill">Trúc Quyên</div>
+<div class="pill dark">Quang Duy</div>
+</div>
+</div>
+
+<!-- Tổ 1 -->
+<div class="group">
+<h3>Tổ 1</h3>
+<div class="members">
+<div class="pill">Thiên Tuấn</div>
+<div class="pill">Vũ Huy</div>
+<div class="pill dark">Quang Kiên</div>
+<div class="pill">Khánh Hoàng</div>
+<div class="pill dark">Thuỳ Trâm</div>
+<div class="pill">Bảo Châu</div>
+<div class="pill">Nguyên Minh</div>
+<div class="pill empty"></div>
+<div class="pill">Minh Khánh</div>
+<div class="pill">Minh Cường</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
