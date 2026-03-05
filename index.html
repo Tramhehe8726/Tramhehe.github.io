@@ -6,8 +6,6 @@
 
 <style>
 
-/* RESET */
-
 *{
 margin:0;
 padding:0;
@@ -15,137 +13,84 @@ box-sizing:border-box;
 font-family:"Segoe UI",sans-serif;
 }
 
-/* BODY */
+/* nền xanh dương nhạt */
 
 body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:url("img/bg.png") center/cover no-repeat;
-overflow:hidden;
-}
 
-/* overlay */
-
-body::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(135deg,
-rgba(0,0,0,0.6),
-rgba(0,0,0,0.2));
+background:linear-gradient(135deg,#e8f3ff,#cfe8ff);
 }
 
 /* container */
 
 .container{
-position:relative;
+
 text-align:center;
-padding:60px 80px;
+padding:60px 90px;
+
 border-radius:25px;
 
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(10px);
+background:white;
 
-box-shadow:0 20px 60px rgba(0,0,0,0.5);
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
 
-animation:fadeIn 1.5s ease;
+animation:fadeIn 1.2s ease;
 }
 
 /* animation */
 
 @keyframes fadeIn{
+
 from{
 opacity:0;
 transform:translateY(40px);
 }
+
 to{
 opacity:1;
 transform:translateY(0);
 }
+
 }
 
 /* title */
 
 h1{
-color:white;
+
+color:#1e3a8a;
 font-size:40px;
-line-height:1.5;
+line-height:1.6;
+
 }
 
-/* highlight class */
+/* highlight */
 
 h1 span{
+
 display:block;
-font-size:52px;
-font-weight:bold;
-color:#ffd700;
-letter-spacing:3px;
+
 margin-top:10px;
 
-text-shadow:
-0 0 10px #ffd700,
-0 0 25px #ffd700;
-}
-
-/* button */
-
-.enter-btn{
-display:inline-block;
-margin-top:35px;
-padding:12px 30px;
-
-border-radius:40px;
-
-background:linear-gradient(45deg,#ffcc00,#ff9800);
-color:#222;
+font-size:50px;
 
 font-weight:bold;
-text-decoration:none;
 
+color:#2563eb;
+
+letter-spacing:3px;
+
+}
+
+/* hover effect */
+
+.container:hover{
+
+transform:scale(1.03);
 transition:0.3s;
-box-shadow:0 5px 20px rgba(0,0,0,0.4);
-}
 
-.enter-btn:hover{
-transform:scale(1.1);
-box-shadow:0 10px 35px rgba(0,0,0,0.6);
-}
-
-/* floating particles */
-
-.circle{
-position:absolute;
-border-radius:50%;
-background:rgba(255,255,255,0.2);
-animation:float 8s infinite ease-in-out;
-}
-
-.circle:nth-child(1){
-width:60px;height:60px;
-top:10%;left:15%;
-}
-
-.circle:nth-child(2){
-width:90px;height:90px;
-bottom:15%;right:10%;
-animation-delay:2s;
-}
-
-.circle:nth-child(3){
-width:40px;height:40px;
-top:70%;left:25%;
-animation-delay:4s;
-}
-
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-30px);
-}
 }
 
 </style>
@@ -153,19 +98,15 @@ transform:translateY(-30px);
 
 <body>
 
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-
 <div class="container">
 
+<a href="menu1.html" style="text-decoration:none;">
+
 <h1>
-Chào mừng đến với
+Chào mừng đến với<br>
 <span>LỚP 12 TOÁN 2</span>
 </h1>
 
-<a href="menu1.html" class="enter-btn">
-Vào lớp học 🚀
 </a>
 
 </div>
