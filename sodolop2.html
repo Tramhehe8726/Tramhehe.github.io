@@ -1,415 +1,117 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title> Toán 2 K34</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(145deg, #1a2f3f 0%, #2d4e63 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-      font-family: 'Quicksand', 'Segoe UI', Roboto, system-ui, sans-serif;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Hiệu ứng nền lung linh */
-    body::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 30%, rgba(255, 240, 150, 0.15) 0%, transparent 30%),
-                  radial-gradient(circle at 80% 70%, rgba(100, 220, 255, 0.12) 0%, transparent 35%);
-      pointer-events: none;
-    }
-
-    .wrapper {
-      max-width: 1300px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      border-radius: 50px 50px 40px 40px;
-      box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.8);
-      padding: 28px 30px 35px 30px;
-      border: 2px solid rgba(255, 245, 200, 0.7);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Header kiểu banner phiêu lưu */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, #162b38, #1f3f52);
-      padding: 18px 28px;
-      border-radius: 120px 20px 120px 20px;
-      box-shadow: 8px 10px 0 #0d1f28, inset 0 2px 10px #ffe89c;
-      border: 1px solid #f9cf7c;
-    }
-
-    .title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      color: #fbeba0;
-      text-shadow: 3px 3px 0 #aa6f3e, 5px 5px 0 #3d281a;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .title::before {
-      content: '⚔️';
-      font-size: 2.5rem;
-      filter: drop-shadow(2px 2px 0 #a1622b);
-    }
-
-    .title::after {
-      content: '🏆';
-      font-size: 2.2rem;
-      filter: drop-shadow(2px 2px 0 #a1622b);
-    }
-
-    .page-btn {
-      background: #f2cf89;
-      color: #1d3643;
-      text-decoration: none;
-      padding: 14px 30px;
-      border-radius: 60px 10px 60px 10px;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 2px solid #faf0b5;
-      box-shadow: 5px 5px 0 #856f42, 0 8px 0 #4d3e26;
-      transition: 0.15s linear;
-      display: inline-block;
-    }
-
-    .page-btn:hover {
-      transform: translate(3px, 3px);
-      box-shadow: 2px 2px 0 #856f42, 0 4px 0 #4d3e26;
-    }
-
-    /* Khu vực góc lớp */
-    .top-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin: 20px 5px 40px 5px;
-    }
-
-    .corner-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .corner-icon {
-      font-size: 2.7rem;
-      filter: drop-shadow(4px 5px 0 #4d3e2e);
-    }
-
-    .corner-btn {
-      background: #b3a689;
-      color: #1e2f38;
-      padding: 10px 25px;
-      border-radius: 30px 5px 30px 5px;
-      font-weight: 800;
-      font-size: 1.2rem;
-      border: 2px solid #ede1b7;
-      box-shadow: 0 6px 0 #5a4c34;
-      text-transform: uppercase;
-      transition: 0.1s;
-      cursor: default;
-      letter-spacing: 1px;
-    }
-
-    .corner-btn.left {
-      background: #c7ad7a;
-    }
-
-    .corner-btn.right {
-      background: #b8cfa8;
-    }
-
-    /* Lớp học dạng thẻ kho báu */
-    .class-map {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      margin: 20px 0 30px;
-    }
-
-    /* Mỗi tổ là một team */
-    .group {
-      background: #fcf9ea;
-      border-radius: 50px 20px 50px 20px;
-      padding: 20px 12px 18px;
-      box-shadow: 10px 12px 0 #3d5c6f, inset 0 -3px 0 #d8c593;
-      border: 2px solid #ffe1a3;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-
-    .group:hover {
-      transform: translate(-5px, -5px);
-      box-shadow: 15px 18px 0 #2f4a5a, inset 0 -3px 0 #ffe083;
-    }
-
-    /* Hiệu ứng huy hiệu tổ */
-    .group h3 {
-      text-align: center;
-      background: #fbdea4;
-      color: #1f3f4a;
-      padding: 14px 0;
-      margin: -20px -12px 20px -12px;
-      border-radius: 40px 15px 40px 15px;
-      font-size: 2rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 2px solid #c9a96b;
-      box-shadow: inset 0 -5px 0 #bb873b, 0 4px 0 #6f542a;
-      text-shadow: 2px 2px 0 #fff3cf;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .group:nth-child(1) h3::before { content: '🐉'; }
-    .group:nth-child(2) h3::before { content: '🦅'; }
-    .group:nth-child(3) h3::before { content: '🐺'; }
-    .group:nth-child(4) h3::before { content: '🦁'; }
-
-    .members {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* Thiết kế pill đa dạng */
-    .pill {
-      background: linear-gradient(145deg, #e4eef9, #d3e1f0);
-      border-radius: 40px 12px 40px 12px;
-      padding: 10px 16px;
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: #122c3a;
-      text-align: center;
-      border: 2px solid #a9c7e6;
-      box-shadow: 4px 5px 0 #89a5c2, inset 0 2px 4px white;
-      transition: 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      backdrop-filter: blur(2px);
-      line-height: 1.3;
-    }
-
-    .pill.small {
-      padding: 8px 12px;
-      font-size: 1rem;
-    }
-
-    /* Dark pill (nữ sinh) với biểu tượng hoa */
-    .pill.dark {
-      background: linear-gradient(145deg, #475e77, #2d445b);
-      color: #fbf3cf;
-      border-color: #f7da9b;
-      box-shadow: 4px 5px 0 #1f3342, inset 0 2px 5px #dbbd84;
-      text-shadow: 0 1px 2px black;
-    }
-
-    .pill.dark::before {
-      content: '🌸';
-      font-size: 1.1rem;
-      margin-right: 4px;
-      filter: drop-shadow(0 1px 2px #ffb6c1);
-    }
-
-    /* Pill nam (mặc định) thêm icon nhỏ */
-    .pill:not(.dark)::before {
-      content: '⚡';
-      font-size: 1.1rem;
-      opacity: 0.9;
-      margin-right: 4px;
-    }
-
-    /* Ghế trống (không tên) */
-    .pill:empty {
-      background: rgba(210, 225, 240, 0.4);
-      border: 3px dashed #738ea8;
-      box-shadow: none;
-      backdrop-filter: blur(3px);
-      color: transparent;
-      position: relative;
-      min-height: 45px;
-    }
-
-    .pill:empty::before {
-      content: '▢ ghế trống';
-      color: #4f637b;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: rgba(255, 255, 240, 0.5);
-      padding: 2px 8px;
-      border-radius: 20px;
-      border: 1px dashed #8aa1b9;
-    }
-
-    .pill:empty::after {
-      display: none;
-    }
-
-    /* Thêm vài yếu tố trang trí */
-    .decor-left {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      font-size: 2.2rem;
-      opacity: 0.4;
-      transform: rotate(-5deg);
-      z-index: 1;
-    }
-
-    .decor-right {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 2.7rem;
-      opacity: 0.3;
-      transform: rotate(10deg);
-      z-index: 1;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .class-map {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .title { font-size: 1.8rem; }
-    }
-
-    @media (max-width: 600px) {
-      .class-map { grid-template-columns: 1fr; }
-      .header { flex-direction: column; gap: 15px; border-radius: 50px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Sơ đồ lớp Toán 2</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="wrapper">
-    <!-- Trang trí nền phụ -->
-    <div class="decor-left">📚✏️</div>
-    <div class="decor-right">🎓🏅</div>
 
-    <div class="header">
-      <div class="title">Toán 2 · K34 · Đại hội chiến binh</div>
-      <a href="menu" class="page-btn">Bảng tổng</a>
-    </div>
+<div class="wrapper">
 
-    <div class="top-buttons">
-      <div class="corner-item">
-        <span class="corner-icon">🧑‍🏫</span>
-        <a class="corner-btn left">BÀN GIÁO VIÊN</a>
-      </div>
-      <div class="corner-item">
-        <span class="corner-icon">🚪✨</span>
-        <a class="corner-btn right">CỬA VÀO</a>
-      </div>
-    </div>
+<header class="header">
+<h1>📚 Toán 2 - K34</h1>
+<p class="slogan">"Cùng học - Cùng vui - Cùng tiến bộ"</p>
+<a class="home-btn" href="#">Trang chủ</a>
+</header>
 
-    <!-- Bản đồ lớp - 4 tổ với phong cách game -->
-    <div class="class-map">
-      <!-- TỔ 4 -->
-      <div class="group">
-        <h3>TỔ 4</h3>
-        <div class="members">
-          <div class="pill small">Khải Nguyên</div>
-          <div class="pill small">Thế Bình</div>
-          <div class="pill small">Bảo Ngân</div>
-          <div class="pill small">Thành Long</div>
-          <div class="pill small">Nhật Na</div>
-          <div class="pill small">Minh Thư</div>
-          <div class="pill small dark">Châu Ngân</div>
-          <div class="pill small">Toàn Phát</div>
-          <div class="pill small dark">Anh Tú</div>
-          <div class="pill small"></div>
-        </div>
-      </div>
 
-      <!-- TỔ 3 -->
-      <div class="group">
-        <h3>TỔ 3</h3>
-        <div class="members">
-          <div class="pill small dark">Gia Khánh</div>
-          <div class="pill small"></div>
-          <div class="pill small">Bá Tùng</div>
-          <div class="pill small">Hoàng Thịnh</div>
-          <div class="pill small dark">Hoàn Thuyên</div>
-          <div class="pill small">Minh Quân</div>
-          <div class="pill small">Công Khoa</div>
-          <div class="pill small dark">Xuân Đại</div>
-          <div class="pill small">Anh Thư</div>
-          <div class="pill small dark">Thanh Quyên</div>
-        </div>
-      </div>
+<div class="top-area">
 
-      <!-- TỔ 2 -->
-      <div class="group">
-        <h3>TỔ 2</h3>
-        <div class="members">
-          <div class="pill small dark">Quỳnh Liên</div>
-          <div class="pill small">Thanh Thảo</div>
-          <div class="pill small dark">Văn Khải</div>
-          <div class="pill small">Minh Huy</div>
-          <div class="pill small">Yến Nhi</div>
-          <div class="pill small"></div>
-          <div class="pill small">Thị Hiền</div>
-          <div class="pill small">Ngân Chi</div>
-          <div class="pill small">Trúc Quyên</div>
-          <div class="pill small dark">Quang Duy</div>
-        </div>
-      </div>
+<div class="teacher-desk">👩‍🏫 Bàn giáo viên</div>
 
-      <!-- TỔ 1 -->
-      <div class="group">
-        <h3>TỔ 1</h3>
-        <div class="members">
-          <div class="pill small">Thiên Tuấn</div>
-          <div class="pill small">Vũ Huy</div>
-          <div class="pill small dark">Quang Kiên</div>
-          <div class="pill small">Khánh Hoàng</div>
-          <div class="pill small dark">Thuỳ Trâm</div>
-          <div class="pill small">Bảo Châu</div>
-          <div class="pill small">Nguyên Minh</div>
-          <div class="pill small"></div>
-          <div class="pill small">Minh Khánh</div>
-          <div class="pill small">Minh Cường</div>
-        </div>
-      </div>
-    </div>
+<div class="door">🚪 Cửa vào</div>
 
-    <!-- Thêm footer nhỏ xinh -->
-    <div style="text-align: center; margin-top: 30px; color: #2e546a; font-weight: 600; letter-spacing: 1px; border-top: 2px dotted #b3c9db; padding-top: 15px; font-size: 1.1rem;">
-      ⚔️ Mỗi ngày đến trường là một chuyến phiêu lưu ⚔️
-    </div>
-  </div>
+</div>
+
+
+<div class="class-map">
+
+<!-- Tổ 4 -->
+<div class="group group4">
+<h2>🌟 Tổ 4</h2>
+
+<div class="members">
+<div class="student">Khải Nguyên</div>
+<div class="student">Thế Bình</div>
+<div class="student">Bảo Ngân</div>
+<div class="student">Thành Long</div>
+<div class="student">Nhật Na</div>
+<div class="student">Minh Thư</div>
+<div class="student leader">Châu Ngân</div>
+<div class="student">Toàn Phát</div>
+<div class="student leader">Anh Tú</div>
+</div>
+
+</div>
+
+
+<!-- Tổ 3 -->
+<div class="group group3">
+<h2>🔥 Tổ 3</h2>
+
+<div class="members">
+<div class="student leader">Gia Khánh</div>
+<div class="student">Bá Tùng</div>
+<div class="student">Hoàng Thịnh</div>
+<div class="student leader">Hoàn Thuyên</div>
+<div class="student">Minh Quân</div>
+<div class="student">Công Khoa</div>
+<div class="student leader">Xuân Đại</div>
+<div class="student">Anh Thư</div>
+<div class="student leader">Thanh Quyên</div>
+</div>
+
+</div>
+
+
+<!-- Tổ 2 -->
+<div class="group group2">
+<h2>🍀 Tổ 2</h2>
+
+<div class="members">
+<div class="student leader">Quỳnh Liên</div>
+<div class="student">Thanh Thảo</div>
+<div class="student leader">Văn Khải</div>
+<div class="student">Minh Huy</div>
+<div class="student">Yến Nhi</div>
+<div class="student">Thị Hiền</div>
+<div class="student">Ngân Chi</div>
+<div class="student">Trúc Quyên</div>
+<div class="student leader">Quang Duy</div>
+</div>
+
+</div>
+
+
+<!-- Tổ 1 -->
+<div class="group group1">
+<h2>💎 Tổ 1</h2>
+
+<div class="members">
+<div class="student">Thiên Tuấn</div>
+<div class="student">Vũ Huy</div>
+<div class="student leader">Quang Kiên</div>
+<div class="student">Khánh Hoàng</div>
+<div class="student leader">Thuỳ Trâm</div>
+<div class="student">Bảo Châu</div>
+<div class="student">Nguyên Minh</div>
+<div class="student">Minh Khánh</div>
+<div class="student">Minh Cường</div>
+</div>
+
+</div>
+
+</div>
+
+
+<footer class="footer">
+✨ Sơ đồ lớp học - Thiết kế sáng tạo
+</footer>
+
+
+</div>
+
 </body>
 </html>
