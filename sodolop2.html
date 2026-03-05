@@ -2,132 +2,157 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Sơ đồ lớp sáng tạo</title>
+<title>Sơ đồ lớp Toán 2 - K34</title>
 
 <style>
 
 :root{
---bg1:#e8f3ff;
---bg2:#cfe9ff;
+--blue1:#e0f2fe;
+--blue2:#bae6fd;
+--blue3:#7dd3fc;
+--shadow:rgba(0,0,0,0.15);
 
---g1:#dbeafe;
---g2:#bfdbfe;
---g3:#93c5fd;
---g4:#60a5fa;
+--g1:#fee2e2;
+--g2:#dcfce7;
+--g3:#e0f2fe;
+--g4:#fef9c3;
 
---vip1:#2563eb;
---vip2:#1d4ed8;
---vip3:#1e40af;
---vip4:#1e3a8a;
+--vip1:#ef4444;
+--vip2:#16a34a;
+--vip3:#0284c7;
+--vip4:#ca8a04;
 }
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box}
 
 body{
-font-family:Segoe UI;
-background:linear-gradient(135deg,var(--bg1),var(--bg2));
-min-height:100vh;
+margin:0;
+font-family:"Segoe UI";
+background:linear-gradient(135deg,var(--blue1),var(--blue2));
 overflow-x:hidden;
 }
 
-/* BONG BÓNG NỀN */
+/* floating bubbles */
 
 .bubble{
 position:fixed;
-bottom:-50px;
-width:15px;
-height:15px;
-background:rgba(255,255,255,0.5);
 border-radius:50%;
-animation:floatUp linear infinite;
+background:rgba(255,255,255,0.35);
+backdrop-filter:blur(3px);
+pointer-events:none;
+animation:rise linear forwards;
 }
 
-@keyframes floatUp{
+@keyframes rise{
 from{
-transform:translateY(0);
-opacity:0.6;
+transform:translateY(0) scale(0.5);
+opacity:1;
 }
 to{
-transform:translateY(-110vh);
+transform:translateY(-800px) scale(1.2);
 opacity:0;
 }
 }
 
-/* WRAPPER */
+/* wrapper */
 
 .wrapper{
 max-width:1200px;
 margin:auto;
-padding:30px;
-position:relative;
+padding:25px;
 }
 
-/* HEADER */
+/* header */
 
 .header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .title{
-font-size:22px;
+font-size:24px;
 font-weight:700;
-color:#1e3a8a;
+color:#0f172a;
 }
 
-.page-btn{
-padding:10px 26px;
-border-radius:999px;
+.home{
+padding:10px 25px;
+border-radius:30px;
 border:none;
-background:#2563eb;
+background:#38bdf8;
 color:white;
-text-decoration:none;
-transition:0.3s;
+cursor:pointer;
 }
 
-.page-btn:hover{
-transform:scale(1.05);
-}
-
-/* CLASSROOM GRID */
+/* classroom layout */
 
 .classroom{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
+position:relative;
+padding-top:120px;
 }
 
-/* GROUP */
+/* teacher desk */
+
+.teacher-desk{
+position:absolute;
+top:0;
+left:0;
+background:#facc15;
+padding:15px 25px;
+border-radius:20px;
+font-weight:bold;
+box-shadow:0 8px 20px var(--shadow);
+}
+
+/* board */
+
+.board{
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+background:#14532d;
+color:white;
+padding:15px 60px;
+border-radius:10px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+/* groups grid */
+
+.groups{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+margin-top:40px;
+}
+
+/* group */
 
 .group{
 background:white;
 border-radius:18px;
 padding:15px;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
+box-shadow:0 8px 20px var(--shadow);
 }
 
 .group h3{
 text-align:center;
-margin-bottom:12px;
-color:#1e40af;
+margin-bottom:10px;
 }
 
-/* MEMBERS */
+/* members */
 
 .members{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:10px;
-min-height:200px;
 }
 
-/* SEAT */
+/* seat */
 
 .seat{
 padding:10px;
@@ -135,77 +160,44 @@ border-radius:20px;
 text-align:center;
 font-size:13px;
 cursor:grab;
-transition:0.25s;
 user-select:none;
+transition:0.25s;
 }
 
 .seat:active{
 cursor:grabbing;
+transform:scale(1.08);
 }
 
-.seat:hover{
-transform:scale(1.05);
-}
-
-/* VIP */
-
-.vip{
-color:white;
-font-weight:bold;
-}
-
-/* COLORS */
+/* colors */
 
 .group1 .seat{background:var(--g1)}
 .group2 .seat{background:var(--g2)}
 .group3 .seat{background:var(--g3)}
 .group4 .seat{background:var(--g4)}
 
+.vip{
+color:white;
+font-weight:600;
+}
+
 .group1 .vip{background:var(--vip1)}
 .group2 .vip{background:var(--vip2)}
 .group3 .vip{background:var(--vip3)}
 .group4 .vip{background:var(--vip4)}
 
-/* TEACHER DESK */
-
-.teacher-desk{
-position:absolute;
-top:0;
-left:0;
-background:#facc15;
-padding:12px 18px;
-border-radius:20px;
-font-weight:bold;
-box-shadow:0 6px 12px rgba(0,0,0,0.2);
-}
-
-/* BLACKBOARD */
-
-.board{
-position:absolute;
-top:60px;
-left:50%;
-transform:translateX(-50%);
-background:#14532d;
-color:white;
-padding:14px 60px;
-border-radius:10px;
-font-weight:bold;
-box-shadow:0 8px 15px rgba(0,0,0,0.3);
-}
-
-/* DOOR */
+/* door */
 
 .door{
 position:fixed;
-right:20px;
 bottom:20px;
+right:20px;
 background:#22c55e;
 color:white;
 padding:12px 18px;
 border-radius:30px;
 font-weight:bold;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
+box-shadow:0 8px 20px var(--shadow);
 }
 
 </style>
@@ -215,15 +207,17 @@ box-shadow:0 6px 15px rgba(0,0,0,0.2);
 
 <div class="wrapper">
 
+<div class="header">
+<div class="title">Toán 2 - K34 - Sơ đồ lớp</div>
+<button class="home">Trang chủ</button>
+</div>
+
+<div class="classroom">
+
 <div class="teacher-desk">👨‍🏫 Bàn giáo viên</div>
 <div class="board">📚 BẢNG</div>
 
-<div class="header">
-<div class="title">Toán 2 - K34 - Sơ đồ lớp</div>
-<a href="menu1.html" class="page-btn">Trang chủ</a>
-</div>
-
-<div class="classroom" id="classroom">
+<div class="groups" id="groups">
 
 <!-- TỔ 4 -->
 <div class="group group4">
@@ -295,114 +289,110 @@ box-shadow:0 6px 15px rgba(0,0,0,0.2);
 
 </div>
 </div>
+</div>
 
 <div class="door">🚪 Cửa vào</div>
 
 <script>
 
-/* =========================
-BONG BÓNG NỀN BAY
-========================= */
+/* bubble background */
 
-function createBackgroundBubble(){
-const b=document.createElement("div");
-b.className="bubble";
-b.style.left=Math.random()*100+"vw";
-b.style.animationDuration=6+Math.random()*6+"s";
-b.style.width=b.style.height=10+Math.random()*20+"px";
-document.body.appendChild(b);
+function createBubble(x,y){
 
-setTimeout(()=>b.remove(),12000);
+const bubble=document.createElement("div")
+
+bubble.className="bubble"
+
+const size=Math.random()*25+10
+
+bubble.style.width=size+"px"
+bubble.style.height=size+"px"
+
+bubble.style.left=(x-size/2)+"px"
+bubble.style.top=(y-size/2)+"px"
+
+bubble.style.animationDuration=(Math.random()*4+4)+"s"
+
+document.body.appendChild(bubble)
+
+setTimeout(()=>bubble.remove(),8000)
 }
 
-setInterval(createBackgroundBubble,800);
-
-
-/* =========================
-CLICK NỔ BONG BÓNG
-========================= */
+/* click bubbles */
 
 document.addEventListener("click",e=>{
-for(let i=0;i<8;i++){
-const bubble=document.createElement("div");
-
-bubble.style.position="fixed";
-bubble.style.left=e.clientX+"px";
-bubble.style.top=e.clientY+"px";
-bubble.style.width="8px";
-bubble.style.height="8px";
-bubble.style.borderRadius="50%";
-bubble.style.background="white";
-bubble.style.pointerEvents="none";
-
-bubble.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${(Math.random()-0.5)*120}px,${(Math.random()-0.5)*120}px)`,opacity:0}
-],{duration:800});
-
-document.body.appendChild(bubble);
-
-setTimeout(()=>bubble.remove(),800);
+for(let i=0;i<6;i++){
+createBubble(e.clientX,e.clientY)
 }
-});
+})
 
+/* floating background bubbles */
 
-/* =========================
-DRAG DROP
-========================= */
+setInterval(()=>{
 
-let dragged=null;
+createBubble(
+Math.random()*window.innerWidth,
+window.innerHeight+50
+)
+
+},600)
+
+/* drag seats */
+
+let dragged=null
 
 document.querySelectorAll(".seat").forEach(seat=>{
 
-seat.draggable=true;
+seat.draggable=true
 
 seat.addEventListener("dragstart",()=>{
-dragged=seat;
-});
+dragged=seat
+})
 
 seat.addEventListener("dragover",e=>{
-e.preventDefault();
-});
+e.preventDefault()
+})
 
 seat.addEventListener("drop",()=>{
+
 if(dragged && dragged!==seat){
 
-let temp=seat.innerHTML;
-seat.innerHTML=dragged.innerHTML;
-dragged.innerHTML=temp;
+let temp=seat.innerHTML
+seat.innerHTML=dragged.innerHTML
+dragged.innerHTML=temp
 
-saveSeats();
+saveSeats()
 }
 
-});
+})
 
-});
+})
 
-
-/* =========================
-LOCAL STORAGE
-========================= */
+/* save seats */
 
 function saveSeats(){
 
-const seats=[...document.querySelectorAll(".seat")].map(s=>s.innerHTML);
+const seats=[...document.querySelectorAll(".seat")].map(s=>s.innerHTML)
 
-localStorage.setItem("classSeats",JSON.stringify(seats));
+localStorage.setItem("classSeats",JSON.stringify(seats))
+
 }
+
+/* load seats */
 
 function loadSeats(){
 
-const data=JSON.parse(localStorage.getItem("classSeats"));
+const data=JSON.parse(localStorage.getItem("classSeats"))
 
-if(!data) return;
+if(!data) return
 
 document.querySelectorAll(".seat").forEach((s,i)=>{
-s.innerHTML=data[i];
-});
+s.innerHTML=data[i]
+})
+
 }
 
-loadSeats();
+loadSeats()
 
 </script>
 
