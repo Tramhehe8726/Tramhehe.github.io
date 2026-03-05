@@ -89,6 +89,32 @@ transform:translateY(-5px) scale(1.05);
 box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
+/* CSS để tạo hình dáng bóng bóng */
+  
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(135, 206, 250, 0.6); /* Màu xanh nhạt trong suốt */
+    pointer-events: none; /* Tránh việc bóng bóng cản trở các cú click khác */
+    transform: translate(-50%, -50%);
+    animation: blow-up 1s ease-out forwards;
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Hiệu ứng bong bóng bay lên và mờ dần */
+@keyframes blow-up {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        margin-top: -100px; /* Bay lên trên */
+    }
+}
 /* responsive */
 
 @media(max-width:700px){
