@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Toán 2 - K34</title>
+<title>LỚP 12 TOÁN 2</title>
 
 <style>
 
@@ -10,200 +10,236 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
+font-family:"Segoe UI",sans-serif;
 }
+
+/* NỀN */
 
 body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#667eea,#764ba2);
-overflow: hidden; /* Ngăn cuộn trang */
-cursor: pointer; /* Con trỏ bàn tay */
+background:linear-gradient(135deg,#eaf6ff,#cfe9ff);
+overflow:hidden;
+cursor: pointer; /* Thay đổi con trỏ thành bàn tay để biết có thể click */
 }
 
-/* khung chính */
+/* MÂY */
 
-.wrapper{
-width:750px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
-border-radius:20px;
-padding:40px;
-box-shadow:0 10px 40px rgba(0,0,0,0.2);
-position: relative;
-z-index: 10;
-pointer-events: none; /* Cho click xuyên qua */
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.7;
+animation:cloudMove 40s linear infinite;
 }
 
-/* tiêu đề */
+.cloud:before,
+.cloud:after{
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+}
 
-.header{
+.cloud:before{
+width:60px;
+height:60px;
+top:-20px;
+left:10px;
+}
+
+.cloud:after{
+width:80px;
+height:80px;
+top:-35px;
+right:10px;
+}
+
+.c1{width:160px;height:50px;top:15%;left:-200px;}
+.c2{width:200px;height:60px;top:35%;left:-250px;animation-duration:60s;}
+.c3{width:140px;height:45px;top:65%;left:-180px;animation-duration:50s;}
+
+@keyframes cloudMove{
+from{transform:translateX(0);}
+to{transform:translateX(120vw);}
+}
+
+/* BONG BÓNG CỐ ĐỊNH */
+
+.bubble{
+position:absolute;
+bottom:-100px;
+background:rgba(255,255,255,0.3);
+border-radius:50%;
+animation:bubbleUp 12s infinite;
+}
+
+.b1{width:30px;height:30px;left:20%;}
+.b2{width:40px;height:40px;left:50%;animation-duration:10s;}
+.b3{width:25px;height:25px;left:70%;animation-duration:14s;}
+
+@keyframes bubbleUp{
+from{
+transform:translateY(0);
+opacity:0.5;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* KHUNG */
+
+.container{
+position:relative;
 text-align:center;
-margin-bottom:40px;
+padding:70px 100px;
+
+background:white;
+
+border-radius:25px;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
+
+animation:fadeIn 1.2s ease;
+z-index: 10; /* Đảm bảo container nổi lên trên */
+pointer-events: none; /* Cho phép click xuyên qua container để tạo bong bóng */
 }
 
-.title{
-font-size:32px;
-font-weight:bold;
-color:white;
-letter-spacing:2px;
-text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+/* ANIMATION */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-/* menu */
-
-.menu1{
-display:flex;
-justify-content:space-between;
-gap:40px;
-}
-
-.col{
-flex:1;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
-
-/* nút */
-
-.pill{
-display:block;
-text-align:center;
-padding:14px;
-border-radius:40px;
-text-decoration:none;
-font-weight:bold;
-color:white;
-background:linear-gradient(45deg,#ff9a9e,#fad0c4);
-transition:all 0.3s ease;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-pointer-events: auto; /* Nút vẫn click được */
-}
-
-.pill:nth-child(2){
-background:linear-gradient(45deg,#a18cd1,#fbc2eb);
-}
-
-.pill:nth-child(3){
-background:linear-gradient(45deg,#84fab0,#8fd3f4);
-}
-
-.pill:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* BONG BÓNG NHỎ KHI CLICK */
+/* BONG BÓNG CLICK - HIỆU ỨNG CHÍNH */
 .click-bubble {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    pointer-events: none;
+    background: rgba(255, 255, 255, 0.7);
+    pointer-events: none; /* Không cản trở các click khác */
     transform: translate(-50%, -50%);
-    animation: bubble-rise 2.5s ease-out forwards;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), inset -3px -3px 8px rgba(255,255,255,0.7);
+    animation: bubble-pop 3s ease-out forwards;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
     z-index: 1000;
 }
 
-/* Hiệu ứng bong bóng nhỏ bay lên */
-@keyframes bubble-rise {
+/* Hiệu ứng bong bóng khi click */
+@keyframes bubble-pop {
     0% {
         width: 0;
         height: 0;
-        opacity: 0.9;
-        transform: translate(-50%, -50%);
-    }
-    15% {
-        width: 30px;
-        height: 30px;
         opacity: 0.8;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(0);
     }
-    50% {
-        width: 25px;
-        height: 25px;
-        opacity: 0.6;
-        transform: translate(calc(-50% + 20px), calc(-50% - 120px));
+    30% {
+        width: 80px;
+        height: 80px;
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.2);
     }
-    80% {
-        width: 15px;
-        height: 15px;
-        opacity: 0.3;
-        transform: translate(calc(-50% + 30px), calc(-50% - 220px));
+    70% {
+        width: 60px;
+        height: 60px;
+        opacity: 0.4;
+        transform: translate(calc(-50% + 30px), calc(-50% - 120px)) scale(0.9);
     }
     100% {
-        width: 8px;
-        height: 8px;
+        width: 40px;
+        height: 40px;
         opacity: 0;
-        transform: translate(calc(-50% + 40px), calc(-50% - 300px));
+        transform: translate(calc(-50% + 60px), calc(-50% - 250px)) scale(0.5);
     }
 }
 
-/* Hiệu ứng bong bóng nhỏ bay chậm hơn */
-@keyframes bubble-slow {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.9;
-        transform: translate(-50%, -50%);
-    }
-    20% {
-        width: 25px;
-        height: 25px;
-        opacity: 0.8;
-        transform: translate(-50%, -50%);
-    }
-    60% {
-        width: 20px;
-        height: 20px;
-        opacity: 0.5;
-        transform: translate(calc(-50% - 15px), calc(-50% - 150px));
-    }
-    100% {
-        width: 10px;
-        height: 10px;
-        opacity: 0;
-        transform: translate(calc(-50% - 25px), calc(-50% - 280px));
-    }
-}
-
-/* Hiệu ứng gợn sóng nhỏ */
-.ripple-small {
+/* Hiệu ứng gợn sóng khi click */
+.ripple-effect {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 80%);
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
     pointer-events: none;
     transform: translate(-50%, -50%);
-    animation: ripple-small 1s ease-out forwards;
+    animation: ripple 1s ease-out forwards;
     z-index: 999;
 }
 
-@keyframes ripple-small {
+@keyframes ripple {
     0% {
         width: 0;
         height: 0;
         opacity: 0.5;
     }
     100% {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 150px;
         opacity: 0;
     }
 }
 
-/* responsive */
+/* TITLE */
 
-@media(max-width:700px){
-.menu1{
-flex-direction:column;
+h1{
+font-size:42px;
+color:#1e3a8a;
+line-height:1.6;
 }
-.wrapper{
-width:90%;
-padding:30px;
+
+/* TÊN LỚP */
+
+h1 span{
+display:block;
+font-size:55px;
+font-weight:bold;
+color:#2563eb;
+letter-spacing:3px;
+margin-top:10px;
 }
+
+/* ICON */
+
+.icons{
+font-size:28px;
+margin-top:20px;
+}
+
+/* BUTTON */
+
+.enter-btn{
+display:inline-block;
+margin-top:30px;
+
+padding:12px 35px;
+
+border-radius:40px;
+
+background:linear-gradient(45deg,#3b82f6,#2563eb);
+
+color:white;
+
+font-weight:bold;
+
+text-decoration:none;
+
+transition:0.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+pointer-events: auto; /* Nút vẫn có thể click được */
+}
+
+.enter-btn:hover{
+transform:scale(1.1);
+box-shadow:0 12px 30px rgba(0,0,0,0.3);
 }
 
 </style>
@@ -211,151 +247,128 @@ padding:30px;
 
 <body>
 
-<div class="wrapper">
+<!-- mây -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
 
-<div class="header">
-<div class="title">Toán 2 - K34 - Hét ra lửa mửa ra khói ói ra than</div>
+<!-- bong bóng cố định -->
+<div class="bubble b1"></div>
+<div class="bubble b2"></div>
+<div class="bubble b3"></div>
+
+<div class="container">
+
+<h1>
+Chào mừng đến với
+<span>LỚP 12 TOÁN 2</span>
+</h1>
+
+<div class="icons">
+📘 ✏️ 📐 🎓
 </div>
 
-<div class="menu1">
-
-<div class="col">
-<a href="gioithieu.html" class="pill">📘 Giới thiệu chung</a>
-<a href="sodolop2.html" class="pill">🪑 Sơ đồ lớp</a>
-<a href="danhsachlop.html" class="pill">📋 Danh sách lớp</a>
-<a href="kiniem.html" class="pill">📸 Kỉ niệm</a>
-<a href="thanhtich.html" class="pill">🏆 Thành tích</a>
-</div>
-
-</div>
+<a href="menu1.html" class="enter-btn">
+Vào lớp học 🚀
+</a>
 
 </div>
 
 <script>
-// Hiệu ứng bong bóng nhỏ khi click chuột
+// Hiệu ứng bong bóng khi click chuột
 document.addEventListener('click', function(e) {
-    // Tạo gợn sóng nhỏ
-    createSmallRipple(e.clientX, e.clientY);
+    // Tạo hiệu ứng gợn sóng
+    createRipple(e.clientX, e.clientY);
     
-    // Tạo nhiều bong bóng nhỏ (8-15 bong bóng)
-    const bubbleCount = 8 + Math.floor(Math.random() * 8);
+    // Tạo nhiều bong bóng tại vị trí click
+    const bubbleCount = 5 + Math.floor(Math.random() * 8); // Random 5-13 bong bóng
     
     for (let i = 0; i < bubbleCount; i++) {
         setTimeout(() => {
-            createSmallBubble(e.clientX, e.clientY);
-        }, i * 40); // Mỗi bong bóng cách nhau 40ms
+            createClickBubble(e.clientX, e.clientY);
+        }, i * 50); // Mỗi bong bóng xuất hiện cách nhau 50ms
     }
 });
 
-function createSmallRipple(x, y) {
+function createRipple(x, y) {
     const ripple = document.createElement('div');
-    ripple.classList.add('ripple-small');
+    ripple.classList.add('ripple-effect');
     ripple.style.left = x + 'px';
     ripple.style.top = y + 'px';
     document.body.appendChild(ripple);
     
+    // Xóa ripple sau 1 giây
     setTimeout(() => {
         ripple.remove();
     }, 1000);
 }
 
-function createSmallBubble(x, y) {
+function createClickBubble(x, y) {
     const bubble = document.createElement('div');
+    bubble.classList.add('click-bubble');
     
-    // Random animation (70% bay nhanh, 30% bay chậm)
-    if (Math.random() < 0.3) {
-        bubble.classList.add('click-bubble');
-        bubble.style.animation = 'bubble-slow 3s ease-out forwards';
-    } else {
-        bubble.classList.add('click-bubble');
-        bubble.style.animation = 'bubble-rise 2.2s ease-out forwards';
-    }
+    // Random kích thước bong bóng (20-60px)
+    const size = 20 + Math.floor(Math.random() * 40);
     
-    // Kích thước nhỏ (8-35px)
-    const size = 8 + Math.floor(Math.random() * 27);
-    
-    // Mảng màu pastel nhẹ nhàng
+    // Random màu sắc tươi sáng
     const colors = [
-        'rgba(255, 255, 255, 0.9)',  // trắng trong
-        'rgba(200, 230, 255, 0.8)',  // xanh nhạt
-        'rgba(255, 220, 240, 0.8)',  // hồng nhạt
-        'rgba(220, 255, 220, 0.8)',  // xanh lá nhạt
-        'rgba(255, 255, 200, 0.7)',  // vàng nhạt
-        'rgba(230, 210, 255, 0.8)',  // tím nhạt
-        'rgba(255, 235, 215, 0.8)'   // cam nhạt
+        'rgba(135, 206, 250, 0.7)', // xanh nhạt
+        'rgba(255, 182, 193, 0.7)', // hồng nhạt
+        'rgba(152, 251, 152, 0.7)', // xanh lá nhạt
+        'rgba(255, 255, 0, 0.5)',   // vàng nhạt
+        'rgba(255, 255, 255, 0.8)', // trắng
+        'rgba(218, 112, 214, 0.6)', // tím nhạt
+        'rgba(255, 218, 185, 0.7)'  // cam nhạt
     ];
     
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     
-    // Random độ lệch nhẹ
-    const offsetX = (Math.random() - 0.5) * 50;
-    const offsetY = (Math.random() - 0.5) * 30;
+    // Random độ lệch vị trí ban đầu
+    const offsetX = (Math.random() - 0.5) * 40;
+    const offsetY = (Math.random() - 0.5) * 40;
     
+    // Thiết lập style cho bong bóng
     bubble.style.width = size + 'px';
     bubble.style.height = size + 'px';
     bubble.style.left = (x + offsetX) + 'px';
     bubble.style.top = (y + offsetY) + 'px';
-    bubble.style.background = `radial-gradient(circle at 35% 35%, white, ${randomColor})`;
-    bubble.style.border = '1px solid rgba(255,255,255,0.4)';
+    bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), ${randomColor})`;
     
+    // Random hướng bay
+    const randomX = (Math.random() - 0.5) * 100;
+    const randomY = -150 - Math.random() * 150;
+    
+    // Tạo animation riêng cho mỗi bong bóng
+    bubble.style.animation = `bubble-pop 2.5s ease-out forwards`;
+    
+    // Thêm vào body
     document.body.appendChild(bubble);
     
+    // Xóa bong bóng sau 2.5 giây
     setTimeout(() => {
         bubble.remove();
-    }, 3000);
+    }, 2500);
 }
 
-// Xử lý riêng cho các nút
-document.querySelectorAll('.pill').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.stopPropagation();
-        
-        // Tạo hiệu ứng nhẹ
-        createSmallRipple(e.clientX, e.clientY);
-        
-        // Tạo ít bong bóng hơn
-        for (let i = 0; i < 5; i++) {
-            setTimeout(() => {
-                createSmallBubble(e.clientX, e.clientY);
-            }, i * 50);
-        }
-        
-        // Chuyển trang sau 150ms
+// Ngăn chặn hiệu ứng khi click vào nút "Vào lớp học" (vẫn giữ liên kết hoạt động)
+document.querySelector('.enter-btn').addEventListener('click', function(e) {
+    e.stopPropagation(); // Ngăn không cho sự kiện lan lên body
+    // Vẫn tạo bong bóng nhưng không ảnh hưởng đến việc chuyển trang
+    createRipple(e.clientX, e.clientY);
+    for (let i = 0; i < 5; i++) {
         setTimeout(() => {
-            window.location.href = button.getAttribute('href');
-        }, 150);
-        
-        e.preventDefault();
-    });
-});
-
-// Hiệu ứng chào mừng khi load trang (bong bóng nhẹ nhàng)
-window.addEventListener('load', function() {
-    for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            createSmallBubble(x, y);
-        }, i * 100);
+            createClickBubble(e.clientX, e.clientY);
+        }, i * 50);
     }
 });
 
-// Click vào tiêu đề tạo nhiều bong bóng
-document.querySelector('.header').addEventListener('click', function(e) {
-    e.stopPropagation();
-    
-    for (let i = 0; i < 12; i++) {
-        setTimeout(() => {
-            const x = e.clientX + (Math.random() - 0.5) * 150;
-            const y = e.clientY + (Math.random() - 0.5) * 100;
-            createSmallBubble(x, y);
-        }, i * 30);
-    }
-    
-    createSmallRipple(e.clientX, e.clientY);
-    createSmallRipple(e.clientX - 30, e.clientY - 30);
-    createSmallRipple(e.clientX + 30, e.clientY + 30);
-});
+// Hiệu ứng khi di chuột (tùy chọn - có thể bỏ comment nếu muốn)
+// let mouseTimer;
+// document.addEventListener('mousemove', function(e) {
+//     if (Math.random() < 0.05) { // 5% cơ hội
+//         createClickBubble(e.clientX, e.clientY);
+//     }
+// });
 </script>
 
 </body>
