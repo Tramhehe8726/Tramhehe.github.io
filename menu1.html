@@ -10,7 +10,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
+font-family:"Segoe UI",sans-serif;
 }
 
 body{
@@ -18,18 +18,34 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#667eea,#764ba2);
+background:linear-gradient(270deg,#667eea,#764ba2,#6dd5ed,#a18cd1);
+background-size:600% 600%;
+animation:bgMove 12s ease infinite;
+overflow:hidden;
+cursor:pointer;
 }
 
-/* khung chính */
+/* nền chuyển động */
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* khung kính */
 
 .wrapper{
 width:750px;
 background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
-border-radius:20px;
+backdrop-filter:blur(15px);
+border-radius:25px;
 padding:40px;
-box-shadow:0 10px 40px rgba(0,0,0,0.2);
+box-shadow:0 15px 50px rgba(0,0,0,0.3);
+position:relative;
+z-index:10;
+pointer-events:none;
+border:1px solid rgba(255,255,255,0.2);
 }
 
 /* tiêu đề */
@@ -40,17 +56,25 @@ margin-bottom:40px;
 }
 
 .title{
-font-size:32px;
+font-size:34px;
 font-weight:bold;
 color:white;
 letter-spacing:2px;
+text-shadow:0 0 10px rgba(255,255,255,0.7),
+             0 0 20px rgba(255,255,255,0.4);
+animation:titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow{
+from{filter:brightness(1)}
+to{filter:brightness(1.3)}
 }
 
 /* menu */
 
-.menu{
+.menu1{
 display:flex;
-justify-content:space-between;
+justify-content:center;
 gap:40px;
 }
 
@@ -73,7 +97,10 @@ font-weight:bold;
 color:white;
 background:linear-gradient(45deg,#ff9a9e,#fad0c4);
 transition:all 0.3s ease;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+box-shadow:0 6px 20px rgba(0,0,0,0.25);
+pointer-events:auto;
+position:relative;
+overflow:hidden;
 }
 
 .pill:nth-child(2){
@@ -84,43 +111,103 @@ background:linear-gradient(45deg,#a18cd1,#fbc2eb);
 background:linear-gradient(45deg,#84fab0,#8fd3f4);
 }
 
+.pill:nth-child(4){
+background:linear-gradient(45deg,#ffecd2,#fcb69f);
+}
+
+.pill:nth-child(5){
+background:linear-gradient(45deg,#cfd9df,#e2ebf0);
+color:#333;
+}
+
 .pill:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
+transform:translateY(-6px) scale(1.07);
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
 }
 
-/* CSS để tạo hình dáng bóng bóng */
-  
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(135, 206, 250, 0.6); /* Màu xanh nhạt trong suốt */
-    pointer-events: none; /* Tránh việc bóng bóng cản trở các cú click khác */
-    transform: translate(-50%, -50%);
-    animation: blow-up 1s ease-out forwards;
-    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.4);
+/* ripple */
+
+.pill::after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+background:rgba(255,255,255,0.4);
+border-radius:50%;
+transform:translate(-50%,-50%);
+left:50%;
+top:50%;
+opacity:0;
+transition:0.6s;
 }
 
-/* Hiệu ứng bong bóng bay lên và mờ dần */
-@keyframes blow-up {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-    100% {
-        width: 100px;
-        height: 100px;
-        opacity: 0;
-        margin-top: -100px; /* Bay lên trên */
-    }
+.pill:active::after{
+width:200px;
+height:200px;
+opacity:0;
+transition:0s;
 }
+
+/* bong bóng click */
+
+.small-bubble{
+position:absolute;
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+animation:floatUp 2.5s ease-out forwards;
+box-shadow:0 0 10px rgba(255,255,255,0.6);
+z-index:1000;
+}
+
+@keyframes floatUp{
+
+0%{
+opacity:0.9;
+transform:translate(-50%,-50%) scale(0.2);
+}
+
+50%{
+opacity:0.8;
+}
+
+100%{
+opacity:0;
+transform:translate(calc(-50% + 20px),calc(-50% - 180px)) scale(1);
+}
+
+}
+
+/* bong bóng nền */
+
+.bgBubble{
+position:absolute;
+bottom:-100px;
+border-radius:50%;
+background:rgba(255,255,255,0.08);
+animation:rise 15s linear infinite;
+}
+
+@keyframes rise{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-120vh);
+}
+}
+
 /* responsive */
 
 @media(max-width:700px){
 
-.menu{
+.menu1{
 flex-direction:column;
+}
+
+.wrapper{
+width:90%;
+padding:30px;
 }
 
 }
@@ -149,6 +236,81 @@ flex-direction:column;
 </div>
 
 </div>
+
+<script>
+
+/* bong bóng click */
+
+document.addEventListener('click',function(e){
+
+const count=3+Math.floor(Math.random()*5);
+
+for(let i=0;i<count;i++){
+
+setTimeout(()=>{
+createBubble(e.clientX,e.clientY);
+},i*60)
+
+}
+
+})
+
+function createBubble(x,y){
+
+const b=document.createElement("div")
+b.className="small-bubble"
+
+const size=12+Math.random()*18
+
+const colors=[
+"rgba(255,182,193,0.8)",
+"rgba(173,216,230,0.8)",
+"rgba(255,255,224,0.8)",
+"rgba(221,160,221,0.8)",
+"rgba(144,238,144,0.8)"
+]
+
+b.style.width=size+"px"
+b.style.height=size+"px"
+
+b.style.left=(x+(Math.random()-0.5)*30)+"px"
+b.style.top=(y+(Math.random()-0.5)*20)+"px"
+
+b.style.background=colors[Math.floor(Math.random()*colors.length)]
+
+document.body.appendChild(b)
+
+setTimeout(()=>b.remove(),2500)
+
+}
+
+/* bong bóng nền */
+
+function backgroundBubbles(){
+
+for(let i=0;i<15;i++){
+
+const b=document.createElement("div")
+b.className="bgBubble"
+
+const size=20+Math.random()*60
+
+b.style.width=size+"px"
+b.style.height=size+"px"
+
+b.style.left=Math.random()*100+"vw"
+
+b.style.animationDuration=10+Math.random()*15+"s"
+
+document.body.appendChild(b)
+
+}
+
+}
+
+backgroundBubbles()
+
+</script>
 
 </body>
 </html>
