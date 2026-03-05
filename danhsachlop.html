@@ -2,98 +2,142 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Danh sách lớp</title>
+<title>Danh sách lớp 12 Toán 2</title>
 
 <style>
 
 body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(120deg,#dfe9f3,#ffffff);
-  overflow-x:hidden;
+font-family:Arial;
+margin:0;
+background:linear-gradient(180deg,#dff4ff,#f7fcff);
+overflow-x:hidden;
 }
-
-/* khung chính */
 
 .wrapper{
-  width:90%;
-  margin:auto;
-  margin-top:40px;
-  padding:30px;
-  background:white;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:90%;
+max-width:1100px;
+margin:auto;
+padding:30px;
+position:relative;
+z-index:2;
 }
 
-/* header */
-
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
 }
 
 .title{
-  font-size:24px;
-  font-weight:bold;
-  color:#333;
+font-size:26px;
+font-weight:bold;
+color:#0077b6;
 }
 
 .page-btn{
-  text-decoration:none;
-  background:#4CAF50;
-  color:white;
-  padding:10px 18px;
-  border-radius:8px;
-  transition:0.3s;
+text-decoration:none;
+padding:10px 18px;
+background:#4cc9f0;
+color:white;
+border-radius:8px;
+transition:0.3s;
 }
 
 .page-btn:hover{
-  background:#2e7d32;
+background:#0096c7;
 }
 
-/* bảng */
+h2{
+text-align:center;
+margin-bottom:25px;
+color:#005f86;
+}
+
+.search-box{
+display:flex;
+justify-content:center;
+margin-bottom:25px;
+}
+
+.search-box input{
+width:300px;
+padding:10px 15px;
+border-radius:20px;
+border:2px solid #90e0ef;
+outline:none;
+font-size:16px;
+}
 
 .student-table{
-  width:100%;
-  border-collapse:collapse;
-  text-align:center;
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
 .student-table th{
-  background:#4CAF50;
-  color:white;
-  padding:12px;
+background:#90e0ef;
+padding:12px;
+color:#003049;
 }
 
 .student-table td{
-  padding:10px;
-  border-bottom:1px solid #ddd;
+padding:10px;
+text-align:center;
+border-bottom:1px solid #eee;
 }
 
 .student-table tr:hover{
-  background:#f5f5f5;
+background:#f1fbff;
 }
 
-/* bong bóng */
+/* bong bóng nền */
 
-.bubble{
-  position:fixed;
-  border-radius:50%;
-  pointer-events:none;
-  animation:floatUp 1.5s linear forwards;
+.bubble-bg{
+position:fixed;
+bottom:-100px;
+width:20px;
+height:20px;
+background:rgba(173,232,244,0.5);
+border-radius:50%;
+animation:floatUp linear infinite;
 }
 
 @keyframes floatUp{
-  0%{
-    transform:translateY(0) scale(1);
-    opacity:1;
-  }
-  100%{
-    transform:translateY(-120px) scale(1.5);
-    opacity:0;
-  }
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+/* bong bóng click */
+
+.click-bubble{
+position:absolute;
+width:15px;
+height:15px;
+background:#48cae4;
+border-radius:50%;
+pointer-events:none;
+animation:pop 1s forwards;
+}
+
+@keyframes pop{
+0%{
+transform:scale(0.5);
+opacity:1;
+}
+100%{
+transform:translateY(-80px) scale(1.5);
+opacity:0;
+}
 }
 
 </style>
@@ -108,11 +152,13 @@ body{
 <a href="menu.html" class="page-btn">Trang chủ</a>
 </div>
 
-<h2 style="text-align:center;margin-bottom:40px;">
-DANH SÁCH LỚP 12 TOÁN 2
-</h2>
+<h2>DANH SÁCH LỚP 12 TOÁN 2</h2>
 
-<table class="student-table">
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="🔍 Tìm kiếm học sinh...">
+</div>
+
+<table class="student-table" id="studentTable">
 
 <thead>
 <tr>
@@ -125,6 +171,7 @@ DANH SÁCH LỚP 12 TOÁN 2
 </thead>
 
 <tbody>
+
 <tr><td>1</td><td>Đỗ Thế Bình</td><td>Nam</td><td>Học viên</td><td>28/09/2008</td></tr>
 <tr><td>2</td><td>Nguyễn Bảo Châu</td><td>Nữ</td><td>Học viên</td><td>10/09/2008</td></tr>
 <tr><td>3</td><td>Đoàn Ngân Chi</td><td>Nữ</td><td>Học viên</td><td>23/10/2008</td></tr>
@@ -161,40 +208,64 @@ DANH SÁCH LỚP 12 TOÁN 2
 <tr><td>34</td><td>Vũ Thiên Tuấn</td><td>Nam</td><td>Học viên</td><td>26/04/2008</td></tr>
 <tr><td>35</td><td>Ngô Bá Tùng</td><td>Nam</td><td>Học viên</td><td>15/03/2008</td></tr>
 <tr><td>36</td><td>Phan Tuyết Anh Tú</td><td>Nữ</td><td>Lớp trưởng</td><td>14/06/2008</td></tr>
-</tbody>
 
+</tbody>
 </table>
+
 </div>
 
 <script>
 
+/* tìm kiếm học sinh */
+
+document.getElementById("searchInput").addEventListener("keyup",function(){
+let filter=this.value.toLowerCase();
+let rows=document.querySelectorAll("#studentTable tbody tr");
+
+rows.forEach(row=>{
+let name=row.cells[1].textContent.toLowerCase();
+row.style.display=name.includes(filter)?"":"none";
+});
+});
+
+/* bong bóng click */
+
 document.addEventListener("click",function(e){
 
-for(let i=0;i<6;i++){
-
 let bubble=document.createElement("div");
-bubble.className="bubble";
+bubble.className="click-bubble";
 
-let size=Math.random()*15+8;
-
-bubble.style.width=size+"px";
-bubble.style.height=size+"px";
-
-bubble.style.left=(e.clientX+(Math.random()*40-20))+"px";
-bubble.style.top=(e.clientY+(Math.random()*40-20))+"px";
-
-bubble.style.background=
-"hsla("+Math.random()*360+",80%,60%,0.8)";
+bubble.style.left=e.pageX+"px";
+bubble.style.top=e.pageY+"px";
 
 document.body.appendChild(bubble);
 
 setTimeout(()=>{
 bubble.remove();
-},1500);
+},1000);
+
+});
+
+/* bong bóng bay nền */
+
+function createBackgroundBubble(){
+
+let bubble=document.createElement("div");
+bubble.className="bubble-bg";
+
+bubble.style.left=Math.random()*100+"vw";
+bubble.style.width=bubble.style.height=(10+Math.random()*25)+"px";
+bubble.style.animationDuration=(6+Math.random()*8)+"s";
+
+document.body.appendChild(bubble);
+
+setTimeout(()=>{
+bubble.remove();
+},14000);
 
 }
 
-});
+setInterval(createBackgroundBubble,800);
 
 </script>
 
