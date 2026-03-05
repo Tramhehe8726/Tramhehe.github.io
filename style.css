@@ -118,57 +118,6 @@ body {
   justify-content: center;
   margin-top: 80px;
 }
-.class-map {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
-}
-
-.group {
-  text-align: center;
-}
-
-.group h3 {
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-
-.group .members {
-  display: grid;
-  grid-template-columns: repeat(2, 90px);
-  gap: 12px;
-  justify-content: center;
-}
-.student-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: rgba(255,255,255,0.6);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.student-table th,
-.student-table td {
-  padding: 14px 10px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.student-table thead {
-  background-color: #8fb3ff;
-}
-
-.student-table th {
-  font-weight: bold;
-}
-
-.student-table tr:nth-child(even) {
-  background-color: rgba(255,255,255,0.4);
-}
-
-.student-table tr:hover {
-  background-color: rgba(143,179,255,0.4);
-}
 .top-buttons{
     display: flex;
     justify-content: space-between;
