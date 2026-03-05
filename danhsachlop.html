@@ -1,192 +1,125 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 <meta charset="UTF-8">
-<title>Danh sách lớp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+<title>Danh sách lớp 12 Toán 2</title>
 
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg,#4facfe,#00f2fe);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* Wrapper */
-.wrapper{
-  width:90%;
-  max-width:1100px;
-  margin:auto;
-  padding:30px;
-  background:rgba(255,255,255,0.95);
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  position:relative;
-  z-index:2;
-}
-
-/* Header */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.title{
-  font-size:22px;
-  font-weight:bold;
-  color:#333;
-}
-
-.page-btn{
-  padding:8px 18px;
-  background:#4facfe;
-  color:white;
-  text-decoration:none;
-  border-radius:20px;
-  transition:0.3s;
-}
-
-.page-btn:hover{
-  background:#0077ff;
-}
-
-/* Table */
-
-.student-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-.student-table th{
-  background:#4facfe;
-  color:white;
-  padding:10px;
-}
-
-.student-table td{
-  padding:8px;
-  text-align:center;
-  border-bottom:1px solid #ddd;
-}
-
-.student-table tr:hover{
-  background:#f2f9ff;
-  transition:0.3s;
-}
-
-/* BUBBLE BACKGROUND */
-
-.bubbles{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  z-index:1;
-}
-
-.bubbles span{
-  position:absolute;
-  bottom:-150px;
-  background:rgba(255,255,255,0.35);
-  border-radius:50%;
-  animation:rise 20s infinite ease-in;
-}
-
-/* Animation */
-
-@keyframes rise{
-  0%{
-    transform:translateY(0) scale(1);
-    opacity:0.5;
-  }
-  100%{
-    transform:translateY(-1100px) scale(1.5);
-    opacity:0;
-  }
-}
-
-/* Random bubble sizes */
-
-.bubbles span:nth-child(1){left:10%;width:40px;height:40px;animation-duration:18s;}
-.bubbles span:nth-child(2){left:20%;width:25px;height:25px;animation-duration:12s;}
-.bubbles span:nth-child(3){left:35%;width:50px;height:50px;animation-duration:20s;}
-.bubbles span:nth-child(4){left:50%;width:30px;height:30px;animation-duration:14s;}
-.bubbles span:nth-child(5){left:65%;width:45px;height:45px;animation-duration:22s;}
-.bubbles span:nth-child(6){left:75%;width:28px;height:28px;animation-duration:13s;}
-.bubbles span:nth-child(7){left:85%;width:40px;height:40px;animation-duration:17s;}
-.bubbles span:nth-child(8){left:90%;width:20px;height:20px;animation-duration:10s;}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- BUBBLES -->
-<div class="bubbles">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-</div>
-
 <div class="wrapper">
 
-<div class="header">
-<div class="title">Toán 2 - K34 - Slogan</div>
-<a href="menu1.html" class="page-btn">Trang chủ</a>
+<!-- ===== HEADER ===== -->
+
+<header class="header">
+
+<div class="title-area">
+<h1 class="class-name">🎓 Toán 2 - K34 - Slogan</h1>
+<p class="class-sub">Trang thông tin học viên</p>
 </div>
 
-<h2 style="text-align:center; margin-bottom:40px;">
-DANH SÁCH LỚP 12 TOÁN 2
-</h2>
+<nav class="navigation">
+<a href="menu1.html" class="page-btn">🏠 Trang chủ</a>
+</nav>
+
+</header>
+
+
+<!-- ===== BANNER ===== -->
+
+<section class="banner">
+<h2>DANH SÁCH LỚP 12 TOÁN 2</h2>
+<p class="student-count">Tổng số học viên: <strong>36</strong></p>
+</section>
+
+
+<!-- ===== TABLE AREA ===== -->
+
+<section class="table-section">
 
 <table class="student-table">
 
+<caption>
+📋 Danh sách học viên lớp 12 Toán 2
+</caption>
+
 <thead>
-<tr>
-<th>STT</th>
+
+<tr class="table-head">
+<th>#</th>
 <th>Họ và tên</th>
 <th>Giới tính</th>
 <th>Chức vụ</th>
 <th>Ngày sinh</th>
 </tr>
+
 </thead>
 
 <tbody>
 
-<!-- GIỮ NGUYÊN TOÀN BỘ DANH SÁCH CỦA BẠN -->
+<tr data-id="1"><td>1</td><td>Đỗ Thế Bình</td><td>Nam</td><td class="role-member">Học viên</td><td>28/09/2008</td></tr>
+<tr data-id="2"><td>2</td><td>Nguyễn Bảo Châu</td><td>Nữ</td><td class="role-member">Học viên</td><td>10/09/2008</td></tr>
+<tr data-id="3"><td>3</td><td>Đoàn Ngân Chi</td><td>Nữ</td><td class="role-member">Học viên</td><td>23/10/2008</td></tr>
+<tr data-id="4"><td>4</td><td>Đặng Minh Cường</td><td>Nam</td><td class="role-member">Học viên</td><td>28/10/2008</td></tr>
+<tr data-id="5"><td>5</td><td>Nguyễn Quang Duy</td><td>Nam</td><td class="role-labor">Lớp phó lao động</td><td>13/07/2008</td></tr>
+<tr data-id="6"><td>6</td><td>Lê Xuân Đại</td><td>Nam</td><td class="role-study">Lớp phó học tập</td><td>07/01/2008</td></tr>
+<tr data-id="7"><td>7</td><td>Nguyễn Thị Hiền</td><td>Nữ</td><td class="role-member">Học viên</td><td>05/06/2008</td></tr>
+<tr data-id="8"><td>8</td><td>Phạm Dương Khánh Hoàng</td><td>Nam</td><td class="role-member">Học viên</td><td>12/08/2008</td></tr>
+<tr data-id="9"><td>9</td><td>Lê Vũ Huy</td><td>Nam</td><td class="role-member">Học viên</td><td>06/03/2008</td></tr>
+<tr data-id="10"><td>10</td><td>Trần Minh Huy</td><td>Nam</td><td class="role-member">Học viên</td><td>10/09/2008</td></tr>
 
-<tr><td>1</td><td>Đỗ Thế Bình</td><td>Nam</td><td>Học viên</td><td>28/09/2008</td></tr>
-<tr><td>2</td><td>Nguyễn Bảo Châu</td><td>Nữ</td><td>Học viên</td><td>10/09/2008</td></tr>
-<tr><td>3</td><td>Đoàn Ngân Chi</td><td>Nữ</td><td>Học viên</td><td>23/10/2008</td></tr>
-<tr><td>4</td><td>Đặng Minh Cường</td><td>Nam</td><td>Học viên</td><td>28/10/2008</td></tr>
-<tr><td>5</td><td>Nguyễn Quang Duy</td><td>Nam</td><td>Lớp phó lao động</td><td>13/07/2008</td></tr>
-<tr><td>6</td><td>Lê Xuân Đại</td><td>Nam</td><td>Lớp phó học tập</td><td>07/01/2008</td></tr>
-<tr><td>7</td><td>Nguyễn Thị Hiền</td><td>Nữ</td><td>Học viên</td><td>05/06/2008</td></tr>
-<tr><td>8</td><td>Phạm Dương Khánh Hoàng</td><td>Nam</td><td>Học viên</td><td>12/08/2008</td></tr>
-<tr><td>9</td><td>Lê Vũ Huy</td><td>Nam</td><td>Học viên</td><td>06/03/2008</td></tr>
-<tr><td>10</td><td>Trần Minh Huy</td><td>Nam</td><td>Học viên</td><td>10/09/2008</td></tr>
-<tr><td>11</td><td>Nguyễn Gia Khánh</td><td>Nam</td><td>Bí thư</td><td>01/01/2008</td></tr>
-<tr><td>12</td><td>Nguyễn Minh Khánh</td><td>Nam</td><td>Học viên</td><td>30/07/2008</td></tr>
-<tr><td>13</td><td>Đỗ Văn Khải</td><td>Nam</td><td>Phó Bí thư</td><td>01/10/2008</td></tr>
-<tr><td>14</td><td>Trần Công Khoa</td><td>Nam</td><td>Học viên</td><td>24/01/2008</td></tr>
+<tr data-id="11"><td>11</td><td>Nguyễn Gia Khánh</td><td>Nam</td><td class="role-secretary">Bí thư</td><td>01/01/2008</td></tr>
+<tr data-id="12"><td>12</td><td>Nguyễn Minh Khánh</td><td>Nam</td><td class="role-member">Học viên</td><td>30/07/2008</td></tr>
+<tr data-id="13"><td>13</td><td>Đỗ Văn Khải</td><td>Nam</td><td class="role-secretary">Phó Bí thư</td><td>01/10/2008</td></tr>
+<tr data-id="14"><td>14</td><td>Trần Công Khoa</td><td>Nam</td><td class="role-member">Học viên</td><td>24/01/2008</td></tr>
+<tr data-id="15"><td>15</td><td>Trương Quang Kiên</td><td>Nam</td><td class="role-group">Tổ trưởng tổ 1</td><td>08/08/2008</td></tr>
+<tr data-id="16"><td>16</td><td>Võ Thị Quỳnh Liên</td><td>Nữ</td><td class="role-group">Tổ trưởng tổ 2</td><td>03/12/2008</td></tr>
+<tr data-id="17"><td>17</td><td>Trương Thành Long</td><td>Nam</td><td class="role-member">Học viên</td><td>08/01/2008</td></tr>
+<tr data-id="18"><td>18</td><td>Đặng Nguyễn Nguyên Minh</td><td>Nam</td><td class="role-member">Học viên</td><td>03/01/2008</td></tr>
+<tr data-id="19"><td>19</td><td>Phạm Trương Nhật Na</td><td>Nữ</td><td class="role-member">Học viên</td><td>08/01/2008</td></tr>
+<tr data-id="20"><td>20</td><td>Phạm Nguyễn Châu Ngân</td><td>Nữ</td><td class="role-group">Tổ trưởng tổ 4</td><td>19/02/2008</td></tr>
 
-<!-- ... phần còn lại bạn giữ nguyên ... -->
+<tr data-id="21"><td>21</td><td>Phùng Lâm Bảo Ngân</td><td>Nữ</td><td class="role-member">Học viên</td><td>29/11/2008</td></tr>
+<tr data-id="22"><td>22</td><td>Phạm Khải Nguyên</td><td>Nam</td><td class="role-member">Học viên</td><td>27/01/2008</td></tr>
+<tr data-id="23"><td>23</td><td>Võ Thị Yến Nhi</td><td>Nữ</td><td class="role-member">Học viên</td><td>14/01/2008</td></tr>
+<tr data-id="24"><td>24</td><td>Đinh Toàn Phát</td><td>Nam</td><td class="role-member">Học viên</td><td>31/07/2008</td></tr>
+<tr data-id="25"><td>25</td><td>Trần Minh Quân</td><td>Nam</td><td class="role-member">Học viên</td><td>12/03/2008</td></tr>
+<tr data-id="26"><td>26</td><td>Đỗ Huỳnh Trúc Quyên</td><td>Nữ</td><td class="role-member">Học viên</td><td>31/03/2008</td></tr>
+<tr data-id="27"><td>27</td><td>Nguyễn Ngọc Thanh Quyên</td><td>Nữ</td><td class="role-group">Tổ trưởng tổ 3</td><td>04/01/2008</td></tr>
+<tr data-id="28"><td>28</td><td>Võ Hữu Thanh Thảo</td><td>Nữ</td><td class="role-member">Học viên</td><td>16/02/2008</td></tr>
+<tr data-id="29"><td>29</td><td>Nguyễn Hoàng Thịnh</td><td>Nam</td><td class="role-member">Học viên</td><td>25/09/2008</td></tr>
+<tr data-id="30"><td>30</td><td>Phạm Nguyễn Hoàn Thuyên</td><td>Nam</td><td class="role-art">Lớp phó văn thể mỹ</td><td>30/01/2008</td></tr>
 
-<tr><td>36</td><td>Phan Tuyết Anh Tú</td><td>Nữ</td><td>Lớp trưởng</td><td>14/06/2008</td></tr>
+<tr data-id="31"><td>31</td><td>Lê Âu Anh Thư</td><td>Nữ</td><td class="role-member">Học viên</td><td>18/08/2008</td></tr>
+<tr data-id="32"><td>32</td><td>Nguyễn Hoàng Minh Thư</td><td>Nữ</td><td class="role-member">Học viên</td><td>26/03/2008</td></tr>
+<tr data-id="33"><td>33</td><td>Bùi Thùy Trâm</td><td>Nữ</td><td class="role-finance">Thủ quỹ</td><td>26/11/2008</td></tr>
+<tr data-id="34"><td>34</td><td>Vũ Thiên Tuấn</td><td>Nam</td><td class="role-member">Học viên</td><td>26/04/2008</td></tr>
+<tr data-id="35"><td>35</td><td>Ngô Bá Tùng</td><td>Nam</td><td class="role-member">Học viên</td><td>15/03/2008</td></tr>
+<tr data-id="36"><td>36</td><td>Phan Tuyết Anh Tú</td><td>Nữ</td><td class="role-leader">Lớp trưởng</td><td>14/06/2008</td></tr>
 
 </tbody>
+
 </table>
+
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer class="footer">
+
+<p>📚 Lớp 12 Toán 2 - Khóa K34</p>
+
+<p class="slogan">
+✨ Đoàn kết • Nỗ lực • Thành công
+</p>
+
+</footer>
 
 </div>
 
