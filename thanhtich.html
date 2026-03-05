@@ -1,37 +1,1020 @@
-<!-- Card 1 - Học tập -->
-<div class="achievement-card">
-    <div class="card-image" id="img10-1">
-        <div class="image-placeholder">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Ảnh hoạt động học tập</span>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thành Tích Lớp - 12T2</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome cho icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS bổ sung riêng cho trang thành tích */
+        .achievement-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(103, 126, 234, 0.2);
+        }
+
+        /* 3 nút LỚP 10, 11, 12 to rõ */
+        .grade-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 50px;
+            flex-wrap: wrap;
+        }
+
+        .grade-btn {
+            padding: 20px 50px;
+            font-size: 28px;
+            font-weight: 700;
+            border: none;
+            border-radius: 60px;
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+            min-width: 200px;
+            letter-spacing: 2px;
+        }
+
+        .grade-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(102, 126, 234, 0.4);
+            background: #667eea;
+            color: white;
+        }
+
+        .grade-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Nội dung các khối lớp */
+        .grade-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .grade-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Grid thành tích */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        /* Card thành tích */
+        .achievement-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Khung ảnh minh họa */
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .image-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .image-placeholder span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .card-image.has-image .image-placeholder {
+            display: none;
+        }
+
+        .card-image.has-image img {
+            display: block;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f3ff;
+            padding-bottom: 10px;
+        }
+
+        .achievement-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .achievement-card p i {
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            color: #667eea;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #667eea40;
+        }
+
+        /* Nút upload ảnh */
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* ===== PHẦN CSS MỚI THÊM CHO THƯ VIỆN ẢNH ===== */
+        
+        /* Modal hiển thị thư viện ảnh */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 800px;
+            max-height: 70vh;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Phần chứa ảnh và mô tả */
+        .modal-image-container {
+            position: relative;
+            text-align: center;
+        }
+
+        /* Dòng chữ mô tả ảnh */
+        .image-caption {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+            transform: rotate(90deg);
+        }
+
+        /* Navigation cho modal */
+        .modal-prev, .modal-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.3s;
+            border-radius: 0 10px 10px 0;
+            user-select: none;
+            background: rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 1002;
+        }
+
+        .modal-next {
+            right: 20px;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .modal-prev {
+            left: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .modal-prev:hover, .modal-next:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+
+        /* Thư viện ảnh nhỏ bên dưới */
+        .image-gallery {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .gallery-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery-thumb:hover {
+            transform: scale(1.1);
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Tooltip cho ảnh nhỏ */
+        .gallery-item:hover::after {
+            content: attr(data-caption);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* Nút thêm nhiều ảnh */
+        .add-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            color: #667eea;
+            border: 2px dashed #667eea;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .add-more-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Ô nhập mô tả cho ảnh */
+        .caption-input {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .caption-input input[type="text"] {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #667eea40;
+            border-radius: 50px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .caption-input input[type="text"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .multi-upload {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .grade-btn {
+                padding: 15px 30px;
+                font-size: 22px;
+                min-width: 150px;
+            }
+            
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+        <!-- Nút điều hướng trên cùng -->
+        <div class="top-buttons">
+            <a href="menu.html" class="pill small">← MENU</a>
+            <a href="sodolop1.html" class="pill small">SƠ ĐỒ LỚP →</a>
         </div>
-        <img src="" alt="Học tập lớp 10" onclick="openModal(this, 'img10-1')">
-        <!-- Thư viện ảnh sẽ được thêm vào đây -->
-        <div class="image-gallery"></div>
-    </div>
-    <div class="card-content">
-        <div class="card-icon">🏆</div>
-        <h3>Học tập xuất sắc</h3>
-        <p><i class="fas fa-check-circle"></i> 1 huy chương vàng cờ vua<br>
-           <i class="fas fa-check-circle"></i> học sinh đạt giải HSG cấp trường<br>
-           <i class="fas fa-check-circle"></i> học sinh đạt giải HSG cấp tỉnh môn toán<br>
-           <i class="fas fa-check-circle"></i> học sinh đạt giải HSG cấp tỉnh môn sinh</p>
-        <span class="badge">Thành tích nổi bật</span><br>
+
+        <!-- Nội dung trang thành tích -->
+        <div class="achievement-container">
+            <h1 style="text-align: center; font-size: 36px; color: #667eea; margin-bottom: 20px;">
+                <i class="fas fa-trophy"></i> THÀNH TÍCH LỚP 12T2
+            </h1>
+            <p style="text-align: center; font-size: 18px; color: #555; margin-bottom: 40px;">
+                Hành trình 3 năm học - Những dấu ấn không thể nào quên
+            </p>
+
+            <!-- 3 nút LỚP 10, 11, 12 to rõ như yêu cầu -->
+            <div class="grade-buttons">
+                <button class="grade-btn active" onclick="showGrade(10)">LỚP 10</button>
+                <button class="grade-btn" onclick="showGrade(11)">LỚP 11</button>
+                <button class="grade-btn" onclick="showGrade(12)">LỚP 12</button>
+            </div>
+
+            <!-- Nội dung Lớp 10 -->
+            <div id="grade10" class="grade-content active">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Học tập -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Ảnh hoạt động học tập</span>
+                            </div>
+                            <img src="" alt="Học tập lớp 10" onclick="openModal(this, 'img10-1')">
+                            <!-- Thư viện ảnh sẽ được thêm vào đây bằng JavaScript -->
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🏆</div>
+                            <h3>Học tập xuất sắc</h3>
+                            <p><i class="fas fa-check-circle"></i> 1 huy chương vàng cờ vua<br>
+                               <i class="fas fa-check-circle"></i>  học sinh đạt giải HSG cấp trường<br>
+                            <i class="fas fa-check-circle"></i>  học sinh đạt giải HSG cấp tỉnh môn toán<br>
+                               <i class="fas fa-check-circle"></i> học sinh đạt giải HSG cấp tỉnh môn sinh<br>
+                               <i class="fas fa-check-circle"></i> </p>
+                            <span class="badge">Thành tích nổi bật</span><br>
+                            
+                            <!-- Ô nhập mô tả cho ảnh -->
+                            <div class="caption-input">
+                                <input type="text" id="caption-img10-1" placeholder="Nhập mô tả cho ảnh..." value="Hoạt động học tập lớp 10">
+                            </div>
+                            
+                            <label for="upload10-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-1" accept="image/*" onchange="previewImage(this, 'img10-1')">
+                            
+                            <!-- Nút thêm nhiều ảnh -->
+                            <label for="multi-upload10-1" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload10-1" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img10-1')">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - Thể thao -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-2">
+                            <div class="image-placeholder">
+                                <i class="fas fa-futbol"></i>
+                                <span>Ảnh hoạt động thể thao</span>
+                            </div>
+                            <img src="" alt="Thể thao lớp 10" onclick="openModal(this, 'img10-2')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">⚽</div>
+                            <h3>Hoạt động thể thao</h3>
+                            <p><i class="fas fa-check-circle"></i> Vô địch bóng đá nam khối 10<br>
+                               <i class="fas fa-check-circle"></i> Giải nhì bóng chuyền nữ<br>
+                               <i class="fas fa-check-circle"></i> Giải ba điền kinh toàn trường<br>
+                               <i class="fas fa-check-circle"></i> Nhất toàn đoàn Hội khỏe Phù Đổng</p>
+                            <span class="badge">Tinh thần thể thao</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img10-2" placeholder="Nhập mô tả cho ảnh..." value="Hoạt động thể thao lớp 10">
+                            </div>
+                            
+                            <label for="upload10-2" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-2" accept="image/*" onchange="previewImage(this, 'img10-2')">
+                            
+                            <label for="multi-upload10-2" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload10-2" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img10-2')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Văn nghệ -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-music"></i>
+                                <span>Ảnh văn nghệ</span>
+                            </div>
+                            <img src="" alt="Văn nghệ lớp 10" onclick="openModal(this, 'img10-3')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🎭</div>
+                            <h3>Văn nghệ - Nghệ thuật</h3>
+                            <p><i class="fas fa-check-circle"></i> Giải nhất văn nghệ 20/11<br>
+                               <i class="fas fa-check-circle"></i> Giải nhì thiết kế báo tường<br>
+                               <i class="fas fa-check-circle"></i> 3 tiết mục đặc sắc trong đêm diễn<br>
+                               <i class="fas fa-check-circle"></i> Giải nhất múa dân gian</p>
+                            <span class="badge">Tài năng nghệ thuật</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img10-3" placeholder="Nhập mô tả cho ảnh..." value="Văn nghệ lớp 10">
+                            </div>
+                            
+                            <label for="upload10-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-3" accept="image/*" onchange="previewImage(this, 'img10-3')">
+                            
+                            <label for="multi-upload10-3" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload10-3" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img10-3')">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Tình nguyện -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img10-4">
+                            <div class="image-placeholder">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Ảnh thiện nguyện</span>
+                            </div>
+                            <img src="img/thiện nguyện khối toán.jpg" alt="Thiện nguyện khối toán" onclick="openModal(this, 'img10-4')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">💝</div>
+                            <h3>Hoạt động thiện nguyện</h3>
+                            <p><i class="fas fa-check-circle"></i> Tham gia đi thiện nguyện <br>
+                               <i class="fas fa-check-circle"></i> Quyên góp 5 triệu cho đồng bào lũ lụt<br>
+                               <i class="fas fa-check-circle"></i> Dạy học cho trẻ em nghèo<br>
+                               <i class="fas fa-check-circle"></i> Quyên góp đồ cho trẻ em vùng xa</p>
+                            <span class="badge">Trái tim nhân ái</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img10-4" placeholder="Nhập mô tả cho ảnh..." value="Hoạt động thiện nguyện lớp 10">
+                            </div>
+                            
+                            <label for="upload10-4" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload10-4" accept="image/*" onchange="previewImage(this, 'img10-4')">
+                            
+                            <label for="multi-upload10-4" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload10-4" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img10-4')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Lớp 11 -->
+            <div id="grade11" class="grade-content">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Học tập lớp 11 -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-book-open"></i>
+                                <span>Ảnh học tập lớp 11</span>
+                            </div>
+                            <img src="" alt="Học tập lớp 11" onclick="openModal(this, 'img11-1')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">📚</div>
+                            <h3>Thành tích học tập</h3>
+                            <p><i class="fas fa-check-circle"></i> 1 học sinh đạt giải ba HSGQG môn toán<br>
+                                 <i class="fas fa-check-circle"></i> 1 học sinh đạt giải KK HSGQG môn sinh<br>
+                               <i class="fas fa-check-circle"></i>  học sinh đạt giải HSG cấp trường<br>
+                               <i class="fas fa-check-circle"></i>  học sinh đạt giải HSG cấp tỉnh môn toán<br>
+                                 <i class="fas fa-check-circle"></i>  học sinh đạt giải HSG cấp tỉnh môn sinh<br>
+                                  <i class="fas fa-check-circle"></i> 100% học sinh hạnh kiểm tốt<br>
+                                  <i class="fas fa-check-circle"></i>  học sinh giỏi, học sinh xuất sắc <br>
+                               <i class="fas fa-check-circle"></i> Tập thể tiên tiến </p>
+                            <span class="badge">Vươn xa</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img11-1" placeholder="Nhập mô tả cho ảnh..." value="Học tập lớp 11">
+                            </div>
+                            
+                            <label for="upload11-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-1" accept="image/*" onchange="previewImage(this, 'img11-1')">
+                            
+                            <label for="multi-upload11-1" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload11-1" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img11-1')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Ngoại khóa -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-campground"></i>
+                                <span>Ảnh hoạt động ngoại khóa</span>
+                            </div>
+                            <img src="" alt="Ngoại khóa lớp 11" onclick="openModal(this, 'img11-3')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🏕️</div>
+                            <h3>Hoạt động ngoại khóa</h3>
+                            <p><i class="fas fa-check-circle"></i> Giải nhất cắm trại 26/3<br>
+                               <i class="fas fa-check-circle"></i> Tổ chức thành công hội trại<br>
+                                <i class="fas fa-check-circle"></i>100% tham gia đầy đủ hội trại và các cuộc thi <br>
+                                <i class="fas fa-check-circle"></i>Giải ba cuộc thi STEM <br>
+                               <i class="fas fa-check-circle"></i>Giải nhì thi cắm hoa <br>
+                               <i class="fas fa-check-circle"></i> Giải ba thi báo tường</p>
+                            <span class="badge">Năng động</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img11-3" placeholder="Nhập mô tả cho ảnh..." value="Ngoại khóa lớp 11">
+                            </div>
+                            
+                            <label for="upload11-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-3" accept="image/*" onchange="previewImage(this, 'img11-3')">
+                            
+                            <label for="multi-upload11-3" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload11-3" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img11-3')">
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 - Tiếp sức mùa thi -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img11-4">
+                            <div class="image-placeholder">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Ảnh tình nguyện</span>
+                            </div>
+                            <img src="img/thiện nguyện khối toán.jpg" alt="Tiếp sức mùa thi" onclick="openModal(this, 'img11-4')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🤝</div>
+                            <h3>Tiếp sức mùa thi</h3>
+                            <p><i class="fas fa-check-circle"></i>6 tình nguyện viên<br>
+                               <i class="fas fa-check-circle"></i> Hỗ trợ thí sinh thi vào 10<br>
+                               <i class="fas fa-check-circle"></i> Phát suất nước uống</p>
+                            <span class="badge">Tình nguyện</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img11-4" placeholder="Nhập mô tả cho ảnh..." value="Tiếp sức mùa thi lớp 11">
+                            </div>
+                            
+                            <label for="upload11-4" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload11-4" accept="image/*" onchange="previewImage(this, 'img11-4')">
+                            
+                            <label for="multi-upload11-4" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload11-4" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img11-4')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Lớp 12 -->
+            <div id="grade12" class="grade-content">
+                <div class="achievement-grid">
+                    <!-- Card 1 - Hoạt động thể thao  -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-1">
+                            <div class="image-placeholder">
+                                <i class="fas fa-trophy"></i>
+                                <span>Ảnh hoạt động thể thao</span>
+                            </div>
+                            <img src="" alt="Hoạt động thể thao" onclick="openModal(this, 'img12-1')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🎉</div>
+                            <h3>Hoạt động thể thao</h3>
+                            <p><i class="fas fa-check-circle"></i> <br>
+                               <i class="fas fa-check-circle"></i> học sinh đạt giải bơi cấp trường <br>
+                               <i class="fas fa-check-circle"></i> Hạng 3 bóng đá nam trong hội thi Hội khỏe phù đổng cấp trưởng <br></p>
+                            <span class="badge">Rực rỡ</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img12-1" placeholder="Nhập mô tả cho ảnh..." value="Hoạt động thể thao lớp 12">
+                            </div>
+                            
+                            <label for="upload12-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-1" accept="image/*" onchange="previewImage(this, 'img12-1')">
+                            
+                            <label for="multi-upload12-1" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload12-1" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img12-1')">
+                        </div>
+                    </div>
         
-        <!-- Ô nhập mô tả cho ảnh -->
-        <div class="caption-input">
-            <input type="text" id="caption-img10-1" placeholder="Nhập mô tả cho ảnh..." value="Hoạt động học tập lớp 10">
+                    <!-- Card 2 - Thành tích cuối cấp -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-2">
+                            <div class="image-placeholder">
+                                <i class="fas fa-trophy"></i>
+                                <span>Ảnh tổng kết</span>
+                            </div>
+                            <img src="" alt="Tổng kết lớp 12" onclick="openModal(this, 'img12-2')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🎉</div>
+                            <h3>Thành tích cuối cấp</h3>
+                             <p><i class="fas fa-check-circle"></i> 1 HS đạt giải nhì HSG quốc gia môn toán <br>
+                              <i class="fas fa-check-circle"></i> 1 học sinh giải nhất Olympia cấp trường <br>    
+                                  <i class="fas fa-check-circle"></i> Vũ Thiên Tuấn giành vòng nguyệt quế Tuần 1 Tháng 1 Quý IV năm thứ 25 với 245 điểm.<br>
+                                  <i class="fas fa-check-circle"></i> Gia Khánh đạt top 1 toàn quốc kì thi HSE giành học bổng du học Nga <br>
+                            <i class="fas fa-check-circle"></i>  HS đạt giải trong kỳ thi HSG cấp trường <br>
+                            <i class="fas fa-check-circle"></i> HS đạt giải trong kỳ thi HSG cấp tỉnh môn toán<br>
+                                  <i class="fas fa-check-circle"></i> 1 Thủ khoa trong kỳ thi HSG cấp tỉnh môn toán <br>
+                            <i class="fas fa-check-circle"></i> HS đạt giải trong kỳ thi HSG cấp tỉnh môn lý<br>
+                            <i class="fas fa-check-circle"></i> 1 HS đạt giải nhì trong kỳ thi HSG cấp tỉnh môn sinh<br></p>
+                            <span class="badge">Rực rỡ</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img12-2" placeholder="Nhập mô tả cho ảnh..." value="Thành tích cuối cấp lớp 12">
+                            </div>
+                            
+                            <label for="upload12-2" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-2" accept="image/*" onchange="previewImage(this, 'img12-2')">
+                            
+                            <label for="multi-upload12-2" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload12-2" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img12-2')">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - Văn nghệ - Nghệ thuật -->
+                    <div class="achievement-card">
+                        <div class="card-image" id="img12-3">
+                            <div class="image-placeholder">
+                                <i class="fas fa-rocket"></i>
+                                <span>Văn nghệ-Nghệ thuật</span>
+                            </div>
+                            <img src="" alt="Văn nghệ-Nghệ thuật" onclick="openModal(this, 'img12-3')">
+                            <div class="image-gallery"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-icon">🚀</div>
+                            <h3>Văn nghệ -Nghệ thuật</h3>
+                            <p><i class="fas fa-check-circle"></i> Tham gia tình nguyện ở trường mầm non Sơn Nham -Sơn Hà <br>
+                               <i class="fas fa-check-circle"></i> Quyên góp sách vở quần áo cũ<br></p>
+                            <span class="badge">Tương lai sáng</span><br>
+                            
+                            <div class="caption-input">
+                                <input type="text" id="caption-img12-3" placeholder="Nhập mô tả cho ảnh..." value="Văn nghệ lớp 12">
+                            </div>
+                            
+                            <label for="upload12-3" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
+                            <input type="file" id="upload12-3" accept="image/*" onchange="previewImage(this, 'img12-3')">
+                            
+                            <label for="multi-upload12-3" class="add-more-btn">
+                                <i class="fas fa-images"></i> Thêm nhiều ảnh
+                            </label>
+                            <input type="file" id="multi-upload12-3" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img12-3')">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Upload 1 ảnh -->
-        <label for="upload10-1" class="upload-btn"><i class="fas fa-upload"></i> Thêm ảnh</label>
-        <input type="file" id="upload10-1" accept="image/*" onchange="previewImage(this, 'img10-1')">
-        
-        <!-- Upload nhiều ảnh -->
-        <label for="multi-upload10-1" class="add-more-btn">
-            <i class="fas fa-images"></i> Thêm nhiều ảnh
-        </label>
-        <input type="file" id="multi-upload10-1" class="multi-upload" accept="image/*" multiple onchange="uploadMultipleImages(this, 'img10-1')">
     </div>
-</div>.
+
+    <!-- Modal hiển thị ảnh lớn -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <a class="modal-prev" onclick="changeImage(-1)">&#10094;</a>
+        <a class="modal-next" onclick="changeImage(1)">&#10095;</a>
+        <div class="modal-image-container">
+            <img class="modal-content" id="modalImage">
+            <div class="image-caption" id="imageCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Biến toàn cục cho modal
+        let currentImageIndex = 0;
+        let currentImageList = [];
+        let currentCaptionList = [];
+
+        // Hàm chuyển đổi giữa các khối lớp
+        function showGrade(grade) {
+            // Ẩn tất cả nội dung
+            document.getElementById('grade10').classList.remove('active');
+            document.getElementById('grade11').classList.remove('active');
+            document.getElementById('grade12').classList.remove('active');
+            
+            // Hiện nội dung được chọn
+            document.getElementById('grade' + grade).classList.add('active');
+            
+            // Cập nhật trạng thái active của nút
+            const buttons = document.querySelectorAll('.grade-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Đánh dấu nút được chọn
+            event.target.classList.add('active');
+        }
+
+        // Hàm mở modal xem ảnh
+        function openModal(imgElement, cardId) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('imageCaption');
+            
+            // Lấy danh sách tất cả ảnh và caption trong card này
+            const card = document.getElementById(cardId);
+            const galleryItems = card.querySelectorAll('.gallery-item');
+            
+            currentImageList = [];
+            currentCaptionList = [];
+            
+            galleryItems.forEach(item => {
+                const img = item.querySelector('img');
+                const captionText = item.getAttribute('data-caption') || 'Ảnh kỷ niệm';
+                if (img && img.src) {
+                    currentImageList.push(img.src);
+                    currentCaptionList.push(captionText);
+                }
+            });
+            
+            // Nếu không có ảnh nào trong gallery, thử lấy ảnh chính
+            if (currentImageList.length === 0) {
+                const mainImg = card.querySelector('img:not(.gallery-thumb)');
+                if (mainImg && mainImg.src) {
+                    currentImageList.push(mainImg.src);
+                    currentCaptionList.push('Ảnh đại diện');
+                } else {
+                    alert('Chưa có ảnh nào! Hãy thêm ảnh trước.');
+                    return;
+                }
+            }
+            
+            // Tìm index của ảnh hiện tại
+            currentImageIndex = currentImageList.indexOf(imgElement.src);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+            
+            modal.style.display = "block";
+            modalImg.src = currentImageList[currentImageIndex];
+            caption.textContent = currentCaptionList[currentImageIndex];
+        }
+
+        // Hàm đóng modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        // Hàm chuyển ảnh trong modal
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex >= currentImageList.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = currentImageList.length - 1;
+            }
+            
+            document.getElementById('modalImage').src = currentImageList[currentImageIndex];
+            document.getElementById('imageCaption').textContent = currentCaptionList[currentImageIndex];
+        }
+
+        // Hàm upload nhiều ảnh kèm mô tả
+        function uploadMultipleImages(input, cardId) {
+            const files = input.files;
+            const captionInput = document.getElementById('caption-' + cardId);
+            const caption = captionInput ? captionInput.value : 'Ảnh kỷ niệm';
+            
+            if (files.length > 0) {
+                // Tìm card-image
+                const card = document.getElementById(cardId);
+                
+                // Tạo gallery nếu chưa có
+                let gallery = card.querySelector('.image-gallery');
+                if (!gallery) {
+                    gallery = document.createElement('div');
+                    gallery.className = 'image-gallery';
+                    card.appendChild(gallery);
+                }
+                
+                // Thêm từng ảnh vào gallery
+                for (let i = 0; i < files.length; i++) {
+                    const reader = new FileReader();
+                    const fileCaption = caption + (files.length > 1 ? ' ' + (i+1) : '');
+                    
+                    reader.onload = function(e) {
+                        // Tạo item chứa ảnh và caption
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.setAttribute('data-caption', fileCaption);
+                        
+                        // Tạo thumbnail
+                        const thumb = document.createElement('img');
+                        thumb.src = e.target.result;
+                        thumb.className = 'gallery-thumb';
+                        thumb.onclick = function() { openModal(this, cardId); };
+                        
+                        galleryItem.appendChild(thumb);
+                        gallery.appendChild(galleryItem);
+                        
+                        // Nếu chưa có ảnh chính thì set ảnh đầu tiên làm ảnh chính
+                        const mainImage = card.querySelector('img:not(.gallery-thumb)');
+                        if (mainImage && !mainImage.src && i === 0) {
+                            mainImage.src = e.target.result;
+                            card.classList.add('has-image');
+                        }
+                    }
+                    
+                    reader.readAsDataURL(files[i]);
+                }
+            }
+            
+            // Reset input và caption
+            input.value = '';
+            if (captionInput) captionInput.value = caption;
+        }
+
+        // Hàm xem trước ảnh khi upload (sửa lại để hỗ trợ caption)
+        function previewImage(input, imageId) {
+            const imageDiv = document.getElementById(imageId);
+            const captionInput = document.getElementById('caption-' + imageId);
+            const caption = captionInput ? captionInput.value : 'Ảnh kỷ niệm';
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = imageDiv.querySelector('img');
+                    img.src = e.target.result;
+                    imageDiv.classList.add('has-image');
+                    
+                    // Tạo gallery nếu chưa có
+                    let gallery = imageDiv.querySelector('.image-gallery');
+                    if (!gallery) {
+                        gallery = document.createElement('div');
+                        gallery.className = 'image-gallery';
+                        imageDiv.appendChild(gallery);
+                    }
+                    
+                    // Tạo item với caption
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.setAttribute('data-caption', caption);
+                    
+                    // Thêm thumbnail
+                    const thumb = document.createElement('img');
+                    thumb.src = e.target.result;
+                    thumb.className = 'gallery-thumb';
+                    thumb.onclick = function() { openModal(this, imageId); };
+                    
+                    galleryItem.appendChild(thumb);
+                    gallery.appendChild(galleryItem);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Đóng modal khi click ra ngoài
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>.
 
