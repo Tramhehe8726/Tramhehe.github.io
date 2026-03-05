@@ -12,120 +12,13 @@
     <div class="title">Toán 2 - K34 - Slogan</div>
     <a href="menu1" class="page-btn">Trang chủ</a>
   </div>
-<style>
-
-body{
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg,#eef2ff,#dbeafe);
-    margin:0;
-}
-
-.page-btn{
-    background:#4f46e5;
-    color:white;
-    padding:8px 16px;
-    border-radius:20px;
-    text-decoration:none;
-}
-
-/* Teacher desk */
-
-.teacher{
-    width:220px;
-    margin:auto;
-    text-alglin: center;
-    background:#fbbf24;
-    padding:12px;
-    border-radius:30px;
-    font-weight:bold;
-    margin-bottom:25px;
-    box-shadow:0 5px 10px rgba(0,0,0,0.2);
-}
-
-/* Classroom grid */
-
-.class-map{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-}
-
-/* Group */
-
-.group{
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-.group h3{
-    text-align:center;
-    margin-bottom:10px;
-}
-
-/* Seat grid */
-
-.members{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-/* Seat style */
-
-.seat{
-    background:#e5e7eb;
-    padding:10px;
-    border-radius:25px;
-    text-align:center;
-    font-size:13px;
-    transition:0.2s;
-}
-
-.seat:hover{
-    transform:translateY(-4px);
-    box-shadow:0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Highlight student */
-
-.vip{
-    background:#6366f1;
-    color:white;
-}
-
-/* Group colors */
-
-.group1 .seat{background:#e0f2fe}
-.group2 .seat{background:#dcfce7}
-.group3 .seat{background:#fef9c3}
-.group4 .seat{background:#fee2e2}
-
-.group1 .vip{background:#0284c7}
-.group2 .vip{background:#16a34a}
-.group3 .vip{background:#ca8a04}
-.group4 .vip{background:#ef4444}
-
-/* Door */
-
-.door{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#22c55e;
-    color:white;
-    padding:10px 16px;
-    border-radius:25px;
-    font-weight:bold;
-}
-
-</style>
 </head>
 
 <body>
 
-<a class="pill small corner-btn left">Bàn giáo viên</a>
+<div class="top-buttons">
+  <a class="pill small corner-btn left">Bàn giáo viên</a>
+  <a class="pill small corner-btn right">Cửa vào</a>
 </div>
 
 <div class="class-map">
