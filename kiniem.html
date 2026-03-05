@@ -6,216 +6,246 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* hiệu ứng nhẹ cho lightbox */
+
+/* hiệu ứng trái tim / hoa */
+.floating{
+    position:fixed;
+    font-size:20px;
+    pointer-events:none;
+    animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-200px) scale(1.6);
+        opacity:0;
+    }
+}
+
+/* bong bóng click */
+.bubble{
+    position:fixed;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:rgba(255,182,193,0.7);
+    pointer-events:none;
+    animation:bubbleUp 1.2s ease-out forwards;
+}
+
+@keyframes bubbleUp{
+    0%{
+        transform:translateY(0) scale(0.5);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-80px) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* lightbox */
 .lightbox{
     display:none;
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.85);
-    justify-content:center;
-    align-items:center;
     z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    text-align:center;
 }
 
 .lightbox-img{
-    max-width:85%;
-    max-height:85%;
-    border-radius:10px;
-    animation:zoom 0.4s ease;
-}
-
-@keyframes zoom{
-    from{transform:scale(0.7);opacity:0;}
-    to{transform:scale(1);opacity:1;}
+    max-width:80%;
+    max-height:80%;
+    margin-top:5%;
 }
 
 .close{
     position:absolute;
-    top:25px;
+    top:20px;
     right:40px;
     font-size:40px;
     color:white;
     cursor:pointer;
 }
 
-.memory-card{
-    cursor:pointer;
-}
 </style>
-
 </head>
 
 <body>
 
 <div class="wrapper">
+<div class="header">
+<div class="title">Toán 2 - K34 - Hét ra lửa - Mửa ra khói - Ói ra than</div>
+<a href="menu1.html" class="page-btn">Trang chủ</a>
+</div>
 
-<header class="header">
-    <div class="title">
-        Toán 2 - K34 - Hét ra lửa - Mửa ra khói - Ói ra than
-    </div>
-    <a href="menu1.html" class="page-btn">Trang chủ</a>
-</header>
-
-
-<section class="memory-container">
+<div class="memory-container">
 
 <h2 class="section-title">MẢNH KÝ ỨC</h2>
 
 <div class="memory-grid">
 
-
-<!-- CARD -->
-<article class="memory-card" data-img="20_10_2025.jpg">
-<img src="20_10_2025.jpg" alt="20_10_2025">
-
+<div class="memory-card">
+<img src="20_10_2025.jpg" class="myImg">
 <div class="memory-content">
 <h3>Ngày phụ nữ Việt Nam 20/10/2025</h3>
 <p>Nắng tháng Mười đi qua cửa lớp, gửi lại 21 tấm chân tình dành cho những đóa hồng duy nhất của 12T2. Những mảnh ghép này, xin để mãi trọn vẹn tại đây.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="stem11giainhi.jpeg">
-<img src="stem11giainhi.jpeg" alt="stem11giainhi">
-
+<div class="memory-card">
+<img src="stem11giainhi.jpeg" class="myImg">
 <div class="memory-content">
 <h3>Ngày nhà giáo Việt Nam 20/11 năm học 2025-2026</h3>
 <p>Chút dư vị giải Nhì cho mùa Hiến chương cuối cùng thời học sinh, 12T2 dệt nốt những mảnh ghép rực rỡ nhất để lưu lại nơi Lê thân thương.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="26_3_2024.jpeg">
-<img src="26_3_2024.jpeg" alt="26_3_2024">
-
+<div class="memory-card">
+<img src="26_3_2024.jpeg" class="myImg">
 <div class="memory-content">
 <h3>Mảnh ký ức 26/03/2024</h3>
 <p>26/03 - Ngày nắng gõ cửa trại 10T2, để lại những dấu ấn đầu tiên của một tập thể gắn kết. Những trò chơi dân gian, những giải thưởng kiêu hãnh đã kết tinh thành một khoảng trời kỷ niệm rực rỡ của tuổi học trò.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="20_11_2023.jpg">
-<img src="20_11_2023.jpg" alt="20_11_2023">
-
+<div class="memory-card">
+<img src="20_11_2023.jpg" class="myImg">
 <div class="memory-content">
 <h3>Ngày nhà giáo Việt Nam 20/11 năm học 2023-2024</h3>
-<p> Phép cộng hoàn hảo cho mùa Hiến chương đầu tiên của những năm tháng cấp 3: 12 Toán 2 + cô Võ Thị Minh Hiếu = Khởi đầu một hành trình rực rỡ, một đời thương nhớ. </p>
+<p>Phép cộng hoàn hảo cho mùa Hiến chương đầu tiên của những năm tháng cấp 3: 12 Toán 2 + cô Võ Thị Minh Hiếu = Khởi đầu một hành trình rực rỡ, một đời thương nhớ.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="9_4_2025.jpg">
-<img src="9_4_2025.jpg" alt="9_4_2025">
-
+<div class="memory-card">
+<img src="9_4_2025.jpg" class="myImg">
 <div class="memory-content">
 <h3>Boy's Day 06/04/2025</h3>
 <p>11 - không còn cái bỡ ngỡ của lớp 10, không có cái áp lực như lớp 12. Những bông hồng của 11T2: Gói ghém nắng tháng Tư vào những lời hồi đáp chân thành nhất dành cho phái mạnh.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="thiennguyenlop10.jpg">
-<img src="thiennguyenlop10.jpg" alt="thiennguyenlop10">
-
+<div class="memory-card">
+<img src="thiennguyenlop10.jpg" class="myImg">
 <div class="memory-content">
 <h3>Hành trình gieo mầm đầu tiên cùng nhau</h3>
-<p>Những dấu chân nhỏ bé trên hành trình vạn dặm của lòng nhân ái. Tập thể lớp và lần đầu tiên cùng nhau trao đi yêu thương và nhận lại những nụ cười rạng rỡ hơn cả nắng mai. Chuyến thiện nguyện đầu tiên – nơi tình bạn của chúng mình được viết bằng những điều tử tế.</p>
+<p>Những dấu chân nhỏ bé trên hành trình vạn dặm của lòng nhân ái. Tập thể lớp và lần đầu tiên cùng nhau trao đi yêu thương và nhận lại những nụ cười rạng rỡ hơn cả nắng mai.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="giaidieutuoihong10.jpeg">
-<img src="giaidieutuoihong10.jpeg" alt="trailop10">
-
+<div class="memory-card">
+<img src="giaidieutuoihong10.jpeg" class="myImg">
 <div class="memory-content">
 <h3>Bản hòa ca của những nhịp đập đồng điệu</h3>
-<p>Ba mùa nắng hạ, ba lần đứng dưới ánh đèn sân khấu. Những bước nhảy rực rỡ của ngày hôm nay, xin được gói lại thành một thước phim đẹp đẽ nhất, để mai này khi nhìn lại, ta vẫn thấy mình đang cháy hết mình giữa những năm tháng thanh xuân ấy.</p>
+<p>Ba mùa nắng hạ, ba lần đứng dưới ánh đèn sân khấu. Những bước nhảy rực rỡ của ngày hôm nay.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="baotuonglop10.jpeg">
-<img src="baotuonglop10.jpeg" alt="baotuonglop10">
-
+<div class="memory-card">
+<img src="baotuonglop10.jpeg" class="myImg">
 <div class="memory-content">
 <h3>Tác phẩm báo tường tràn đầy nhiệt huyết</h3>
-<p>Những nét bút vụng về nhưng chở đầy nắng ấm. Tác phẩm báo tường đầu tiên - nơi tình thân bắt đầu nở hoa.</p>
+<p>Những nét bút vụng về nhưng chở đầy nắng ấm.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="choicuoi11.jpeg">
-<img src="choicuoi11.jpeg" alt="choicuoi11">
-
+<div class="memory-card">
+<img src="choicuoi11.jpeg" class="myImg">
 <div class="memory-content">
 <h3>Year End Party 2025!!</h3>
-<p>Chương hồi lớp 11 khép lại bằng những thanh âm rộn ràng của buổi liên hoan cuối cấp. 36 mảnh ghép đã cùng nhau vượt qua thử thách, giờ đây cùng ngồi lại để viết nốt những dư vị cuối cùng của một năm học đáng nhớ.</p>
+<p>Chương hồi lớp 11 khép lại bằng những thanh âm rộn ràng.</p>
 </div>
-</article>
+</div>
 
-
-<article class="memory-card" data-img="choicuoinam.PNG">
-<img src="choicuoinam.PNG" alt="choicuoinam">
-
+<div class="memory-card">
+<img src="choicuoinam.PNG" class="myImg">
 <div class="memory-content">
 <h3>Year End Party 2026!</h3>
-<p>Năm 2025, thế giới có thêm một mùa Tết, còn thời gian của CHÚNG MÌNH vơi đi một ít. Hãy để nụ cười hôm nay trở thành vệt nắng ấm nhất trong ký ức của mỗi người.</p>
+<p>Năm 2025, thế giới có thêm một mùa Tết.</p>
 </div>
-</article>
-
-
-</div>
-</section>
 </div>
 
+</div>
+</div>
+</div>
 
-
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
 <span class="close">&times;</span>
 <img class="lightbox-img" id="lightbox-img">
 </div>
 
-
-
 <script>
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", ()=>{
 
-const cards = document.querySelectorAll(".memory-card")
-const lightbox = document.getElementById("lightbox")
-const imgBox = document.getElementById("lightbox-img")
-const closeBtn = document.querySelector(".close")
+const images = document.querySelectorAll(".myImg");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeBtn = document.querySelector(".close");
 
-/* mở ảnh */
-cards.forEach(card=>{
-card.addEventListener("click",()=>{
+const icons = ["💖","💗","🌸","🌺","💮"];
 
-const img = card.dataset.img
-imgBox.src = img
+images.forEach(img=>{
+    img.addEventListener("click", ()=>{
+        lightbox.style.display="block";
+        lightboxImg.src=img.src;
 
-lightbox.style.display="flex"
+        for(let i=0;i<15;i++){
+            createFloating();
+        }
+    });
+});
 
-})
-})
+closeBtn.onclick=()=> lightbox.style.display="none";
 
-/* đóng bằng nút */
-closeBtn.onclick = ()=> lightbox.style.display="none"
-
-/* đóng khi click nền */
-lightbox.onclick = e=>{
-if(e.target===lightbox)
-lightbox.style.display="none"
+lightbox.onclick=(e)=>{
+    if(e.target===lightbox){
+        lightbox.style.display="none";
+    }
 }
 
-/* đóng bằng ESC */
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")
-lightbox.style.display="none"
-})
+/* tạo trái tim / hoa bay */
+function createFloating(){
 
-})
+    const el = document.createElement("div");
+    el.className="floating";
+    el.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+
+    el.style.left=Math.random()*100+"vw";
+    el.style.top="60vh";
+
+    document.body.appendChild(el);
+
+    setTimeout(()=>el.remove(),3000);
+}
+
+/* bong bóng khi click */
+document.addEventListener("click",(e)=>{
+
+    for(let i=0;i<6;i++){
+
+        const bubble=document.createElement("div");
+        bubble.className="bubble";
+
+        bubble.style.left=(e.clientX+(Math.random()*40-20))+"px";
+        bubble.style.top=(e.clientY+(Math.random()*40-20))+"px";
+
+        document.body.appendChild(bubble);
+
+        setTimeout(()=>bubble.remove(),1200);
+    }
+
+});
+
+});
 
 </script>
 
