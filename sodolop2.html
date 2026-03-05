@@ -2,24 +2,23 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Sơ đồ lớp - Version 2</title>
+<title>Sơ đồ lớp</title>
 
 <style>
 
 :root{
---bg1:#eaf4ff;
---bg2:#cfe6ff;
---deep:#1e40af;
+--bg1:#e0f2fe;
+--bg2:#bae6fd;
 
---g1:#ffdcdc;
---g2:#d9ffd8;
---g3:#daf3ff;
---g4:#fff6c7;
+--g1:#dbeafe;
+--g2:#e0f2fe;
+--g3:#cffafe;
+--g4:#dbeafe;
 
---vip1:#ef4444;
---vip2:#16a34a;
+--vip1:#2563eb;
+--vip2:#0ea5e9;
 --vip3:#0284c7;
---vip4:#ca8a04;
+--vip4:#1d4ed8;
 }
 
 *{
@@ -28,8 +27,8 @@ box-sizing:border-box;
 
 body{
 margin:0;
-font-family:Segoe UI;
-background:linear-gradient(140deg,var(--bg1),var(--bg2));
+font-family:"Segoe UI",sans-serif;
+background:linear-gradient(160deg,var(--bg1),var(--bg2));
 overflow-x:hidden;
 }
 
@@ -38,8 +37,7 @@ overflow-x:hidden;
 .wrapper{
 max-width:1200px;
 margin:auto;
-padding:30px;
-position:relative;
+padding:25px;
 }
 
 /* header */
@@ -52,62 +50,60 @@ margin-bottom:25px;
 }
 
 .title{
-font-size:24px;
+font-size:28px;
 font-weight:700;
-color:var(--deep);
+color:#1e3a8a;
 }
 
-.home{
-padding:10px 25px;
+.page-btn{
+padding:12px 30px;
 border-radius:30px;
-border:2px solid #60a5fa;
+border:2px solid #2563eb;
 background:white;
-text-decoration:none;
 color:#1e40af;
+text-decoration:none;
+font-size:16px;
 transition:0.3s;
 }
 
-.home:hover{
-background:#60a5fa;
+.page-btn:hover{
+background:#2563eb;
 color:white;
-transform:scale(1.05);
 }
 
-/* board */
+/* bảng */
 
 .board{
-position:absolute;
-top:90px;
-left:50%;
-transform:translateX(-50%);
-width:260px;
-background:#14532d;
-color:white;
+width:300px;
+margin:auto;
 text-align:center;
-padding:16px;
-border-radius:10px;
-font-weight:600;
-letter-spacing:1px;
-box-shadow:0 6px 15px rgba(0,0,0,0.25);
+background:#065f46;
+color:white;
+padding:15px;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
+margin-bottom:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* teacher */
 
-.teacherDesk{
-position:absolute;
-top:90px;
-left:0;
-background:#fbbf24;
-padding:14px 20px;
+.teacher{
+width:260px;
+margin:auto;
+text-align:center;
+background:#facc15;
+padding:14px;
 border-radius:30px;
 font-weight:bold;
-box-shadow:0 6px 15px rgba(0,0,0,0.25);
+margin-bottom:30px;
+font-size:18px;
 }
 
 /* classroom */
 
-.class-grid{
-margin-top:160px;
+.class-map{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:25px;
@@ -119,48 +115,47 @@ gap:25px;
 background:white;
 padding:18px;
 border-radius:18px;
-box-shadow:0 8px 18px rgba(0,0,0,0.1);
-transition:0.25s;
-}
-
-.group:hover{
-transform:translateY(-6px);
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .group h3{
 text-align:center;
-margin-bottom:14px;
-color:#1e3a8a;
+font-size:20px;
 }
 
-/* seats */
+/* members */
 
 .members{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px;
+gap:12px;
 }
 
+/* seat */
+
 .seat{
-padding:10px;
+padding:12px;
 border-radius:25px;
 text-align:center;
-font-size:13px;
+font-size:15px;
 cursor:grab;
 transition:0.25s;
+user-select:none;
 }
 
 .seat:hover{
 transform:scale(1.08);
-box-shadow:0 6px 14px rgba(0,0,0,0.2);
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
+
+/* vip */
 
 .vip{
 color:white;
-font-weight:600;
+font-weight:700;
 }
 
-/* colors */
+/* group colors */
 
 .group1 .seat{background:var(--g1)}
 .group2 .seat{background:var(--g2)}
@@ -176,46 +171,43 @@ font-weight:600;
 
 .door{
 position:fixed;
-bottom:20px;
 right:20px;
-background:#22c55e;
+bottom:20px;
+background:#2563eb;
 color:white;
-padding:12px 18px;
+padding:12px 20px;
 border-radius:30px;
 font-weight:bold;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* bubble background */
+/* bong bóng nền */
 
 .bubble{
 position:fixed;
-bottom:-40px;
+bottom:-50px;
 background:rgba(255,255,255,0.5);
 border-radius:50%;
 animation:floatUp linear infinite;
 }
 
 @keyframes floatUp{
-0%{transform:translateY(0);opacity:0.8}
-100%{transform:translateY(-120vh);opacity:0}
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
 }
 
-/* click bubble */
+/* bong bóng click */
 
 .pop{
 position:fixed;
-width:12px;
-height:12px;
 border-radius:50%;
-background:#7dd3fc;
+background:rgba(255,255,255,0.7);
 pointer-events:none;
 animation:pop 1s forwards;
 }
 
 @keyframes pop{
-0%{transform:scale(0);opacity:1}
-100%{transform:scale(3);opacity:0}
+0%{transform:scale(0)}
+100%{transform:scale(2);opacity:0}
 }
 
 </style>
@@ -227,18 +219,24 @@ animation:pop 1s forwards;
 
 <div class="header">
 <div class="title">Toán 2 - K34 - Sơ đồ lớp</div>
-<a href="menu1.html" class="home">Trang chủ</a>
+<a href="menu1.html" class="page-btn">Trang chủ</a>
 </div>
 
-<div class="teacherDesk">🧑‍🏫 Bàn giáo viên</div>
-<div class="board">📗 BẢNG ĐEN</div>
+<div class="board">
+📚 BẢNG ĐEN
+</div>
 
-<div class="class-grid" id="class">
+<div class="teacher">
+👩‍🏫 Bàn giáo viên
+</div>
+
+<div class="class-map">
 
 <!-- TỔ 4 -->
 <div class="group group4">
 <h3>Tổ 4</h3>
 <div class="members">
+
 <div class="seat">Khải Nguyên</div>
 <div class="seat">Thế Bình</div>
 <div class="seat">Bảo Ngân</div>
@@ -249,6 +247,7 @@ animation:pop 1s forwards;
 <div class="seat">Toàn Phát</div>
 <div class="seat vip">Anh Tú</div>
 <div class="seat"></div>
+
 </div>
 </div>
 
@@ -256,6 +255,7 @@ animation:pop 1s forwards;
 <div class="group group3">
 <h3>Tổ 3</h3>
 <div class="members">
+
 <div class="seat vip">Gia Khánh</div>
 <div class="seat"></div>
 <div class="seat">Bá Tùng</div>
@@ -266,6 +266,7 @@ animation:pop 1s forwards;
 <div class="seat vip">Xuân Đại</div>
 <div class="seat">Anh Thư</div>
 <div class="seat vip">Thanh Quyên</div>
+
 </div>
 </div>
 
@@ -273,6 +274,7 @@ animation:pop 1s forwards;
 <div class="group group2">
 <h3>Tổ 2</h3>
 <div class="members">
+
 <div class="seat vip">Quỳnh Liên</div>
 <div class="seat">Thanh Thảo</div>
 <div class="seat vip">Văn Khải</div>
@@ -283,6 +285,7 @@ animation:pop 1s forwards;
 <div class="seat">Ngân Chi</div>
 <div class="seat">Trúc Quyên</div>
 <div class="seat vip">Quang Duy</div>
+
 </div>
 </div>
 
@@ -290,6 +293,7 @@ animation:pop 1s forwards;
 <div class="group group1">
 <h3>Tổ 1</h3>
 <div class="members">
+
 <div class="seat">Thiên Tuấn</div>
 <div class="seat">Vũ Huy</div>
 <div class="seat vip">Quang Kiên</div>
@@ -300,102 +304,84 @@ animation:pop 1s forwards;
 <div class="seat"></div>
 <div class="seat">Minh Khánh</div>
 <div class="seat">Minh Cường</div>
-</div>
-</div>
 
 </div>
 </div>
 
-<div class="door">🚪 Cửa vào</div>
+</div>
+</div>
+
+<div class="door">
+🚪 Cửa vào
+</div>
 
 <script>
 
-/* background bubbles */
+/* kéo thả ghế */
 
-function bubble(){
-let b=document.createElement("div")
-b.className="bubble"
+let dragged;
 
-let size=Math.random()*20+10
-b.style.width=size+"px"
-b.style.height=size+"px"
+document.querySelectorAll(".seat").forEach(seat=>{
+seat.draggable=true;
 
-b.style.left=Math.random()*100+"vw"
+seat.addEventListener("dragstart",()=>{
+dragged=seat;
+});
 
-b.style.animationDuration=(Math.random()*10+8)+"s"
+seat.addEventListener("dragover",(e)=>{
+e.preventDefault();
+});
 
-document.body.appendChild(b)
+seat.addEventListener("drop",()=>{
+let temp=seat.innerHTML;
+seat.innerHTML=dragged.innerHTML;
+dragged.innerHTML=temp;
+});
+});
 
-setTimeout(()=>b.remove(),15000)
+/* bong bóng nền */
+
+function createBubble(){
+let bubble=document.createElement("div");
+bubble.className="bubble";
+
+let size=Math.random()*40+10;
+
+bubble.style.width=size+"px";
+bubble.style.height=size+"px";
+bubble.style.left=Math.random()*100+"%";
+bubble.style.animationDuration=(Math.random()*10+10)+"s";
+
+document.body.appendChild(bubble);
+
+setTimeout(()=>bubble.remove(),20000);
 }
 
-setInterval(bubble,600)
+setInterval(createBubble,800);
 
-/* click bubble */
+/* click bong bóng */
 
 document.addEventListener("click",(e)=>{
 
-let p=document.createElement("div")
-p.className="pop"
+for(let i=0;i<6;i++){
 
-p.style.left=e.clientX+"px"
-p.style.top=e.clientY+"px"
+let b=document.createElement("div");
+b.className="pop";
 
-document.body.appendChild(p)
+let size=Math.random()*20+10;
 
-setTimeout(()=>p.remove(),1000)
+b.style.width=size+"px";
+b.style.height=size+"px";
+b.style.left=e.clientX+"px";
+b.style.top=e.clientY+"px";
 
-})
+document.body.appendChild(b);
 
-/* drag seats */
+setTimeout(()=>b.remove(),1000);
 
-let seats=document.querySelectorAll(".seat")
-
-seats.forEach(seat=>{
-
-seat.draggable=true
-
-seat.addEventListener("dragstart",()=>{
-seat.classList.add("dragging")
-})
-
-seat.addEventListener("dragend",()=>{
-seat.classList.remove("dragging")
-saveSeats()
-})
-
-})
-
-document.querySelectorAll(".members").forEach(container=>{
-
-container.addEventListener("dragover",(e)=>{
-e.preventDefault()
-
-let drag=document.querySelector(".dragging")
-let target=e.target
-
-if(target.classList.contains("seat")){
-container.insertBefore(drag,target)
 }
 
-})
-
-})
-
-/* save layout */
-
-function saveSeats(){
-localStorage.setItem("classLayout",document.getElementById("class").innerHTML)
-}
-
-function loadSeats(){
-let data=localStorage.getItem("classLayout")
-if(data){
-document.getElementById("class").innerHTML=data
-}
-}
-
-loadSeats()
+});
 
 </script>
 
