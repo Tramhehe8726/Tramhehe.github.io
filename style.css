@@ -39,6 +39,7 @@ width: 1200px;
 min-height: 100vh;
 padding: 20px 40px;
 }
+
 .header {
 display: flex;
 justify-content: space-between;
