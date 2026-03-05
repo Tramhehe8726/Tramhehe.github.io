@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Sơ đồ lớp 1</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Kỉ niệm lớp</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrapper">
 
-  <div class="header">
-    <div class="title">Toán 2 - K34 - Slogan</div>
-    <a href="menu" class="page-btn">Trang chủ</a>
-  </div>
+<div class="wrapper">
+    <div class="header">
+        <div class="title">Toán 2 - K34 - Slogan</div>
+        <a href="menu.html" class="page-btn">Trang chủ</a>
+    </div>
+
+    <div class="memory-container">
+
+        <h2 class="section-title">Những khoảnh khắc đáng nhớ</h2>
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="20_10_2025.jpg" alt="20_10_2025">
+                <div class="memory-content">
+                    <h3>Ngày phụ nữ Việt Nam</h3>
+                    <p> ... </p>
+                </div>
+            </div>
+
+            <div class="slide fade">
+                <img src="Stem 11 giải nhì.jpeg" alt="Stem 11 giải nhì.">
+                <div class="memory-content">
+                    <h3>...</h3>
+                    <p>...</p>
+                </div>
+            </div>
+
+            <div class="slide fade">
+                <img src="26_3_2024.jpeg" alt="26_3_2024">
+                <div class="memory-content">
+                    <h3>...</h3>
+                    <p>...</p>
+                </div>
+            </div>
+            <div class="slide fade">
+                <img src="20_11_2023.jpg" alt="20_11_2023.jpg">
+                <div class="memory-content">
+                    <h3>...</h3>
+                    <p>...</p>
+                </div>
+            </div>
+            <div class="slide fade">
+                <img src="20_11_2023.jpg" alt="20_11_2023.jpg">
+                <div class="memory-content">
+                    <h3>...</h3>
+                    <p>...</p>
+                </div>
+             </div>
+          
+
+        </div>
+
+    </div>
+
+</div>
+<div id="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <img id="lightbox-img">
+</div>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 3000); // đổi ảnh mỗi 3 giây
+}
+
+function openLightbox(img) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = img.src;
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+</body>
+</html>
