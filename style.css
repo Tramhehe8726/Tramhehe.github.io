@@ -118,12 +118,6 @@ body {
   justify-content: center;
   margin-top: 80px;
 }
-.top-buttons{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 60px;
-    margin-top: 20px;
-}
 .intro-class {
             max-width: 1100px;
             margin: 30px auto;
@@ -288,18 +282,6 @@ body {
             border: 5px solid white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
-        /* Khi có ảnh thật */
-        /*
-        .teacher-avatar {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        */
 
         .teacher-name {
             font-size: 24px;
