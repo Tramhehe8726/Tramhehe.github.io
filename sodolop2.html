@@ -2,115 +2,230 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Sơ đồ lớp Toán 2</title>
-<link rel="stylesheet" href="style.css">
+<title>Sơ đồ lớp</title>
+
+<style>
+
+body{
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg,#eef2ff,#dbeafe);
+    margin:0;
+}
+
+/* Container */
+
+.wrapper{
+    max-width:1100px;
+    margin:auto;
+    padding:25px;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:26px;
+    font-weight:700;
+}
+
+.page-btn{
+    background:#4f46e5;
+    color:white;
+    padding:8px 16px;
+    border-radius:20px;
+    text-decoration:none;
+}
+
+/* Teacher desk */
+
+.teacher{
+    width:220px;
+    margin:auto;
+    text-align:center;
+    background:#fbbf24;
+    padding:12px;
+    border-radius:30px;
+    font-weight:bold;
+    margin-bottom:25px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* Classroom grid */
+
+.class-map{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+/* Group */
+
+.group{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.group h3{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+/* Seat grid */
+
+.members{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+/* Seat style */
+
+.seat{
+    background:#e5e7eb;
+    padding:10px;
+    border-radius:25px;
+    text-align:center;
+    font-size:13px;
+    transition:0.2s;
+}
+
+.seat:hover{
+    transform:translateY(-4px);
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Highlight student */
+
+.vip{
+    background:#6366f1;
+    color:white;
+}
+
+/* Group colors */
+
+.group1 .seat{background:#fee2e2}
+.group2 .seat{background:#dcfce7}
+.group3 .seat{background:#e0f2fe}
+.group4 .seat{background:#fef9c3}
+
+.group1 .vip{background:#ef4444}
+.group2 .vip{background:#16a34a}
+.group3 .vip{background:#0284c7}
+.group4 .vip{background:#ca8a04}
+
+/* Door */
+
+.door{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#22c55e;
+    color:white;
+    padding:10px 16px;
+    border-radius:25px;
+    font-weight:bold;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="wrapper">
 
-<header class="header">
-<h1>📚 Toán 2 - K34</h1>
-<p class="slogan">"Cùng học - Cùng vui - Cùng tiến bộ"</p>
-<a class="home-btn" href="#">Trang chủ</a>
-</header>
-
-
-<div class="top-area">
-
-<div class="teacher-desk">👩‍🏫 Bàn giáo viên</div>
-
-<div class="door">🚪 Cửa vào</div>
-
+<div class="header">
+<div class="title">Toán 2 - K34</div>
+<a class="page-btn">Trang chủ</a>
 </div>
 
+<div class="teacher">
+Bàn giáo viên
+</div>
 
 <div class="class-map">
 
-<!-- Tổ 4 -->
+<!-- TỔ 4 -->
 <div class="group group4">
-<h2>🌟 Tổ 4</h2>
-
+<h3>Tổ 4</h3>
 <div class="members">
-<div class="student">Khải Nguyên</div>
-<div class="student">Thế Bình</div>
-<div class="student">Bảo Ngân</div>
-<div class="student">Thành Long</div>
-<div class="student">Nhật Na</div>
-<div class="student">Minh Thư</div>
-<div class="student leader">Châu Ngân</div>
-<div class="student">Toàn Phát</div>
-<div class="student leader">Anh Tú</div>
+<div class="seat">Khải Nguyên</div>
+<div class="seat">Thế Bình</div>
+<div class="seat">Bảo Ngân</div>
+<div class="seat">Thành Long</div>
+<div class="seat">Nhật Na</div>
+<div class="seat">Minh Thư</div>
+<div class="seat vip">Châu Ngân</div>
+<div class="seat">Toàn Phát</div>
+<div class="seat vip">Anh Tú</div>
+<div class="seat"></div>
+</div>
 </div>
 
-</div>
-
-
-<!-- Tổ 3 -->
+<!-- TỔ 3 -->
 <div class="group group3">
-<h2>🔥 Tổ 3</h2>
-
+<h3>Tổ 3</h3>
 <div class="members">
-<div class="student leader">Gia Khánh</div>
-<div class="student">Bá Tùng</div>
-<div class="student">Hoàng Thịnh</div>
-<div class="student leader">Hoàn Thuyên</div>
-<div class="student">Minh Quân</div>
-<div class="student">Công Khoa</div>
-<div class="student leader">Xuân Đại</div>
-<div class="student">Anh Thư</div>
-<div class="student leader">Thanh Quyên</div>
+<div class="seat vip">Gia Khánh</div>
+<div class="seat"></div>
+<div class="seat">Bá Tùng</div>
+<div class="seat">Hoàng Thịnh</div>
+<div class="seat vip">Hoàn Thuyên</div>
+<div class="seat">Minh Quân</div>
+<div class="seat">Công Khoa</div>
+<div class="seat vip">Xuân Đại</div>
+<div class="seat">Anh Thư</div>
+<div class="seat vip">Thanh Quyên</div>
+</div>
 </div>
 
-</div>
-
-
-<!-- Tổ 2 -->
+<!-- TỔ 2 -->
 <div class="group group2">
-<h2>🍀 Tổ 2</h2>
-
+<h3>Tổ 2</h3>
 <div class="members">
-<div class="student leader">Quỳnh Liên</div>
-<div class="student">Thanh Thảo</div>
-<div class="student leader">Văn Khải</div>
-<div class="student">Minh Huy</div>
-<div class="student">Yến Nhi</div>
-<div class="student">Thị Hiền</div>
-<div class="student">Ngân Chi</div>
-<div class="student">Trúc Quyên</div>
-<div class="student leader">Quang Duy</div>
+<div class="seat vip">Quỳnh Liên</div>
+<div class="seat">Thanh Thảo</div>
+<div class="seat vip">Văn Khải</div>
+<div class="seat">Minh Huy</div>
+<div class="seat">Yến Nhi</div>
+<div class="seat"></div>
+<div class="seat">Thị Hiền</div>
+<div class="seat">Ngân Chi</div>
+<div class="seat">Trúc Quyên</div>
+<div class="seat vip">Quang Duy</div>
+</div>
 </div>
 
-</div>
-
-
-<!-- Tổ 1 -->
+<!-- TỔ 1 -->
 <div class="group group1">
-<h2>💎 Tổ 1</h2>
-
+<h3>Tổ 1</h3>
 <div class="members">
-<div class="student">Thiên Tuấn</div>
-<div class="student">Vũ Huy</div>
-<div class="student leader">Quang Kiên</div>
-<div class="student">Khánh Hoàng</div>
-<div class="student leader">Thuỳ Trâm</div>
-<div class="student">Bảo Châu</div>
-<div class="student">Nguyên Minh</div>
-<div class="student">Minh Khánh</div>
-<div class="student">Minh Cường</div>
+<div class="seat">Thiên Tuấn</div>
+<div class="seat">Vũ Huy</div>
+<div class="seat vip">Quang Kiên</div>
+<div class="seat">Khánh Hoàng</div>
+<div class="seat vip">Thuỳ Trâm</div>
+<div class="seat">Bảo Châu</div>
+<div class="seat">Nguyên Minh</div>
+<div class="seat"></div>
+<div class="seat">Minh Khánh</div>
+<div class="seat">Minh Cường</div>
+</div>
 </div>
 
 </div>
 
 </div>
 
-
-<footer class="footer">
-✨ Sơ đồ lớp học - Thiết kế sáng tạo
-</footer>
-
-
+<div class="door">
+🚪 Cửa vào
 </div>
 
 </body>
