@@ -208,6 +208,7 @@ web/
        height: auto;
        border-radius: 25px;
        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+       justify-content: center;
        border: 5px solid white;
        transition: transform 0.3s ease;
        cursor: pointer;
@@ -234,6 +235,7 @@ web/
        background: linear-gradient(135deg, #667eea10, #764ba210);
        border-radius: 30px;
        padding: 30px;
+       justify-content: center;
        margin: 20px 0;
        border: 2px dashed #667eea40;
 }
