@@ -206,7 +206,7 @@ web/
        
 .class-photo {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     height: auto;
     border-radius: 25px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
