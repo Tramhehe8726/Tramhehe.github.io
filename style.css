@@ -198,11 +198,14 @@ web/
        
        /* Khung ảnh lớp */
 .class-photo-container {
+       display: grid;
        text-align: center;
+       justify-content: center;
        margin: 10px 0 30px 0;
 }
        
 .class-photo {
+       display: grid;
        width: 100%;
        max-width: 800px;
        height: auto;
@@ -233,6 +236,7 @@ web/
        /* Container thông tin lớp */
 .class-info-container {
        background: linear-gradient(135deg, #667eea10, #764ba210);
+       display: grid;
        border-radius: 30px;
        padding: 30px;
        justify-content: center;
