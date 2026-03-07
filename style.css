@@ -205,21 +205,19 @@ web/
 }
        
 .class-photo {
-       display: grid;
-       width: 100%;
-       max-width: 800px;
-       height: auto;
-       border-radius: 25px;
-       box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-       justify-content: center;
-       border: 5px solid white;
-       transition: transform 0.3s ease;
-       cursor: pointer;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border: 5px solid white;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
-       
+
 .class-photo:hover {
-       transform: scale(1.02);
-       box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
 }
        
 .photo-caption {
@@ -235,13 +233,13 @@ web/
        
        /* Container thông tin lớp */
 .class-info-container {
-       background: linear-gradient(135deg, #667eea10, #764ba210);
-       display: grid;
-       border-radius: 30px;
-       padding: 30px;
-       justify-content: center;
-       margin: 20px 0;
-       border: 2px dashed #667eea40;
+    background: linear-gradient(135deg, #667eea10, #764ba210);
+    display: grid;
+    justify-items: center;      /* căn giữa các item trong lưới */
+    border-radius: 30px;
+    padding: 30px;
+    margin: 20px 0;
+    border: 2px dashed #667eea40;
 }
        
        /* Thông tin lớp học */
