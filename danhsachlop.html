@@ -94,8 +94,6 @@ border-bottom:1px solid #eee;
 background:#f1fbff;
 }
 
-/* tên học sinh có thể click */
-
 .student-name{
 cursor:pointer;
 color:#0077b6;
@@ -133,6 +131,28 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 .image-popup.show{
 opacity:1;
 pointer-events:auto;
+}
+
+/* pháo hoa */
+
+.firework{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+pointer-events:none;
+animation:explode 1s forwards;
+}
+
+@keyframes explode{
+0%{
+transform:translate(0,0) scale(1);
+opacity:1;
+}
+100%{
+transform:translate(var(--x),var(--y)) scale(0.5);
+opacity:0;
+}
 }
 
 /* bong bóng nền */
@@ -200,7 +220,6 @@ opacity:0;
 </div>
 
 <table class="student-table" id="studentTable">
-
 <thead>
 <tr>
 <th>STT</th>
@@ -255,8 +274,6 @@ opacity:0;
 
 </div>
 
-<!-- popup ảnh -->
-
 <div class="image-popup" id="imagePopup">
 <img id="studentImg">
 </div>
@@ -275,7 +292,38 @@ row.style.display=name.includes(filter)?"":"none";
 });
 });
 
-/* click tên hiện ảnh */
+/* pháo hoa */
+
+function createFirework(x,y){
+
+for(let i=0;i<25;i++){
+
+let p=document.createElement("div");
+p.className="firework";
+
+let angle=Math.random()*2*Math.PI;
+let distance=80+Math.random()*40;
+
+let dx=Math.cos(angle)*distance+"px";
+let dy=Math.sin(angle)*distance+"px";
+
+p.style.left=x+"px";
+p.style.top=y+"px";
+
+p.style.setProperty("--x",dx);
+p.style.setProperty("--y",dy);
+
+p.style.background=`hsl(${Math.random()*360},100%,50%)`;
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),1000);
+
+}
+
+}
+
+/* click tên hiện ảnh + pháo hoa */
 
 let names=document.querySelectorAll(".student-name");
 let popup=document.getElementById("imagePopup");
@@ -291,10 +339,12 @@ img.src=src;
 
 popup.classList.add("show");
 
+createFirework(e.pageX,e.pageY);
+
 });
 });
 
-/* click nền để tắt ảnh */
+/* tắt ảnh */
 
 popup.addEventListener("click",()=>{
 popup.classList.remove("show");
@@ -318,7 +368,7 @@ bubble.remove();
 
 });
 
-/* bong bóng bay nền */
+/* bong bóng nền */
 
 function createBackgroundBubble(){
 
