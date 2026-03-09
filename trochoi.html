@@ -8,9 +8,10 @@
 
 body{
 font-family: Arial;
-background: linear-gradient(135deg,#1e3c72,#2a5298);
+background: linear-gradient(135deg,#d4f1ff,#a8e6ff);
 text-align:center;
-color:white;
+color:#0a3d62;
+overflow-x:hidden;
 }
 
 h1{
@@ -29,12 +30,13 @@ margin-top:30px;
 .card{
 width:150px;
 height:150px;
-background:#fff;
+background:#ffffff;
 border-radius:10px;
 cursor:pointer;
 position:relative;
 transform-style: preserve-3d;
 transition: transform 0.5s;
+box-shadow:0 5px 10px rgba(0,0,0,0.15);
 }
 
 .card.flip{
@@ -50,7 +52,7 @@ backface-visibility:hidden;
 }
 
 .front{
-background:#eee;
+background:#e3f6ff;
 }
 
 .back{
@@ -78,7 +80,7 @@ margin-top:20px;
 }
 
 #restart{
-background:#ff9800;
+background:#4fc3f7;
 color:white;
 }
 
@@ -86,7 +88,7 @@ color:white;
 position:absolute;
 right:20px;
 top:20px;
-background:#e91e63;
+background:#29b6f6;
 color:white;
 }
 
@@ -100,6 +102,26 @@ animation: win 1s infinite alternate;
 @keyframes win{
 from{transform:scale(1)}
 to{transform:scale(1.2)}
+}
+
+/* Bong bóng */
+
+.bubble{
+position:fixed;
+border-radius:50%;
+pointer-events:none;
+animation: bubbleFloat 2s linear forwards;
+}
+
+@keyframes bubbleFloat{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-120px) scale(1.5);
+opacity:0;
+}
 }
 
 </style>
@@ -235,6 +257,36 @@ lock=false;
 document.getElementById("restart").onclick=()=>{
 location.reload();
 }
+
+/* Hiệu ứng bong bóng khi click */
+
+document.addEventListener("click",function(e){
+
+for(let i=0;i<6;i++){
+
+const bubble=document.createElement("div");
+
+bubble.className="bubble";
+
+const size=Math.random()*20+10;
+
+bubble.style.width=size+"px";
+bubble.style.height=size+"px";
+
+bubble.style.left=(e.clientX+(Math.random()*40-20))+"px";
+bubble.style.top=(e.clientY+(Math.random()*40-20))+"px";
+
+bubble.style.background="rgba(120,200,255,0.6)";
+
+document.body.appendChild(bubble);
+
+setTimeout(()=>{
+bubble.remove();
+},2000)
+
+}
+
+});
 
 </script>
 
