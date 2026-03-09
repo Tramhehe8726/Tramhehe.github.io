@@ -2,67 +2,46 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Game Lật Thẻ</title>
+<title>Game Tìm 2 Ảnh Giống Nhau</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family: Arial;
+background: linear-gradient(135deg,#1e3c72,#2a5298);
 text-align:center;
-background:linear-gradient(135deg,#6dd5ed,#2193b0);
-margin:0;
+color:white;
 }
 
 h1{
-margin-top:20px;
-color:white;
+margin-top:10px;
 }
 
-#homeBtn{
-position:absolute;
-top:10px;
-right:10px;
-padding:10px 15px;
-background:#ff5252;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-#restart{
-margin-top:20px;
-padding:10px 20px;
-font-size:18px;
-background:#4CAF50;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-.grid{
-width:540px;
-margin:30px auto;
+.game-board{
+width:720px;
+margin:auto;
 display:grid;
-grid-template-columns:repeat(4,120px);
+grid-template-columns: repeat(4,1fr);
 gap:15px;
+margin-top:30px;
 }
 
 .card{
-width:120px;
-height:120px;
-position:relative;
-transform-style:preserve-3d;
-transition:transform .5s;
+width:150px;
+height:150px;
+background:#fff;
+border-radius:10px;
 cursor:pointer;
+position:relative;
+transform-style: preserve-3d;
+transition: transform 0.5s;
 }
 
 .card.flip{
-transform:rotateY(180deg);
+transform: rotateY(180deg);
 }
 
-.front,.back{
+.front, .back{
 position:absolute;
 width:100%;
 height:100%;
@@ -71,23 +50,56 @@ backface-visibility:hidden;
 }
 
 .front{
-background:#333;
+background:#eee;
 }
 
 .back{
-transform:rotateY(180deg);
+transform: rotateY(180deg);
 }
 
 .back img{
 width:100%;
 height:100%;
 border-radius:10px;
+object-fit:cover;
 }
 
-.win{
-font-size:40px;
+.matched{
+visibility:hidden;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:20px;
+}
+
+#restart{
+background:#ff9800;
 color:white;
+}
+
+#home{
+position:absolute;
+right:20px;
+top:20px;
+background:#e91e63;
+color:white;
+}
+
+#win{
 display:none;
+font-size:40px;
+margin-top:20px;
+animation: win 1s infinite alternate;
+}
+
+@keyframes win{
+from{transform:scale(1)}
+to{transform:scale(1.2)}
 }
 
 </style>
@@ -95,82 +107,68 @@ display:none;
 
 <body>
 
-<button id="homeBtn" onclick="goHome()">🏠 Trang chủ</button>
+<button id="home" onclick="window.location.href='index.html'">Trang chủ</button>
 
-<h1>Game Tìm 2 Hình Giống Nhau</h1>
+<h1>Game Lật Thẻ Tìm Ảnh Giống Nhau</h1>
 
-<div class="grid" id="game"></div>
+<div id="win">🎉 Bạn đã thắng! 🎉</div>
 
-<button id="restart">🔄 Chơi lại</button>
+<div class="game-board" id="board"></div>
 
-<div class="win" id="winText">🎉 BẠN ĐÃ THẮNG 🎉</div>
+<button id="restart">Chơi lại</button>
 
 <!-- Âm thanh -->
-<audio id="flipSound" src="https://www.soundjay.com/buttons/button-16.mp3"></audio>
+<audio id="flipSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-click-1114.mp3"></audio>
+<audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
 
 <!-- Nhạc nền -->
 <audio id="bgMusic" autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a2f4b27a3.mp3">
+<source src="https://assets.mixkit.co/music/preview/mixkit-game-level-music-689.mp3">
 </audio>
 
 <script>
 
 const images=[
-"https://picsum.photos/id/1015/200",
-"https://picsum.photos/id/1025/200",
-"https://picsum.photos/id/1035/200",
-"https://picsum.photos/id/1045/200",
-"https://picsum.photos/id/1055/200",
-"https://picsum.photos/id/1065/200",
-"https://picsum.photos/id/1075/200",
-"https://picsum.photos/id/1084/200"
+"choicuoi11.jpg",
+"m.quan.jpg",
+"mthu.jpg",
+"Chi.jpg",
+"Cuong.jpg",
+"GKhanh.jpg",
+"Minh.JPG",
+"Tuan.jpg"
 ];
 
 let cards=[...images,...images];
+
+cards.sort(()=>0.5-Math.random());
+
+const board=document.getElementById("board");
 
 let firstCard=null;
 let secondCard=null;
 let lock=false;
 let matched=0;
 
-const game=document.getElementById("game");
-
-function shuffle(array){
-return array.sort(()=>Math.random()-0.5);
-}
-
-function createBoard(){
-
-game.innerHTML="";
-matched=0;
-
-document.getElementById("winText").style.display="none";
-
-shuffle(cards);
-
 cards.forEach(img=>{
 
 const card=document.createElement("div");
 card.classList.add("card");
-card.dataset.image=img;
 
 card.innerHTML=`
-
 <div class="front"></div>
-
 <div class="back">
 <img src="${img}">
 </div>
-
 `;
+
+card.dataset.image=img;
 
 card.addEventListener("click",flipCard);
 
-game.appendChild(card);
+board.appendChild(card);
 
 });
-
-}
 
 function flipCard(){
 
@@ -194,24 +192,21 @@ checkMatch();
 
 function checkMatch(){
 
-let match=firstCard.dataset.image===secondCard.dataset.image;
+if(firstCard.dataset.image===secondCard.dataset.image){
 
-if(match){
-
-setTimeout(()=>{
-
-firstCard.style.visibility="hidden";
-secondCard.style.visibility="hidden";
+firstCard.classList.add("matched");
+secondCard.classList.add("matched");
 
 matched++;
 
-if(matched===8){
-winGame();
-}
-
 reset();
 
-},500);
+if(matched===8){
+
+document.getElementById("win").style.display="block";
+document.getElementById("winSound").play();
+
+}
 
 }else{
 
@@ -224,7 +219,7 @@ secondCard.classList.remove("flip");
 
 reset();
 
-},1000);
+},1000)
 
 }
 
@@ -232,43 +227,14 @@ reset();
 
 function reset(){
 
-firstCard=null;
-secondCard=null;
+[firstCard,secondCard]=[null,null];
 lock=false;
 
 }
 
-function winGame(){
-
-const win=document.getElementById("winText");
-
-win.style.display="block";
-
-win.animate([
-
-{transform:"scale(1)"},
-
-{transform:"scale(1.3)"},
-
-{transform:"scale(1)"}
-
-],{
-
-duration:800,
-
-iterations:4
-
-});
-
+document.getElementById("restart").onclick=()=>{
+location.reload();
 }
-
-document.getElementById("restart").onclick=createBoard;
-
-function goHome(){
-window.location.href="index.html";
-}
-
-createBoard();
 
 </script>
 
