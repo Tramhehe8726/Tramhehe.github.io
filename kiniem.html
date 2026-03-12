@@ -104,13 +104,15 @@ body{
     animation:zoom 0.4s ease;
 }
 
-.lightbox-video{
-    max-width:80%;
-    max-height:80%;
+.lightbox-video,
+.lightbox-iframe{
+    width:min(90vw,1000px);
+    height:min(70vh,562px);
     border-radius:10px;
     animation:zoom 0.4s ease;
+    border:0;
 }
-
+    
 @keyframes zoom{
     from{transform:scale(0.6)}
     to{transform:scale(1)}
@@ -284,7 +286,7 @@ body{
 </div>
 
 <div class="memory-card">
-<img src="giaidieutuoihong10.jpg">
+<img src="giaidieutuoihong11.jpeg" data-youtube="https://www.youtube.com/embed/aWLmMgOyqUs" alt="Bản hòa ca của những nhịp đập đồng điệu">
 <div class="memory-content">
 <h3>Bản hòa ca của những nhịp đập đồng điệu</h3>
 <p>Ba mùa nắng hạ, ba lần đứng dưới ánh đèn sân khấu. Những bước nhảy rực rỡ của ngày hôm nay, xin được gói lại thành một thước phim đẹp đẽ nhất, để mai này khi nhìn lại, ta vẫn thấy mình đang cháy hết mình giữa những năm tháng thanh xuân ấy.</p>
@@ -309,7 +311,7 @@ body{
 <p>Thêm video vào mảnh ký ức để những tiếng cười, bước chân và cảm xúc được lưu lại sống động như ngày hôm qua.</p>
 </div>
 </div>
-
+    
 </div>
 </div>
 </div>
@@ -318,6 +320,7 @@ body{
 <span class="close">&times;</span>
 <img class="lightbox-img" id="lightbox-img">
 <video class="lightbox-video" id="lightbox-video" controls playsinline></video>
+<iframe class="lightbox-iframe" id="lightbox-iframe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 <script>
@@ -326,6 +329,7 @@ const mediaItems = document.querySelectorAll(".memory-card img, .memory-card vid
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxVideo = document.getElementById("lightbox-video");
+const lightboxIframe = document.getElementById("lightbox-iframe");
 const closeBtn = document.querySelector(".close");
 
 /* OPEN IMAGE + HEART FLOWER */
@@ -336,11 +340,23 @@ lightbox.style.display="flex";
 
 if(media.tagName==="VIDEO"){
 const videoSrc = media.currentSrc || media.querySelector("source")?.src || media.src;
+lightboxIframe.style.display="none";
+lightboxIframe.removeAttribute("src");
 lightboxImg.style.display="none";
 lightboxVideo.style.display="block";
 lightboxVideo.src=videoSrc;
 lightboxVideo.play();
+}else if(media.dataset.youtube){
+lightboxVideo.pause();
+lightboxVideo.removeAttribute("src");
+lightboxVideo.load();
+lightboxVideo.style.display="none";
+lightboxImg.style.display="none";
+lightboxIframe.style.display="block";
+lightboxIframe.src=media.dataset.youtube + "?autoplay=1";
 }else{
+lightboxIframe.style.display="none";
+lightboxIframe.removeAttribute("src");
 lightboxVideo.pause();
 lightboxVideo.removeAttribute("src");
 lightboxVideo.load();
@@ -358,6 +374,8 @@ lightbox.style.display="none";
 lightboxVideo.pause();
 lightboxVideo.removeAttribute("src");
 lightboxVideo.load();
+lightboxIframe.removeAttribute("src");
+lightboxIframe.style.display="none";
 }
 
 closeBtn.onclick=()=>closeLightbox();
