@@ -72,12 +72,6 @@ body{
     cursor:pointer;
 }
 
-.memory-card video{
-    width:100%;
-    display:block;
-    cursor:pointer;
-}
-
 .memory-content{
     padding:12px;
 }
@@ -98,13 +92,6 @@ body{
 }
 
 .lightbox-img{
-    max-width:80%;
-    max-height:80%;
-    border-radius:10px;
-    animation:zoom 0.4s ease;
-}
-
-.lightbox-video{
     max-width:80%;
     max-height:80%;
     border-radius:10px;
@@ -136,7 +123,144 @@ body{
 
 @keyframes floatUp{
     0%{
-@@ -264,81 +277,116 @@ body{
+        transform:translateY(0) scale(0.6);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-150px) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* BUBBLE */
+
+.bubble{
+    position:fixed;
+    width:10px;
+    height:10px;
+    background:#ff7eb3;
+    border-radius:50%;
+    pointer-events:none;
+    animation:bubbleFloat 1.5s forwards;
+}
+
+@keyframes bubbleFloat{
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+    100%{
+        transform:translateY(-120px) scale(2);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="header">
+<div class="title">Toán 2 - K34 - Hét ra lửa - Mửa ra khói - Ói ra than</div>
+<a href="menu1.html" class="page-btn">Trang chủ</a>
+</div>
+
+<div class="memory-container">
+
+<h2 class="section-title">MẢNH KÝ ỨC</h2>
+
+<div class="memory-grid">
+
+<!-- GIỮ NGUYÊN NỘI DUNG -->
+
+<div class="memory-card">
+<img src="thiennguyenlop10.jpg">
+<div class="memory-content">
+<h3>Hành trình gieo mầm đầu tiên cùng nhau</h3>
+<p>Những dấu chân nhỏ bé trên hành trình vạn dặm của lòng nhân ái. Tập thể lớp và lần đầu tiên cùng nhau trao đi yêu thương và nhận lại những nụ cười rạng rỡ hơn cả nắng mai. Chuyến thiện nguyện đầu tiên – nơi tình bạn của chúng mình được viết bằng những điều tử tế.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="ngay20.10lop10.jpg">
+<div class="memory-content">
+<h3>20.10.2023 - Ngày Quốc tế Phụ nữ Việt Nam</h3>
+<p>Những mảnh ghép dịu dàng của thanh xuân 10 Toán 2: Gửi một chút chân thành trong ký ức lấp lánh của thời thanh xuân chúng mình.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="20_11_2023.jpg">
+<div class="memory-content">
+<h3>Ngày nhà giáo Việt Nam 20/11 năm học 2023-2024</h3>
+<p>Phép cộng hoàn hảo cho mùa Hiến chương đầu tiên của những năm tháng cấp 3: 10 Toán 2 + cô Võ Thị Minh Hiếu = Khởi đầu một hành trình rực rỡ, một đời thương nhớ.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="baotuonglop10.jpeg">
+<div class="memory-content">
+<h3>Tác phẩm báo tường tràn đầy nhiệt huyết</h3>
+<p>Những nét bút vụng về nhưng chở đầy nắng ấm. Tác phẩm báo tường đầu tiên - nơi tình thân bắt đầu nở hoa.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="giaidieutuoihong10.jpg">
+<div class="memory-content">
+<h3>Mùa của những giai điệu đầu tiên</h3>
+<p>Chạm ngõ sân khấu tuổi 16: Viết lên thanh xuân bằng những nốt nhạc đầu tiên cùng nhau. Hạng Nhì, giải Ba và một vị trí ưu tiên trong lòng mọi người.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="hkpđtruonglop10.jpg">
+<div class="memory-content">
+<h3>Ngày hội thể thao đầu tiên</h3>
+<p>Hội khỏe Phù Đổng đầu tiên cùng nhau ở tuổi 16: Gửi lại mồ hôi trên sân đấu, mang về niềm tin của bạn bè. Không mang hào quang của người về nhất, nhưng luôn là vị trí thứ nhất trong lòng mỗi thành viên thuộc 10T2.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="26_3_2024.jpeg">
+<div class="memory-content">
+<h3>Mảnh ký ức 26/03/2024</h3>
+<p>26/03 - Ngày nắng gõ cửa trại 10T2, để lại những dấu ấn đầu tiên của một tập thể gắn kết. Những trò chơi dân gian, những giải thưởng kiêu hãnh đã kết tinh thành một khoảng trời kỷ niệm rực rỡ của tuổi học trò.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="ngay6.4lop10.jpg">
+<div class="memory-content">
+<h3>06/04/2024 - Boy's Day đầu tiên của các phái mạnh</h3>
+<p>Viết vào trang nhật ký 10 Toán 2 một chương mang tên 'Ưu ái phái mạnh'. Mong chút quà nhỏ này sẽ hóa thành ký ức đẹp nhất trong những năm tháng rực nắng của các bạn.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="choicuoinamlop10.PNG">
+<div class="memory-content">
+<h3>Wrapping up Grade 10 in style!!</h3>
+<p>Chương hồi lớp 10 khép lại bằng những thanh âm rộn ràng của buổi đi chơi cuối năm học. 36 mảnh ghép đã cùng nhau vượt qua thử thách, giờ đây cùng ngồi lại để viết thêm những dư vị mới cho một năm học đáng nhớ kế tiếp.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="stem11giainhi.jpeg">
+<div class="memory-content">
+<h3>Ngày nhà giáo Việt Nam 20/11 năm học 2024-2025</h3>
+<p>Chút dư vị giải Nhì cho mùa Hiến chương thứ 2, 11T2 dệt nên những mảnh ghép rực rỡ nhất để lưu lại nơi Lê thân thương.</p>
+</div>
+</div>
+
+<div class="memory-card">
+<img src="6_4_lop11.jpg">
+<div class="memory-content">
+<h3>Boy's Day 06/04/2025</h3>
+<p>11 - không còn cái bỡ ngỡ của lớp 10, không có cái áp lực như lớp 12. Những bông hồng của 11T2: Gói ghém nắng tháng Tư vào những lời hồi đáp chân thành nhất dành cho phái mạnh.</p>
+</div>
+</div>
 
 <div class="memory-card">
 <img src="20.10.2025lop12.jpg" alt="20_10_2025">
@@ -147,7 +271,7 @@ body{
 </div>
 
 <div class="memory-card">
-<img src="giaidieutuoihong10.jpeg">
+<img src="giaidieutuoihong10.jpg">
 <div class="memory-content">
 <h3>Bản hòa ca của những nhịp đập đồng điệu</h3>
 <p>Ba mùa nắng hạ, ba lần đứng dưới ánh đèn sân khấu. Những bước nhảy rực rỡ của ngày hôm nay, xin được gói lại thành một thước phim đẹp đẽ nhất, để mai này khi nhìn lại, ta vẫn thấy mình đang cháy hết mình giữa những năm tháng thanh xuân ấy.</p>
@@ -162,17 +286,6 @@ body{
 </div>
 </div>
 
-<!-- MẪU VIDEO: thay src bằng file video của bạn -->
-<div class="memory-card">
-<video class="memory-video" muted loop playsinline preload="metadata" poster="liên hoan cuối năm 2025.jpg">
-<source src="kiyeu1-3-2026.mp4" type="video/mp4">
-</video>
-<div class="memory-content">
-<h3> Kỉ yếu 1-3-2026 </h3>
-<p>Mảnh ký ức để những tiếng cười, bước chân và cảm xúc được lưu lại sống động như ngày hôm qua.</p>
-</div>
-</div>
-
 </div>
 </div>
 </div>
@@ -180,54 +293,30 @@ body{
 <div class="lightbox" id="lightbox">
 <span class="close">&times;</span>
 <img class="lightbox-img" id="lightbox-img">
-<video class="lightbox-video" id="lightbox-video" controls playsinline></video>
 </div>
 
 <script>
 
-const mediaItems = document.querySelectorAll(".memory-card img, .memory-card video");
+const images = document.querySelectorAll(".memory-card img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
-const lightboxVideo = document.getElementById("lightbox-video");
 const closeBtn = document.querySelector(".close");
 
-/* OPEN MEDIA + HEART FLOWER */
+/* OPEN IMAGE + HEART FLOWER */
 
-mediaItems.forEach(media=>{
-media.onclick=()=>{
+images.forEach(img=>{
+img.onclick=()=>{
 lightbox.style.display="flex";
-
-if(media.tagName==="VIDEO"){
-const videoSrc = media.currentSrc || media.querySelector("source")?.src || media.src;
-lightboxImg.style.display="none";
-lightboxVideo.style.display="block";
-lightboxVideo.src=videoSrc;
-lightboxVideo.play();
-}else{
-lightboxVideo.pause();
-lightboxVideo.removeAttribute("src");
-lightboxVideo.load();
-lightboxVideo.style.display="none";
-lightboxImg.style.display="block";
-lightboxImg.src=media.src;
-}
-
+lightboxImg.src=img.src;
 createLoveExplosion();
-};
+}
 });
 
-function closeLightbox(){
-lightbox.style.display="none";
-lightboxVideo.pause();
-lightboxVideo.removeAttribute("src");
-lightboxVideo.load();
-}
-
-closeBtn.onclick=()=>closeLightbox();
+closeBtn.onclick=()=>lightbox.style.display="none";
 
 lightbox.onclick=e=>{
 if(e.target===lightbox){
-closeLightbox();
+lightbox.style.display="none";
 }
 }
 
@@ -253,3 +342,26 @@ setTimeout(()=>el.remove(),2500);
 }
 
 }
+
+/* CLICK BUBBLE EFFECT */
+
+document.addEventListener("click",e=>{
+
+let bubble=document.createElement("div");
+bubble.className="bubble";
+
+bubble.style.left=e.clientX+"px";
+bubble.style.top=e.clientY+"px";
+
+document.body.appendChild(bubble);
+
+setTimeout(()=>{
+bubble.remove();
+},1500);
+
+});
+
+</script>
+
+</body>
+</html>
