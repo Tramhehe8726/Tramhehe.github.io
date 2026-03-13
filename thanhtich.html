@@ -197,6 +197,20 @@
             border: 1px solid #667eea40;
         }
 
+        .bg-music-player {
+            position: fixed;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .bg-music-player iframe {
+            width: 1px;
+            height: 1px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .wrapper {
@@ -217,7 +231,15 @@
     </style>
 </head>
 <body>
-
+   <div class="bg-music-player" aria-hidden="true">
+        <iframe
+            src="https://www.youtube.com/embed/CBZspzEZH1g?autoplay=1&loop=1&playlist=CBZspzEZH1g&controls=0&mute=0"
+            title="Nhạc nền trang thành tích"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+    </div>
     <!-- Nội dung trang thành tích -->
     <div class="achievement-container">
         <h1 style="text-align: center; font-size: 36px; color: #667eea; margin-bottom: 20px;">
